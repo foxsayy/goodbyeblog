@@ -161,6 +161,100 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-MySQL-3-2-데이터-필터링-AND" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/12/10/MySQL-3-2-데이터-필터링-AND/">[MySQL] 3.2 데이터 필터링 - AND</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2018/12/10/MySQL-3-2-데이터-필터링-AND/" class="article-date">
+	  <time datetime="2018-12-10T10:07:57.000Z" itemprop="datePublished">December 10, 2018</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p><a href="http://www.mysqltutorial.org" target="_blank" rel="noopener">http://www.mysqltutorial.org</a> 내용을 따라 익히며 정리한 글입니다. 예시에 나오는 데이터셋은 MySQL 샘플 데이터셋인 <code>classicmodels</code> DB입니다.</p>
+<hr>
+<h3 id="1-연산자-AND-소개"><a href="#1-연산자-AND-소개" class="headerlink" title="1. 연산자 AND 소개"></a>1. 연산자 <code>AND</code> 소개</h3><p>논리 연산자 <code>AND</code> 는 <code>SELECT</code>, <code>UPDATE</code>, <code>DELETE</code> 문의 <code>WHERE</code> 절에서 자주 사용된다.</p>
+<p>두 개 이상의 불리언 값을 받아 모두 <code>True</code> 이면 <code>True</code> 를 리턴한다.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>TRUE</th>
+<th>FALSE</th>
+<th>NULL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TRUE</strong></td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><strong>FALSE</strong></td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td><strong>NULL</strong></td>
+<td>NULL</td>
+<td>FALSE</td>
+<td>NULL</td>
+</tr>
+</tbody>
+</table>
+<p>MySQL은 <code>AND</code> 연산자가 있는 표현식을 평가하면서 결과가 확실하게 예측되고 나면 나머지 연산을 하지 않는다. (Short Circuit Evaluation) <code>AND</code> 앞에서 <code>False</code>가 나오면 <code>AND</code> 뒤에 나오는 연산은 생략한다는 의미다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="number">1</span> = <span class="number">0</span> <span class="keyword">AND</span> <span class="number">1</span> / <span class="number">0</span> ;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-------------+</span><br><span class="line">| 1=0 and 1/0 |</span><br><span class="line">+-------------+</span><br><span class="line">|           0 |</span><br><span class="line">+-------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>MySQL에서 <code>0</code>은 <code>FALSE</code>로, <code>0</code> 이 아닌 값들은 <code>TRUE</code> 로 다뤄진다.<br>위 예에서 <code>1 = 0</code> 은 <code>FALSE</code> 를 리턴한다. Short Circuit Evaluation에 따라 <code>1 / 0</code> 연산은 하지도 않았다. 만약 연산을 했다면 division by zero 에러가 떴을 것이다.</p>
+<h3 id="2-AND-예시"><a href="#2-AND-예시" class="headerlink" title="2. AND 예시"></a>2. <code>AND</code> 예시</h3><h4 id="2-1"><a href="#2-1" class="headerlink" title="2-1."></a>2-1.</h4><p><code>AND</code> 연산자를 사용해 미국 캘리포니아 주에 사는 고객들을 추리시오.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    customername,</span><br><span class="line">    country,</span><br><span class="line">    state</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    customers</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    country = <span class="string">'USA'</span> <span class="keyword">AND</span> state = <span class="string">'CA'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">+------------------------------+---------+-------+</span><br><span class="line">| customername                 | country | state |</span><br><span class="line">+------------------------------+---------+-------+</span><br><span class="line">| Mini Gifts Distributors Ltd. | USA     | CA    |</span><br><span class="line">| Mini Wheels Co.              | USA     | CA    |</span><br><span class="line">| Technics Stores Inc.         | USA     | CA    |</span><br><span class="line">| Toys4GrownUps.com            | USA     | CA    |</span><br><span class="line">| Boards &amp; Toys Co.            | USA     | CA    |</span><br><span class="line">| Collectable Mini Designs Co. | USA     | CA    |</span><br><span class="line">| Corporate Gift Ideas Co.     | USA     | CA    |</span><br><span class="line">| Men &apos;R&apos; US Retailers, Ltd.   | USA     | CA    |</span><br><span class="line">| The Sharp Gifts Warehouse    | USA     | CA    |</span><br><span class="line">| West Coast Collectables Co.  | USA     | CA    |</span><br><span class="line">| Signal Collectibles Ltd.     | USA     | CA    |</span><br><span class="line">+------------------------------+---------+-------+</span><br><span class="line">11 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="2-2"><a href="#2-2" class="headerlink" title="2-2."></a>2-2.</h4><p><code>AND</code> 연산자를 사용하면 두 개 이상의 불리언 표현식을 조합할 수 있다. 미국 캘리포니아 주에 살면서, 신용한도가 100K 이상인 고객들을 추리시오.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span>   customername,</span><br><span class="line">         country,</span><br><span class="line">         state,</span><br><span class="line">         creditlimit</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> country = <span class="string">'USA'</span></span><br><span class="line">        <span class="keyword">AND</span> state = <span class="string">'CA'</span></span><br><span class="line">        <span class="keyword">AND</span> creditlimit &gt; <span class="number">100000</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+------------------------------+---------+-------+-------------+</span><br><span class="line">| customername                 | country | state | creditlimit |</span><br><span class="line">+------------------------------+---------+-------+-------------+</span><br><span class="line">| Mini Gifts Distributors Ltd. | USA     | CA    |   210500.00 |</span><br><span class="line">| Collectable Mini Designs Co. | USA     | CA    |   105000.00 |</span><br><span class="line">| Corporate Gift Ideas Co.     | USA     | CA    |   105000.00 |</span><br><span class="line">+------------------------------+---------+-------+-------------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-MySQL-3-1-데이터-필터링-WHERE" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -480,6 +574,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2018/12/29/Crawling-RIDISELECT/">[Crawling] RIDISELECT</a></h6>
+              <span>December 29, 2018</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2018/12/28/MySQL-4-2-데이터-정렬-ORDER-BY를-활용한-Natural-Sorting/">[MySQL] 4.2 데이터 정렬 - ORDER BY를 활용한 Natural Sorting</a></h6>
               <span>December 28, 2018</span>
             </div>
@@ -534,18 +640,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/12/11/MySQL-3-6-데이터-필터링-LIKE/">[MySQL] 3.6 데이터 필터링 - LIKE</a></h6>
-              <span>December 11, 2018</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -555,7 +649,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/The-Economist/">The Economist</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/The-Economist/">The Economist</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/crawling/">crawling</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -567,7 +661,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/MySQL/" style="font-size: 20px;">MySQL</a> <a href="/tags/The-Economist/" style="font-size: 10px;">The Economist</a>
+      <a href="/tags/MySQL/" style="font-size: 20px;">MySQL</a> <a href="/tags/The-Economist/" style="font-size: 10px;">The Economist</a> <a href="/tags/crawling-ridibooks/" style="font-size: 10px;">crawling, ridibooks</a>
     </div>
   </div>
 
@@ -577,7 +671,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">13</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">14</span></li></ul>
     </div>
   </div>
 
