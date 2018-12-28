@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>[mysql] 4.1 데이터 정렬 - order by | DATASCIENTIST FOXSAY</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="MySQL">
+  
+  
+  
+  
+  <meta name="description" content="http://www.mysqltutorial.org 내용을 따라 익히며 정리한 글입니다. 예시에 나오는 데이터셋은 MySQL 샘플 데이터셋인 classicmodels DB입니다.  1. ORDER BY 소개SELECT 문을 사용할 때 결과셋은 따로 정렬되지 않는데, ORDER BY 절을 사용해 정렬할 수 있다. 2. ORDER BY 예시다음 쿼리는  cu">
+<meta name="keywords" content="MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[MySQL] 4.1 데이터 정렬 - ORDER BY">
+<meta property="og:url" content="http://foxsayy.github.io/2018/12/19/MySQL-4-1-데이터-정렬-ORDER-BY/index.html">
+<meta property="og:site_name" content="DATASCIENTIST FOXSAY">
+<meta property="og:description" content="http://www.mysqltutorial.org 내용을 따라 익히며 정리한 글입니다. 예시에 나오는 데이터셋은 MySQL 샘플 데이터셋인 classicmodels DB입니다.  1. ORDER BY 소개SELECT 문을 사용할 때 결과셋은 따로 정렬되지 않는데, ORDER BY 절을 사용해 정렬할 수 있다. 2. ORDER BY 예시다음 쿼리는  cu">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-12-28T04:34:03.192Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[MySQL] 4.1 데이터 정렬 - ORDER BY">
+<meta name="twitter:description" content="http://www.mysqltutorial.org 내용을 따라 익히며 정리한 글입니다. 예시에 나오는 데이터셋은 MySQL 샘플 데이터셋인 classicmodels DB입니다.  1. ORDER BY 소개SELECT 문을 사용할 때 결과셋은 따로 정렬되지 않는데, ORDER BY 절을 사용해 정렬할 수 있다. 2. ORDER BY 예시다음 쿼리는  cu">
+  
+    <link rel="alternate" href="/atom.xml" title="DATASCIENTIST FOXSAY" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories/index.html"] = "Categories"; 
+
+  themeMenus["/tags/index.html"] = "Tags"; 
+
+  themeMenus["/about/index.html"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="DATASCIENTIST FOXSAY" rel="home"> DATASCIENTIST FOXSAY </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories/index.html">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags/index.html">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about/index.html">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt="" src="">
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-MySQL-4-1-데이터-정렬-ORDER-BY" style="width: 66%; float:left;" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      [MySQL] 4.1 데이터 정렬 - ORDER BY
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2018/12/19/MySQL-4-1-데이터-정렬-ORDER-BY/" class="article-date">
+	  <time datetime="2018-12-18T17:36:53.000Z" itemprop="datePublished">December 19, 2018</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p><a href="http://www.mysqltutorial.org" target="_blank" rel="noopener">http://www.mysqltutorial.org</a> 내용을 따라 익히며 정리한 글입니다. 예시에 나오는 데이터셋은 MySQL 샘플 데이터셋인 <code>classicmodels</code> DB입니다.</p>
+<hr>
+<h3 id="1-ORDER-BY-소개"><a href="#1-ORDER-BY-소개" class="headerlink" title="1. ORDER BY 소개"></a>1. <code>ORDER BY</code> 소개</h3><p><code>SELECT</code> 문을 사용할 때 결과셋은 따로 정렬되지 않는데, <code>ORDER BY</code> 절을 사용해 정렬할 수 있다.</p>
+<h3 id="2-ORDER-BY-예시"><a href="#2-ORDER-BY-예시" class="headerlink" title="2. ORDER BY 예시"></a>2. <code>ORDER BY</code> 예시</h3><p>다음 쿼리는  <code>customers</code> 테이블에서 성과 이름을 가져온 뒤 성을 기준으로 정렬해 보여준다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> contactLastname,</span><br><span class="line"> contactFirstname</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line"> customers</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line"> contactLastname</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">+-----------------+------------------+</span><br><span class="line">| contactLastname | contactFirstname |</span><br><span class="line">+-----------------+------------------+</span><br><span class="line">| Accorti         | Paolo            |</span><br><span class="line">| Altagar,G M     | Raanan           |</span><br><span class="line">| Andersen        | Mel              |</span><br><span class="line">| Anton           | Carmen           |</span><br><span class="line">| Ashworth        | Rachel           |</span><br><span class="line">+-----------------+------------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>내림차순으로 정렬하려면 <code>DESC</code> 를 추가해준다.<br>따로 표시하지 않거나 <code>ASC</code> 을 써주면 오름차순 정렬이 실행된다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> contactLastname,</span><br><span class="line"> contactFirstname</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line"> customers</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line"> contactLastname <span class="keyword">DESC</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">+-----------------+------------------+</span><br><span class="line">| contactLastname | contactFirstname |</span><br><span class="line">+-----------------+------------------+</span><br><span class="line">| Young           | Julie            |</span><br><span class="line">| Young           | Jeff             |</span><br><span class="line">| Young           | Mary             |</span><br><span class="line">| Young           | Dorothy          |</span><br><span class="line">| Yoshido         | Juri             |</span><br><span class="line">+-----------------+------------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>성은 내림차순으로, 이름은 오름차순으로 정렬하고 싶다면 각각의 컬럼에 <code>DESC</code> 와 <code>ASC</code> 를 명시해주면 된다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> contactLastname,</span><br><span class="line"> contactFirstname</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line"> customers</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line"> contactLastname <span class="keyword">DESC</span>,</span><br><span class="line"> contactFirstname <span class="keyword">ASC</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">+-----------------+------------------+</span><br><span class="line">| contactLastname | contactFirstname |</span><br><span class="line">+-----------------+------------------+</span><br><span class="line">| Young           | Dorothy          |</span><br><span class="line">| Young           | Jeff             |</span><br><span class="line">| Young           | Julie            |</span><br><span class="line">| Young           | Mary             |</span><br><span class="line">| Yoshido         | Juri             |</span><br><span class="line">+-----------------+------------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h3 id="3-표현식에-기반한-ORDER-BY-정렬"><a href="#3-표현식에-기반한-ORDER-BY-정렬" class="headerlink" title="3. 표현식에 기반한 ORDER BY 정렬"></a>3. 표현식에 기반한 <code>ORDER BY</code> 정렬</h3><p>다음 쿼리는 <code>orderdetails</code> 테이블에서 주문번호와 주문라인번호, 주문수량과 단가의 곱을 불러온다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> ordernumber,</span><br><span class="line"> orderlinenumber,</span><br><span class="line"> quantityOrdered * priceEach <span class="keyword">AS</span> subtotal</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line"> orderdetails</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line"> ordernumber,</span><br><span class="line"> orderLineNumber,</span><br><span class="line"> subtotal</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">+-------------+-----------------+----------+</span><br><span class="line">| ordernumber | orderlinenumber | subtotal |</span><br><span class="line">+-------------+-----------------+----------+</span><br><span class="line">|       10100 |               1 |  1729.21 |</span><br><span class="line">|       10100 |               2 |  2754.50 |</span><br><span class="line">|       10100 |               3 |  4080.00 |</span><br><span class="line">|       10100 |               4 |  1660.12 |</span><br><span class="line">|       10101 |               1 |  4343.56 |</span><br><span class="line">+-------------+-----------------+----------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h3 id="4-ORDER-BY-와-커스텀-정렬"><a href="#4-ORDER-BY-와-커스텀-정렬" class="headerlink" title="4. ORDER BY 와 커스텀 정렬"></a>4. <code>ORDER BY</code> 와 커스텀 정렬</h3><p><code>ORDER BY</code> 를 이용하면 <code>FIELD()</code> 함수를 이용해 커스텀 정렬을 정의할 수 있다. 다음 순서대로 정렬을 해야한다고 가정하자.</p>
+<ul>
+<li>In Process</li>
+<li>On Hold</li>
+<li>Cancelled</li>
+<li>Resolved</li>
+<li>Disputed</li>
+<li>Shipped</li>
+</ul>
+<p>이 경우 쿼리문은 다음과 같이 작성한다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    orderNumber, <span class="keyword">status</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    orders</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">FIELD</span>(<span class="keyword">status</span>,</span><br><span class="line">        <span class="string">'In Process'</span>,</span><br><span class="line">        <span class="string">'On Hold'</span>,</span><br><span class="line">        <span class="string">'Cancelled'</span>,</span><br><span class="line">        <span class="string">'Resolved'</span>,</span><br><span class="line">        <span class="string">'Disputed'</span>,</span><br><span class="line">        <span class="string">'Shipped'</span>)</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">+-------------+------------+</span><br><span class="line">| orderNumber | status     |</span><br><span class="line">+-------------+------------+</span><br><span class="line">|       10425 | In Process |</span><br><span class="line">|       10421 | In Process |</span><br><span class="line">|       10422 | In Process |</span><br><span class="line">|       10420 | In Process |</span><br><span class="line">|       10424 | In Process |</span><br><span class="line">|       10423 | In Process |</span><br><span class="line">|       10414 | On Hold    |</span><br><span class="line">|       10401 | On Hold    |</span><br><span class="line">|       10334 | On Hold    |</span><br><span class="line">|       10407 | On Hold    |</span><br><span class="line">+-------------+------------+</span><br><span class="line">10 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/12/21/World-This-Week-Dec-29th-2018/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          [World This Week] Dec 18th 2018
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/12/11/MySQL-3-8-데이터-필터링-IS-NULL/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">[MySQL] 3.8 데이터 필터링 - IS NULL</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-ORDER-BY-소개"><span class="nav-number">1.</span> <span class="nav-text">1. ORDER BY 소개</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-ORDER-BY-예시"><span class="nav-number">2.</span> <span class="nav-text">2. ORDER BY 예시</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-표현식에-기반한-ORDER-BY-정렬"><span class="nav-number">3.</span> <span class="nav-text">3. 표현식에 기반한 ORDER BY 정렬</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-ORDER-BY-와-커스텀-정렬"><span class="nav-number">4.</span> <span class="nav-text">4. ORDER BY 와 커스텀 정렬</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 DATASCIENTIST FOXSAY All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories/index.html" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags/index.html" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

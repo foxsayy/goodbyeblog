@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>[mysql] 2.2 데이터 쿼리 - select distinct | DATASCIENTIST FOXSAY</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="MySQL">
+  
+  
+  
+  
+  <meta name="description" content="http://www.mysqltutorial.org 내용을 따라 익히며 정리한 글입니다. 예시에 나오는 데이터셋은 MySQL 샘플 데이터셋인 classicmodels DB입니다.  1. SELECT DISTINCT 소개테이블에서 데이터를 뽑아올 때 중복 행이 발생할 수 있다.SELECT DISTINCT 문을 사용하면 이러한 중복 행들을 제거할 수 있다.">
+<meta name="keywords" content="MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[MySQL] 2.2 데이터 쿼리 - SELECT DISTINCT">
+<meta property="og:url" content="http://foxsayy.github.io/2018/12/10/MySQL-2-2-데이터-쿼리-SELECT-DISTINCT/index.html">
+<meta property="og:site_name" content="DATASCIENTIST FOXSAY">
+<meta property="og:description" content="http://www.mysqltutorial.org 내용을 따라 익히며 정리한 글입니다. 예시에 나오는 데이터셋은 MySQL 샘플 데이터셋인 classicmodels DB입니다.  1. SELECT DISTINCT 소개테이블에서 데이터를 뽑아올 때 중복 행이 발생할 수 있다.SELECT DISTINCT 문을 사용하면 이러한 중복 행들을 제거할 수 있다.">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-12-28T04:34:13.839Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[MySQL] 2.2 데이터 쿼리 - SELECT DISTINCT">
+<meta name="twitter:description" content="http://www.mysqltutorial.org 내용을 따라 익히며 정리한 글입니다. 예시에 나오는 데이터셋은 MySQL 샘플 데이터셋인 classicmodels DB입니다.  1. SELECT DISTINCT 소개테이블에서 데이터를 뽑아올 때 중복 행이 발생할 수 있다.SELECT DISTINCT 문을 사용하면 이러한 중복 행들을 제거할 수 있다.">
+  
+    <link rel="alternate" href="/atom.xml" title="DATASCIENTIST FOXSAY" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories/index.html"] = "Categories"; 
+
+  themeMenus["/tags/index.html"] = "Tags"; 
+
+  themeMenus["/about/index.html"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="DATASCIENTIST FOXSAY" rel="home"> DATASCIENTIST FOXSAY </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories/index.html">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags/index.html">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about/index.html">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt="" src="">
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-MySQL-2-2-데이터-쿼리-SELECT-DISTINCT" style="width: 66%; float:left;" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      [MySQL] 2.2 데이터 쿼리 - SELECT DISTINCT
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2018/12/10/MySQL-2-2-데이터-쿼리-SELECT-DISTINCT/" class="article-date">
+	  <time datetime="2018-12-10T06:54:46.000Z" itemprop="datePublished">December 10, 2018</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p><a href="http://www.mysqltutorial.org" target="_blank" rel="noopener">http://www.mysqltutorial.org</a> 내용을 따라 익히며 정리한 글입니다. 예시에 나오는 데이터셋은 MySQL 샘플 데이터셋인 <code>classicmodels</code> DB입니다.</p>
+<hr>
+<h3 id="1-SELECT-DISTINCT-소개"><a href="#1-SELECT-DISTINCT-소개" class="headerlink" title="1. SELECT DISTINCT 소개"></a>1. <code>SELECT DISTINCT</code> 소개</h3><p>테이블에서 데이터를 뽑아올 때 중복 행이 발생할 수 있다.<br><code>SELECT DISTINCT</code> 문을 사용하면 이러한 중복 행들을 제거할 수 있다.</p>
+<h3 id="2-SELECT-DISTINCT-예시"><a href="#2-SELECT-DISTINCT-예시" class="headerlink" title="2. SELECT DISTINCT 예시"></a>2. <code>SELECT DISTINCT</code> 예시</h3><p><code>employees</code> 테이블에서 종업원들이 어떤 성(姓)을 갖고 있는지 살펴본다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    lastname</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    employees</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> lastname;</span><br></pre></td></tr></table></figure>
+<p>위와 같이 쿼리를 작성하면 아래와 같은 결과가 나온다. Bondur나 Firrelli, Patterson 등 중복된 값들이 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">+-----------+</span><br><span class="line">| lastName  |</span><br><span class="line">+-----------+</span><br><span class="line">| Bondur    |</span><br><span class="line">| Bondur    |</span><br><span class="line">| Bott      |</span><br><span class="line">| Bow       |</span><br><span class="line">| Castillo  |</span><br><span class="line">| Firrelli  |</span><br><span class="line">| Firrelli  |</span><br><span class="line">| Fixter    |</span><br><span class="line">| Gerard    |</span><br><span class="line">| Hernandez |</span><br><span class="line">| Jennings  |</span><br><span class="line">| Jones     |</span><br><span class="line">| Kato      |</span><br><span class="line">| King      |</span><br><span class="line">| Marsh     |</span><br><span class="line">| Murphy    |</span><br><span class="line">| Nishi     |</span><br><span class="line">| Patterson |</span><br><span class="line">| Patterson |</span><br><span class="line">| Patterson |</span><br><span class="line">| Thompson  |</span><br><span class="line">| Tseng     |</span><br><span class="line">| Vanauf    |</span><br><span class="line">+-----------+</span><br><span class="line">23 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<p>이렇게 중복된 값을 보고싶지 않을 때 <code>DISTINCT</code> 절을 사용한다. 결과값이 23개에서 19개로 줄어든 것을 볼 수 있다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span></span><br><span class="line">    lastname</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    employees</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> lastname;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">+-----------+</span><br><span class="line">| lastname  |</span><br><span class="line">+-----------+</span><br><span class="line">| Bondur    |</span><br><span class="line">| Bott      |</span><br><span class="line">| Bow       |</span><br><span class="line">| Castillo  |</span><br><span class="line">| Firrelli  |</span><br><span class="line">| Fixter    |</span><br><span class="line">| Gerard    |</span><br><span class="line">| Hernandez |</span><br><span class="line">| Jennings  |</span><br><span class="line">| Jones     |</span><br><span class="line">| Kato      |</span><br><span class="line">| King      |</span><br><span class="line">| Marsh     |</span><br><span class="line">| Murphy    |</span><br><span class="line">| Nishi     |</span><br><span class="line">| Patterson |</span><br><span class="line">| Thompson  |</span><br><span class="line">| Tseng     |</span><br><span class="line">| Vanauf    |</span><br><span class="line">+-----------+</span><br><span class="line">19 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h3 id="3-SELECT-DISTINCT-와-NULL-값"><a href="#3-SELECT-DISTINCT-와-NULL-값" class="headerlink" title="3. SELECT DISTINCT 와 NULL 값"></a>3. <code>SELECT DISTINCT</code> 와 <code>NULL</code> 값</h3><p>열에 <code>NULL</code> 값이 있을 때 <code>DISTINCT</code> 절을 사용하면 MySQL은 <code>NULL</code> 값들을 같은 값으로 하나로 표시한다.</p>
+<p><code>customers</code> 테이블의 <code>state</code> 컬럼에서 아래와 같이 쿼리하면 하나의 <code>NULL</code> 값만 나타난다.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span></span><br><span class="line">    state</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    customers;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">+---------------+</span><br><span class="line">| state         |</span><br><span class="line">+---------------+</span><br><span class="line">| NULL          |</span><br><span class="line">| NV            |</span><br><span class="line">| Victoria      |</span><br><span class="line">| CA            |</span><br><span class="line">| NY            |</span><br><span class="line">| PA            |</span><br><span class="line">| CT            |</span><br><span class="line">| MA            |</span><br><span class="line">| Osaka         |</span><br><span class="line">| BC            |</span><br><span class="line">| Québec        |</span><br><span class="line">| Isle of Wight |</span><br><span class="line">| NSW           |</span><br><span class="line">| NJ            |</span><br><span class="line">| Queensland    |</span><br><span class="line">| Co. Cork      |</span><br><span class="line">| Pretoria      |</span><br><span class="line">| NH            |</span><br><span class="line">| Tokyo         |</span><br><span class="line">+---------------+</span><br><span class="line">19 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h3 id="4-복수-열에서의-SELECT-DISTINCT"><a href="#4-복수-열에서의-SELECT-DISTINCT" class="headerlink" title="4. 복수 열에서의 SELECT DISTINCT"></a>4. 복수 열에서의 <code>SELECT DISTINCT</code></h3><p>두 개 이상의 열에서도 <code>DISTINCT</code> 절을 사용할 수 있다. 이 경우 MySQL은 모든 열들의 조합을 사용해 결과값의 유니크함을 결정한다.<br>가령 <code>customers</code> 테이블에 어떤 도시(<code>city</code>)와 주(<code>state</code>)들이 있는지 보려고 하면 아래와 같이 쿼리를 작성한다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span></span><br><span class="line">    state, city</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    customers</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    state <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> state, city</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">+---------------+---------------+</span><br><span class="line">| state         | city          |</span><br><span class="line">+---------------+---------------+</span><br><span class="line">| BC            | Tsawassen     |</span><br><span class="line">| BC            | Vancouver     |</span><br><span class="line">| CA            | Brisbane      |</span><br><span class="line">| CA            | Burbank       |</span><br><span class="line">| CA            | Burlingame    |</span><br><span class="line">| CA            | Glendale      |</span><br><span class="line">| CA            | Los Angeles   |</span><br><span class="line">| CA            | Pasadena      |</span><br><span class="line">| CA            | San Diego     |</span><br><span class="line">| CA            | San Francisco |</span><br><span class="line">| CA            | San Jose      |</span><br><span class="line">| CA            | San Rafael    |</span><br><span class="line">| Co. Cork      | Cork          |</span><br><span class="line">| CT            | Bridgewater   |</span><br><span class="line">| CT            | Glendale      |</span><br><span class="line">| CT            | New Haven     |</span><br><span class="line">| Isle of Wight | Cowes         |</span><br><span class="line">| MA            | Boston        |</span><br><span class="line">| MA            | Brickhaven    |</span><br><span class="line">| MA            | Cambridge     |</span><br><span class="line">+---------------+---------------+</span><br><span class="line">20 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+<p><code>DISTINCT</code> 를 사용하지 않으면 중복값이 나타난다. 아래 예에선 San Francisco가 두 번 나온 걸 볼 수 있다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    state, city</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    customers</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    state <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> state, city</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">+---------------+---------------+</span><br><span class="line">| state         | city          |</span><br><span class="line">+---------------+---------------+</span><br><span class="line">| BC            | Tsawassen     |</span><br><span class="line">| BC            | Vancouver     |</span><br><span class="line">| CA            | Brisbane      |</span><br><span class="line">| CA            | Burbank       |</span><br><span class="line">| CA            | Burlingame    |</span><br><span class="line">| CA            | Glendale      |</span><br><span class="line">| CA            | Los Angeles   |</span><br><span class="line">| CA            | Pasadena      |</span><br><span class="line">| CA            | San Diego     |</span><br><span class="line">| CA            | San Francisco |</span><br><span class="line">| CA            | San Francisco |</span><br><span class="line">| CA            | San Jose      |</span><br><span class="line">| CA            | San Rafael    |</span><br><span class="line">| Co. Cork      | Cork          |</span><br><span class="line">| CT            | Bridgewater   |</span><br><span class="line">| CT            | Glendale      |</span><br><span class="line">| CT            | New Haven     |</span><br><span class="line">| CT            | New Haven     |</span><br><span class="line">| Isle of Wight | Cowes         |</span><br><span class="line">| MA            | Boston        |</span><br><span class="line">+---------------+---------------+</span><br><span class="line">20 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h3 id="5-DISTINCT-와-GROUP-BY"><a href="#5-DISTINCT-와-GROUP-BY" class="headerlink" title="5. DISTINCT 와 GROUP BY"></a>5. <code>DISTINCT</code> 와 <code>GROUP BY</code></h3><p>집계함수를 사용하지 않은 채로 <code>SELECT</code> 문에서 <code>GROUP BY</code> 절을 사용하면 <code>GROUP BY</code> 절은  <code>DISTINCT</code> 절처럼 작동한다. 어떤 관계가 있는지 아래 세 가지 예시로 살펴본다.</p>
+<h4 id="5-1-GROUP-BY-사용"><a href="#5-1-GROUP-BY-사용" class="headerlink" title="5-1.GROUP BY 사용"></a>5-1.<code>GROUP BY</code> 사용</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    state</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    customers</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> state</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">10</span>;</span><br><span class="line">```</span><br></pre></td></tr></table></figure>
+<p>+—————+<br>| state         |<br>+—————+<br>| NULL          |<br>| BC            |<br>| CA            |<br>| Co. Cork      |<br>| CT            |<br>| Isle of Wight |<br>| MA            |<br>| NH            |<br>| NJ            |<br>| NSW           |<br>+—————+<br>10 rows in set (0.00 sec)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 5-2. `DISTINCT` 사용</span><br><span class="line"></span><br><span class="line">`DISTINCT` 절을 사용해 비슷한 결과를 끌어낼 수 있다.</span><br><span class="line">```sql</span><br><span class="line">SELECT DISTINCT</span><br><span class="line">    state</span><br><span class="line">FROM</span><br><span class="line">    customers</span><br><span class="line">LIMIT 10;</span><br><span class="line">```</span><br></pre></td></tr></table></figure></p>
+<p>+———-+<br>| state    |<br>+———-+<br>| NULL     |<br>| NV       |<br>| Victoria |<br>| CA       |<br>| NY       |<br>| PA       |<br>| CT       |<br>| MA       |<br>| Osaka    |<br>| BC       |<br>+———-+<br>10 rows in set (0.00 sec)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 5-3. `DISTINCT` + `ORDER BY` 사용</span><br><span class="line"></span><br><span class="line">`DISTINCT` 를 사용한 5-2 예시에 `ORDER BY` 를 추가하면 5-1과 똑같은 결과가 나온다.</span><br><span class="line"></span><br><span class="line">```sql</span><br><span class="line">SELECT DISTINCT</span><br><span class="line">    state</span><br><span class="line">FROM</span><br><span class="line">    customers</span><br><span class="line">ORDER BY state</span><br><span class="line">LIMIT 10;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">+---------------+</span><br><span class="line">| state         |</span><br><span class="line">+---------------+</span><br><span class="line">| NULL          |</span><br><span class="line">| BC            |</span><br><span class="line">| CA            |</span><br><span class="line">| Co. Cork      |</span><br><span class="line">| CT            |</span><br><span class="line">| Isle of Wight |</span><br><span class="line">| MA            |</span><br><span class="line">| NH            |</span><br><span class="line">| NJ            |</span><br><span class="line">| NSW           |</span><br><span class="line">+---------------+</span><br><span class="line">10 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>위 예시에서 보듯 <code>DISTINCT</code> 는  <code>GROUP BY</code> 의 특수한 경우라고 할 수 있다.<br><code>DISTINCT</code> 는 결과셋를 따로 정렬하지 않지만<code>GROUP BY</code> 는 결과셋을 정렬해서 리턴한다는 차이가 있다.</p>
+<h3 id="6-DISTINCT-와-집계-함수"><a href="#6-DISTINCT-와-집계-함수" class="headerlink" title="6. DISTINCT 와 집계 함수"></a>6. <code>DISTINCT</code> 와 집계 함수</h3><p><code>DISTINCT</code> 는 결과값에 <code>SUM</code>, <code>AVG</code>, <code>COUNT</code> 같은 집계 함수를 적용하기 전에 중복값을 제거하는데 사용되기도 한다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> state)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    customers</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    country = <span class="string">'USA'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-----------------------+</span><br><span class="line">| count(distinct state) |</span><br><span class="line">+-----------------------+</span><br><span class="line">|                     8 |</span><br><span class="line">+-----------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h3 id="7-DISTINCT-와-LIMIT"><a href="#7-DISTINCT-와-LIMIT" class="headerlink" title="7. DISTINCT 와 LIMIT"></a>7. <code>DISTINCT</code> 와 <code>LIMIT</code></h3><p><code>DISTINCT</code> 를 <code>LIMIT</code> 와 함께 쓰면 <code>LIMIT</code> 로 제한한 수만큼 특정 행 값을 찾았을 때 탐색을 바로 중단한다.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span></span><br><span class="line">    state</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    customers</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    state <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">5</span>;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">+----------+</span><br><span class="line">| state    |</span><br><span class="line">+----------+</span><br><span class="line">| NV       |</span><br><span class="line">| Victoria |</span><br><span class="line">| CA       |</span><br><span class="line">| NY       |</span><br><span class="line">| PA       |</span><br><span class="line">+----------+</span><br><span class="line">5 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/12/10/MySQL-3-1-데이터-필터링-WHERE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          [MySQL] 3.1 데이터 필터링 - WHERE
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/12/10/MySQL-2-1-데이터-쿼리-SELECT/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">[MySQL] 2.1 데이터 쿼리 - SELECT</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-SELECT-DISTINCT-소개"><span class="nav-number">1.</span> <span class="nav-text">1. SELECT DISTINCT 소개</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-SELECT-DISTINCT-예시"><span class="nav-number">2.</span> <span class="nav-text">2. SELECT DISTINCT 예시</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-SELECT-DISTINCT-와-NULL-값"><span class="nav-number">3.</span> <span class="nav-text">3. SELECT DISTINCT 와 NULL 값</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-복수-열에서의-SELECT-DISTINCT"><span class="nav-number">4.</span> <span class="nav-text">4. 복수 열에서의 SELECT DISTINCT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-DISTINCT-와-GROUP-BY"><span class="nav-number">5.</span> <span class="nav-text">5. DISTINCT 와 GROUP BY</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-GROUP-BY-사용"><span class="nav-number">5.1.</span> <span class="nav-text">5-1.GROUP BY 사용</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-DISTINCT-와-집계-함수"><span class="nav-number">6.</span> <span class="nav-text">6. DISTINCT 와 집계 함수</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-DISTINCT-와-LIMIT"><span class="nav-number">7.</span> <span class="nav-text">7. DISTINCT 와 LIMIT</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 DATASCIENTIST FOXSAY All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories/index.html" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags/index.html" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
