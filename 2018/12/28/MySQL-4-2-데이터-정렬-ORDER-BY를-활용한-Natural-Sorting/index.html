@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>[mysql] 4.2 데이터 정렬 - order by를 활용한 natural sorting | DATASCIENTIST FOXSAY</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="http://www.mysqltutorial.org 내용을 따라 익히며 정리한 글입니다. 예시에 나오는 데이터셋은 MySQL 샘플 데이터셋인 classicmodels DB입니다.  1. Natural Sorting이란데이터를 정렬할 때 사람에겐 다음 순서가 자연스럽다.‘A-1’‘A-2’‘A-3’‘A-4’‘A-5’‘A-10’‘A-11’‘A-20’‘A-30’">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[MySQL] 4.2 데이터 정렬 - ORDER BY를 활용한 Natural Sorting">
+<meta property="og:url" content="http://foxsayy.github.io/2018/12/28/MySQL-4-2-데이터-정렬-ORDER-BY를-활용한-Natural-Sorting/index.html">
+<meta property="og:site_name" content="DATASCIENTIST FOXSAY">
+<meta property="og:description" content="http://www.mysqltutorial.org 내용을 따라 익히며 정리한 글입니다. 예시에 나오는 데이터셋은 MySQL 샘플 데이터셋인 classicmodels DB입니다.  1. Natural Sorting이란데이터를 정렬할 때 사람에겐 다음 순서가 자연스럽다.‘A-1’‘A-2’‘A-3’‘A-4’‘A-5’‘A-10’‘A-11’‘A-20’‘A-30’">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-12-28T11:26:44.879Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[MySQL] 4.2 데이터 정렬 - ORDER BY를 활용한 Natural Sorting">
+<meta name="twitter:description" content="http://www.mysqltutorial.org 내용을 따라 익히며 정리한 글입니다. 예시에 나오는 데이터셋은 MySQL 샘플 데이터셋인 classicmodels DB입니다.  1. Natural Sorting이란데이터를 정렬할 때 사람에겐 다음 순서가 자연스럽다.‘A-1’‘A-2’‘A-3’‘A-4’‘A-5’‘A-10’‘A-11’‘A-20’‘A-30’">
+  
+    <link rel="alternate" href="/atom.xml" title="DATASCIENTIST FOXSAY" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories/index.html"] = "Categories"; 
+
+  themeMenus["/tags/index.html"] = "Tags"; 
+
+  themeMenus["/about/index.html"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="DATASCIENTIST FOXSAY" rel="home"> DATASCIENTIST FOXSAY </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories/index.html">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags/index.html">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about/index.html">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt="" src="">
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-MySQL-4-2-데이터-정렬-ORDER-BY를-활용한-Natural-Sorting" style="width: 66%; float:left;" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      [MySQL] 4.2 데이터 정렬 - ORDER BY를 활용한 Natural Sorting
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2018/12/28/MySQL-4-2-데이터-정렬-ORDER-BY를-활용한-Natural-Sorting/" class="article-date">
+	  <time datetime="2018-12-28T06:57:59.000Z" itemprop="datePublished">December 28, 2018</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p><a href="http://www.mysqltutorial.org" target="_blank" rel="noopener">http://www.mysqltutorial.org</a> 내용을 따라 익히며 정리한 글입니다. 예시에 나오는 데이터셋은 MySQL 샘플 데이터셋인 <code>classicmodels</code> DB입니다.</p>
+<hr>
+<h3 id="1-Natural-Sorting이란"><a href="#1-Natural-Sorting이란" class="headerlink" title="1. Natural Sorting이란"></a>1. Natural Sorting이란</h3><p>데이터를 정렬할 때 사람에겐 다음 순서가 자연스럽다.<br>‘A-1’<br>‘A-2’<br>‘A-3’<br>‘A-4’<br>‘A-5’<br>‘A-10’<br>‘A-11’<br>‘A-20’<br>‘A-30’</p>
+<p>하지만 MySQL <code>ORDER BY</code> 를 사용하면 아래처럼 정렬이 된다.<br>‘A-1’<br>‘A-10’<br>‘A-11’<br>‘A-2’<br>‘A-20’<br>‘A-3’<br>‘A-30’<br>‘A-4’<br>‘A-5’</p>
+<p>PHP의 경우 <code>natsort()</code> 함수로 간단히 Natural Sorting을 할 수 있지만 MySQL은 그렇지 않다. <code>ORDER BY</code> 를 활용해 제한적으로나마 Natural Sorting이 가능한데 이런 테크닉에 대해서 알아보자.</p>
+<p><code>id</code> 와 <code>item_no</code> 라는 컬럼이 있는 <code>items</code> 란 테이블이 있다고 가정하자. 먼저 테이블을 생성한다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> items (</span><br><span class="line">    <span class="keyword">id</span> <span class="built_in">INT</span> AUTO_INCREMENT PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">    item_no <span class="built_in">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>다음은 위에서 만든 테이블에 데이터를 추가하겠다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> items(item_no)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="string">'1'</span>),</span><br><span class="line">       (<span class="string">'1C'</span>),</span><br><span class="line">       (<span class="string">'10Z'</span>),</span><br><span class="line">       (<span class="string">'2A'</span>),</span><br><span class="line">       (<span class="string">'2'</span>),</span><br><span class="line">       (<span class="string">'3C'</span>),</span><br><span class="line">       (<span class="string">'20D'</span>);</span><br></pre></td></tr></table></figure>
+<p>위에서 만든 데이터를 <code>item_no</code> 로 정렬해보자.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    item_no</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    items</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> item_no;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">+---------+</span><br><span class="line">| item_no |</span><br><span class="line">+---------+</span><br><span class="line">| 1       |</span><br><span class="line">| 10Z     |</span><br><span class="line">| 1C      |</span><br><span class="line">| 2       |</span><br><span class="line">| 20D     |</span><br><span class="line">| 2A      |</span><br><span class="line">| 3C      |</span><br><span class="line">+---------+</span><br><span class="line">7 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>숫자 부분을 1, 2, 3, 10, 20 순으로 정렬하고싶을 때 오더바이를 이용하면 그렇게 되지 않는다. 다음과 같은 결과를 얻으려면 어떻게 해야 할까?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">+---------+</span><br><span class="line">| item_no |</span><br><span class="line">+---------+</span><br><span class="line">| 1       |</span><br><span class="line">| 1C      |</span><br><span class="line">| 2       |</span><br><span class="line">| 2A      |</span><br><span class="line">| 3C      |</span><br><span class="line">| 10Z     |</span><br><span class="line">| 20D     |</span><br><span class="line">+---------+</span><br><span class="line">7 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p><code>CAST</code> 함수를 사용해 다음과 같이 쿼리문을 작성하면 위와 같은 결과를 얻을 수 있다. <code>CAST</code> 함수는 어떤 값을 특정 타입으로 바꿔주는 역할을 한다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    item_no</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    items</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">CAST</span>(item_no <span class="keyword">AS</span> <span class="keyword">UNSIGNED</span>) , item_no;</span><br></pre></td></tr></table></figure>
+<p>또 다른 예를 살펴보자. 먼저 아래 쿼리문으로 데이터를 추가한다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">TRUNCATE</span> <span class="keyword">TABLE</span> items;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> items(item_no)</span><br><span class="line"><span class="keyword">VALUES</span>(<span class="string">'A-1'</span>),</span><br><span class="line">      (<span class="string">'A-2'</span>),</span><br><span class="line">      (<span class="string">'A-3'</span>),</span><br><span class="line">      (<span class="string">'A-4'</span>),</span><br><span class="line">      (<span class="string">'A-5'</span>),</span><br><span class="line">      (<span class="string">'A-10'</span>),</span><br><span class="line">      (<span class="string">'A-11'</span>),</span><br><span class="line">      (<span class="string">'A-20'</span>),</span><br><span class="line">      (<span class="string">'A-30'</span>);</span><br></pre></td></tr></table></figure>
+<p>위 데이터를 Natural Sorting 하려면 문자값의 길이를 반환하는 <code>LENGTH</code> 함수를 활용할 수 있다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    item_no</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    items</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">LENGTH</span>(item_no) , item_no;</span><br></pre></td></tr></table></figure>
+<p>짠!</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">+---------+</span><br><span class="line">| item_no |</span><br><span class="line">+---------+</span><br><span class="line">| A-1     |</span><br><span class="line">| A-2     |</span><br><span class="line">| A-3     |</span><br><span class="line">| A-4     |</span><br><span class="line">| A-5     |</span><br><span class="line">| A-10    |</span><br><span class="line">| A-11    |</span><br><span class="line">| A-20    |</span><br><span class="line">| A-30    |</span><br><span class="line">+---------+</span><br><span class="line">9 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/28/World-This-Week-Dec-29th-2018/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">[World This Week] Dec 28th 2018</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Natural-Sorting이란"><span class="nav-number">1.</span> <span class="nav-text">1. Natural Sorting이란</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 DATASCIENTIST FOXSAY All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories/index.html" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags/index.html" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

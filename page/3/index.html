@@ -161,6 +161,73 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-MySQL-3-1-데이터-필터링-WHERE" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/12/10/MySQL-3-1-데이터-필터링-WHERE/">[MySQL] 3.1 데이터 필터링 - WHERE</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2018/12/10/MySQL-3-1-데이터-필터링-WHERE/" class="article-date">
+	  <time datetime="2018-12-10T09:12:20.000Z" itemprop="datePublished">December 10, 2018</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p><a href="http://www.mysqltutorial.org" target="_blank" rel="noopener">http://www.mysqltutorial.org</a> 내용을 따라 익히며 정리한 글입니다. 예시에 나오는 데이터셋은 MySQL 샘플 데이터셋인 <code>classicmodels</code> DB입니다.</p>
+<hr>
+<h3 id="1-WHERE-소개"><a href="#1-WHERE-소개" class="headerlink" title="1. WHERE 소개"></a>1. <code>WHERE</code> 소개</h3><p><code>WHERE</code> 를 사용하면 쿼리에서 반환하는 행에 대한 검색 조건을 지정할 수 있다. 다음과 같이 사용한다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    select_list</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    table_name</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    search_condition;</span><br></pre></td></tr></table></figure>
+<h3 id="2-WHERE-예시"><a href="#2-WHERE-예시" class="headerlink" title="2. WHERE 예시"></a>2. <code>WHERE</code> 예시</h3><p><code>WHERE</code> 절에서는 다음과 같이 비교 연산자를 사용할 수 있다.<br>| 연산자 | 설명|<br>|:—:|:—:|<br>|=|같다|<br>|&lt;&gt; or !=|같지 않다|<br>|&lt;|작다|<br>|&gt;|크다|<br>|&lt;=|작거나 같다|<br>|&gt;=|크거나 같다|</p>
+<h4 id="2-1"><a href="#2-1" class="headerlink" title="2-1."></a>2-1.</h4><p><code>employees</code> 테이블에서 직책이 ‘Sales Rep’인 사람들 추려내시오.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    lastname,</span><br><span class="line">    firstname,</span><br><span class="line">    jobtitle</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    employees</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    jobtitle = <span class="string">'Sales Rep'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">+-----------+-----------+-----------+</span><br><span class="line">| lastname  | firstname | jobtitle  |</span><br><span class="line">+-----------+-----------+-----------+</span><br><span class="line">| Jennings  | Leslie    | Sales Rep |</span><br><span class="line">| Thompson  | Leslie    | Sales Rep |</span><br><span class="line">| Firrelli  | Julie     | Sales Rep |</span><br><span class="line">| Patterson | Steve     | Sales Rep |</span><br><span class="line">| Tseng     | Foon Yue  | Sales Rep |</span><br><span class="line">| Vanauf    | George    | Sales Rep |</span><br><span class="line">| Bondur    | Loui      | Sales Rep |</span><br><span class="line">| Hernandez | Gerard    | Sales Rep |</span><br><span class="line">| Castillo  | Pamela    | Sales Rep |</span><br><span class="line">| Bott      | Larry     | Sales Rep |</span><br><span class="line">| Jones     | Barry     | Sales Rep |</span><br><span class="line">| Fixter    | Andy      | Sales Rep |</span><br><span class="line">| Marsh     | Peter     | Sales Rep |</span><br><span class="line">| King      | Tom       | Sales Rep |</span><br><span class="line">| Nishi     | Mami      | Sales Rep |</span><br><span class="line">| Kato      | Yoshimi   | Sales Rep |</span><br><span class="line">| Gerard    | Martin    | Sales Rep |</span><br><span class="line">+-----------+-----------+-----------+</span><br><span class="line">17 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="2-2"><a href="#2-2" class="headerlink" title="2-2."></a>2-2.</h4><p><code>employees</code> 테이블에서 <code>jobtitle</code>이 ‘Sales Rep’이면서 <code>officeCode</code> 가 1인 사람들을 추려내시오.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    lastname,</span><br><span class="line">    firstname,</span><br><span class="line">    jobtitle</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    employees</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    jobtitle = <span class="string">'Sales Rep'</span> <span class="keyword">AND</span></span><br><span class="line">    officeCode = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+----------+-----------+-----------+</span><br><span class="line">| lastname | firstname | jobtitle  |</span><br><span class="line">+----------+-----------+-----------+</span><br><span class="line">| Jennings | Leslie    | Sales Rep |</span><br><span class="line">| Thompson | Leslie    | Sales Rep |</span><br><span class="line">+----------+-----------+-----------+</span><br><span class="line">2 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="2-3"><a href="#2-3" class="headerlink" title="2-3."></a>2-3.</h4><p><code>employees</code> 테이블에서 직책이 ‘Sales Rep’가 아닌 사람들을 추려내시오.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    lastname,</span><br><span class="line">    firstname,</span><br><span class="line">    jobtitle</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    employees</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    jobtitle &lt;&gt; <span class="string">'Sales Rep'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">+-----------+-----------+----------------------+</span><br><span class="line">| lastname  | firstname | jobtitle             |</span><br><span class="line">+-----------+-----------+----------------------+</span><br><span class="line">| Murphy    | Diane     | President            |</span><br><span class="line">| Patterson | Mary      | VP Sales             |</span><br><span class="line">| Firrelli  | Jeff      | VP Marketing         |</span><br><span class="line">| Patterson | William   | Sales Manager (APAC) |</span><br><span class="line">| Bondur    | Gerard    | Sale Manager (EMEA)  |</span><br><span class="line">| Bow       | Anthony   | Sales Manager (NA)   |</span><br><span class="line">+-----------+-----------+----------------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="2-4"><a href="#2-4" class="headerlink" title="2-4."></a>2-4.</h4><p><code>employees</code> 테이블에서 <code>officeCode</code> 가 5보다 큰 사람들을 추려내시오.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    lastname,</span><br><span class="line">    firstname,</span><br><span class="line">    officeCode</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    employees</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    officecode &gt; <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">+-----------+-----------+------------+</span><br><span class="line">| lastname  | firstname | officecode |</span><br><span class="line">+-----------+-----------+------------+</span><br><span class="line">| Patterson | William   | 6          |</span><br><span class="line">| Bott      | Larry     | 7          |</span><br><span class="line">| Jones     | Barry     | 7          |</span><br><span class="line">| Fixter    | Andy      | 6          |</span><br><span class="line">| Marsh     | Peter     | 6          |</span><br><span class="line">| King      | Tom       | 6          |</span><br><span class="line">+-----------+-----------+------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-MySQL-2-2-데이터-쿼리-SELECT-DISTINCT" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -378,8 +445,20 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2018/12/21/World-This-Week-Dec-29th-2018/">[World This Week] Dec 18th 2018</a></h6>
-              <span>December 21, 2018</span>
+              <h6 style="margin: 0;"><a href="/2018/12/28/MySQL-4-2-데이터-정렬-ORDER-BY를-활용한-Natural-Sorting/">[MySQL] 4.2 데이터 정렬 - ORDER BY를 활용한 Natural Sorting</a></h6>
+              <span>December 28, 2018</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2018/12/28/World-This-Week-Dec-29th-2018/">[World This Week] Dec 28th 2018</a></h6>
+              <span>December 28, 2018</span>
             </div>
 
           </li>
@@ -432,18 +511,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/12/10/MySQL-3-5-데이터-필터링-BETWEEN/">[MySQL] 3.5 데이터 필터링 - BETWEEN</a></h6>
-              <span>December 10, 2018</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -483,7 +550,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">13</span></li></ul>
     </div>
   </div>
 
