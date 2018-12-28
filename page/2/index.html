@@ -161,86 +161,6 @@ var themeMenus = {};
         
           <section id="main">
   
-    <article id="post-MySQL-3-7-데이터-필터링-LIMIT" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/12/11/MySQL-3-7-데이터-필터링-LIMIT/">[MySQL] 3.7 데이터 필터링 - LIMIT</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2018/12/11/MySQL-3-7-데이터-필터링-LIMIT/" class="article-date">
-	  <time datetime="2018-12-10T23:16:33.000Z" itemprop="datePublished">December 11, 2018</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<p><a href="http://www.mysqltutorial.org" target="_blank" rel="noopener">http://www.mysqltutorial.org</a> 내용을 따라 익히며 정리한 글입니다. 예시에 나오는 데이터셋은 MySQL 샘플 데이터셋인 <code>classicmodels</code> DB입니다.</p>
-<hr>
-<h3 id="1-LIMIT-소개"><a href="#1-LIMIT-소개" class="headerlink" title="1. LIMIT 소개"></a>1. <code>LIMIT</code> 소개</h3><p><code>LIMIT</code> 는 <code>SELECT</code> 문에서 결과값 수를 제한할 때 사용한다.<br>하나 혹은 두 개의 아규먼트를 받는다. 아규먼트는 0 또는 양의 정수여야 한다. 다음과 같이 사용한다.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    column1,column2,...</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    <span class="keyword">table</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="keyword">offset</span> , <span class="keyword">count</span>;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>offset</code> : 리턴하기 시작할 행 넘버를 지정한다. (첫 행이 0번이다)</li>
-<li><code>count</code> : 리턴할 행의 수를 지정한다</li>
-</ul>
-<h3 id="2-LIMIT-로-N번째-행까지-가져오기"><a href="#2-LIMIT-로-N번째-행까지-가져오기" class="headerlink" title="2. LIMIT 로 N번째 행까지 가져오기"></a>2. <code>LIMIT</code> 로 N번째 행까지 가져오기</h3><p><code>customers</code> 테이블에서 5번째 행까지의 고객번호, 고객명, 신용한도를 가져와보자.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> customernumber,</span><br><span class="line"> customername,</span><br><span class="line"> creditlimit</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line"> customers</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">+----------------+----------------------------+-------------+</span><br><span class="line">| customernumber | customername               | creditlimit |</span><br><span class="line">+----------------+----------------------------+-------------+</span><br><span class="line">|            103 | Atelier graphique          |    21000.00 |</span><br><span class="line">|            112 | Signal Gift Stores         |    71800.00 |</span><br><span class="line">|            114 | Australian Collectors, Co. |   117300.00 |</span><br><span class="line">|            119 | La Rochelle Gifts          |   118200.00 |</span><br><span class="line">|            121 | Baane Mini Imports         |    81700.00 |</span><br><span class="line">+----------------+----------------------------+-------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p><code>offset</code> 아규먼트에 0을 넣는 것과 아무것도 넣지 않는 것은 같다. 즉, <code>LIMIT 5</code> 은 <code>LIMIT 0, 5</code> 과 같은 결과를 리턴한다.</p>
-<h3 id="3-LIMIT-로-상위값들-하위값들-가져오기"><a href="#3-LIMIT-로-상위값들-하위값들-가져오기" class="headerlink" title="3. LIMIT 로 상위값들, 하위값들 가져오기"></a>3. <code>LIMIT</code> 로 상위값들, 하위값들 가져오기</h3><p><code>LIMIT</code> 는 <code>ORDER BY</code> 와 같이 자주 쓰인다.</p>
-<p><code>customers</code> 테이블에서 신용한도 상위 5명의 고객번호, 고객명, 신용한도를 내림차순으로 가져오려면 다음과 같이 작성한다.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> customernumber,</span><br><span class="line"> customername,</span><br><span class="line"> creditlimit</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line"> customers</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line"> creditlimit <span class="keyword">DESC</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">+----------------+------------------------------+-------------+</span><br><span class="line">| customernumber | customername                 | creditlimit |</span><br><span class="line">+----------------+------------------------------+-------------+</span><br><span class="line">|            141 | Euro+ Shopping Channel       |   227600.00 |</span><br><span class="line">|            124 | Mini Gifts Distributors Ltd. |   210500.00 |</span><br><span class="line">|            298 | Vida Sport, Ltd              |   141300.00 |</span><br><span class="line">|            151 | Muscle Machine Inc           |   138500.00 |</span><br><span class="line">|            187 | AV Stores, Co.               |   136800.00 |</span><br><span class="line">+----------------+------------------------------+-------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>하위 5명을 오름차순으로 가져오려면 <code>DESC</code> 대신 <code>ASC</code> 을 사용해 다음과 같이 작성한다.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> customernumber,</span><br><span class="line"> customername,</span><br><span class="line"> creditlimit</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line"> customers</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line"> creditlimit <span class="keyword">ASC</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">+----------------+----------------------------+-------------+</span><br><span class="line">| customernumber | customername               | creditlimit |</span><br><span class="line">+----------------+----------------------------+-------------+</span><br><span class="line">|            223 | Natürlich Autos            |        0.00 |</span><br><span class="line">|            168 | American Souvenirs Inc     |        0.00 |</span><br><span class="line">|            169 | Porto Imports Co.          |        0.00 |</span><br><span class="line">|            206 | Asian Shopping Network, Co |        0.00 |</span><br><span class="line">|            125 | Havel &amp; Zbyszek Co         |        0.00 |</span><br><span class="line">+----------------+----------------------------+-------------+</span><br><span class="line">5 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="4-LIMIT-로-상위-N번째-값-가져오기"><a href="#4-LIMIT-로-상위-N번째-값-가져오기" class="headerlink" title="4. LIMIT 로 상위 N번째 값 가져오기"></a>4. <code>LIMIT</code> 로 상위 N번째 값 가져오기</h3><p>상품 중 가장 비싸거나 가장 싼 상품을 찾으려면 <code>MAX</code> 나 <code>MIN</code> 등을 사용할 수 있다. 하지만 세 번째로 비싼 상품을 찾으려면?</p>
-<ol>
-<li>먼저 결과값을 내림차순으로 정렬해보자.</li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> productName,</span><br><span class="line"> buyprice</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line"> products</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line"> buyprice <span class="keyword">DESC</span>;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+---------------------------------------------+----------+</span><br><span class="line">| productName                                 | buyprice |</span><br><span class="line">+---------------------------------------------+----------+</span><br><span class="line">| 1962 LanciaA Delta 16V                      |   103.42 |</span><br><span class="line">| 1998 Chrysler Plymouth Prowler              |   101.51 |</span><br><span class="line">| 1952 Alpine Renault 1300                    |    98.58 |</span><br><span class="line">| 1956 Porsche 356A Coupe                     |    98.30 |</span><br><span class="line">| 2001 Ferrari Enzo                           |    95.59 |</span><br><span class="line">| 1968 Ford Mustang                           |    95.34 |</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>가져와야 할 값은 Alpine Renault 1300 이다. 위 쿼리에 <code>LIMIT 2, 1</code> 을 추가하면 아래처럼 ‘2번행(첫 줄이 0번행)부터 1개 행을 리턴’한다.</li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> productName,</span><br><span class="line"> buyprice</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line"> products</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line"> buyprice <span class="keyword">DESC</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">2</span>, <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+--------------------------+----------+</span><br><span class="line">| productName              | buyprice |</span><br><span class="line">+--------------------------+----------+</span><br><span class="line">| 1952 Alpine Renault 1300 |    98.58 |</span><br><span class="line">+--------------------------+----------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
     <article id="post-MySQL-3-6-데이터-필터링-LIKE" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -544,6 +464,100 @@ var themeMenus = {};
     
 
   
+    <article id="post-MySQL-3-2-데이터-필터링-AND" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/12/10/MySQL-3-2-데이터-필터링-AND/">[MySQL] 3.2 데이터 필터링 - AND</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2018/12/10/MySQL-3-2-데이터-필터링-AND/" class="article-date">
+	  <time datetime="2018-12-10T10:07:57.000Z" itemprop="datePublished">December 10, 2018</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p><a href="http://www.mysqltutorial.org" target="_blank" rel="noopener">http://www.mysqltutorial.org</a> 내용을 따라 익히며 정리한 글입니다. 예시에 나오는 데이터셋은 MySQL 샘플 데이터셋인 <code>classicmodels</code> DB입니다.</p>
+<hr>
+<h3 id="1-연산자-AND-소개"><a href="#1-연산자-AND-소개" class="headerlink" title="1. 연산자 AND 소개"></a>1. 연산자 <code>AND</code> 소개</h3><p>논리 연산자 <code>AND</code> 는 <code>SELECT</code>, <code>UPDATE</code>, <code>DELETE</code> 문의 <code>WHERE</code> 절에서 자주 사용된다.</p>
+<p>두 개 이상의 불리언 값을 받아 모두 <code>True</code> 이면 <code>True</code> 를 리턴한다.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>TRUE</th>
+<th>FALSE</th>
+<th>NULL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TRUE</strong></td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><strong>FALSE</strong></td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td><strong>NULL</strong></td>
+<td>NULL</td>
+<td>FALSE</td>
+<td>NULL</td>
+</tr>
+</tbody>
+</table>
+<p>MySQL은 <code>AND</code> 연산자가 있는 표현식을 평가하면서 결과가 확실하게 예측되고 나면 나머지 연산을 하지 않는다. (Short Circuit Evaluation) <code>AND</code> 앞에서 <code>False</code>가 나오면 <code>AND</code> 뒤에 나오는 연산은 생략한다는 의미다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="number">1</span> = <span class="number">0</span> <span class="keyword">AND</span> <span class="number">1</span> / <span class="number">0</span> ;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-------------+</span><br><span class="line">| 1=0 and 1/0 |</span><br><span class="line">+-------------+</span><br><span class="line">|           0 |</span><br><span class="line">+-------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>MySQL에서 <code>0</code>은 <code>FALSE</code>로, <code>0</code> 이 아닌 값들은 <code>TRUE</code> 로 다뤄진다.<br>위 예에서 <code>1 = 0</code> 은 <code>FALSE</code> 를 리턴한다. Short Circuit Evaluation에 따라 <code>1 / 0</code> 연산은 하지도 않았다. 만약 연산을 했다면 division by zero 에러가 떴을 것이다.</p>
+<h3 id="2-AND-예시"><a href="#2-AND-예시" class="headerlink" title="2. AND 예시"></a>2. <code>AND</code> 예시</h3><h4 id="2-1"><a href="#2-1" class="headerlink" title="2-1."></a>2-1.</h4><p><code>AND</code> 연산자를 사용해 미국 캘리포니아 주에 사는 고객들을 추리시오.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    customername,</span><br><span class="line">    country,</span><br><span class="line">    state</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    customers</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    country = <span class="string">'USA'</span> <span class="keyword">AND</span> state = <span class="string">'CA'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">+------------------------------+---------+-------+</span><br><span class="line">| customername                 | country | state |</span><br><span class="line">+------------------------------+---------+-------+</span><br><span class="line">| Mini Gifts Distributors Ltd. | USA     | CA    |</span><br><span class="line">| Mini Wheels Co.              | USA     | CA    |</span><br><span class="line">| Technics Stores Inc.         | USA     | CA    |</span><br><span class="line">| Toys4GrownUps.com            | USA     | CA    |</span><br><span class="line">| Boards &amp; Toys Co.            | USA     | CA    |</span><br><span class="line">| Collectable Mini Designs Co. | USA     | CA    |</span><br><span class="line">| Corporate Gift Ideas Co.     | USA     | CA    |</span><br><span class="line">| Men &apos;R&apos; US Retailers, Ltd.   | USA     | CA    |</span><br><span class="line">| The Sharp Gifts Warehouse    | USA     | CA    |</span><br><span class="line">| West Coast Collectables Co.  | USA     | CA    |</span><br><span class="line">| Signal Collectibles Ltd.     | USA     | CA    |</span><br><span class="line">+------------------------------+---------+-------+</span><br><span class="line">11 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="2-2"><a href="#2-2" class="headerlink" title="2-2."></a>2-2.</h4><p><code>AND</code> 연산자를 사용하면 두 개 이상의 불리언 표현식을 조합할 수 있다. 미국 캘리포니아 주에 살면서, 신용한도가 100K 이상인 고객들을 추리시오.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span>   customername,</span><br><span class="line">         country,</span><br><span class="line">         state,</span><br><span class="line">         creditlimit</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> country = <span class="string">'USA'</span></span><br><span class="line">        <span class="keyword">AND</span> state = <span class="string">'CA'</span></span><br><span class="line">        <span class="keyword">AND</span> creditlimit &gt; <span class="number">100000</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+------------------------------+---------+-------+-------------+</span><br><span class="line">| customername                 | country | state | creditlimit |</span><br><span class="line">+------------------------------+---------+-------+-------------+</span><br><span class="line">| Mini Gifts Distributors Ltd. | USA     | CA    |   210500.00 |</span><br><span class="line">| Collectable Mini Designs Co. | USA     | CA    |   105000.00 |</span><br><span class="line">| Corporate Gift Ideas Co.     | USA     | CA    |   105000.00 |</span><br><span class="line">+------------------------------+---------+-------+-------------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
 
 
   <nav id="page-nav">
@@ -613,18 +627,6 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2018/12/28/The-Economist-Driving-in-Mongolia-Hybrid-heaven/">[The Economist] Driving in Mongolia: Hybrid heaven</a></h6>
-              <span>December 28, 2018</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
               <h6 style="margin: 0;"><a href="/2018/12/28/MySQL-4-2-데이터-정렬-ORDER-BY를-활용한-Natural-Sorting/">[MySQL] 4.2 데이터 정렬 - ORDER BY를 활용한 Natural Sorting</a></h6>
               <span>December 28, 2018</span>
             </div>
@@ -679,6 +681,18 @@ var themeMenus = {};
 
           </li>
         
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2018/12/11/MySQL-3-6-데이터-필터링-LIKE/">[MySQL] 3.6 데이터 필터링 - LIKE</a></h6>
+              <span>December 11, 2018</span>
+            </div>
+
+          </li>
+        
       </ul>
     </div>
   </div>
@@ -688,7 +702,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/The-Economist/">The Economist</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/The-Economist/">The Economist</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -698,7 +712,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/The-Economist/">The Economist</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/The-Economist-세상에-대한-관심을-놓지-말자/">The Economist, 세상에 대한 관심을 놓지 말자</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/The-Economist/">The Economist</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -708,7 +722,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/MySQL/" style="font-size: 20px;">MySQL</a> <a href="/tags/The-Economist/" style="font-size: 10px;">The Economist</a> <a href="/tags/The-Economist-세상에-대한-관심을-놓지-말자/" style="font-size: 10px;">The Economist, 세상에 대한 관심을 놓지 말자</a>
+      <a href="/tags/MySQL/" style="font-size: 20px;">MySQL</a> <a href="/tags/The-Economist/" style="font-size: 10px;">The Economist</a>
     </div>
   </div>
 
@@ -718,7 +732,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">14</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">13</span></li></ul>
     </div>
   </div>
 
