@@ -15,6 +15,16 @@
     }, searchAnimDuration);
   };
 
+  var s = [
+        '<div style="display: none;">',
+          '<script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>',
+        '</div>'
+      ].join('');
+
+  var di = $(s);
+
+  $('#container').append(di);
+
   $('#nav-search-btn').on('click', function(){
     if (isSearchAnim) return;
 
@@ -89,6 +99,7 @@
   $('.article-entry').each(function(i){
     $(this).find('img').each(function(){
       if ($(this).parent().hasClass('fancybox')) return;
+      if ($(this).parent().parent().hasClass('entry-thumbnail')) return;
 
       var alt = this.alt;
 
