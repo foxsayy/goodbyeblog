@@ -13,19 +13,26 @@
   <!-- PACE Progress Bar START -->
 
   
-  <title>category: the economist | DATASCIENTIST FOXSAY</title>
+  <title>[python] sort와 sorted | DATASCIENTIST FOXSAY</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="Python">
   
   
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="DATASCIENTIST FOXSAY">
-<meta property="og:url" content="http://foxsayy.github.io/categories/The-Economist/index.html">
+  
+  <meta name="description" content="sort() 와 sorted() 의 차이 sort() 는 리스트 자체를 정렬함 sorted() 는 리스트의 정렬된 복사본을 반환함  예를 들어 다음과 같은 리스트가 있다.1lalaland = [&apos;Mia&apos;, &apos;Sebastian&apos;, &apos;Emily&apos;, &apos;Ryan&apos;] sorted() 를 하면 원래 변수는 변하지 않는다.12345&amp;gt;&amp;gt;&amp;gt; sorted_l">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Python] sort와 sorted">
+<meta property="og:url" content="http://foxsayy.github.io/2018/12/30/Python-sort와-sorted/index.html">
 <meta property="og:site_name" content="DATASCIENTIST FOXSAY">
+<meta property="og:description" content="sort() 와 sorted() 의 차이 sort() 는 리스트 자체를 정렬함 sorted() 는 리스트의 정렬된 복사본을 반환함  예를 들어 다음과 같은 리스트가 있다.1lalaland = [&apos;Mia&apos;, &apos;Sebastian&apos;, &apos;Emily&apos;, &apos;Ryan&apos;] sorted() 를 하면 원래 변수는 변하지 않는다.12345&amp;gt;&amp;gt;&amp;gt; sorted_l">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-12-30T06:47:34.842Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DATASCIENTIST FOXSAY">
+<meta name="twitter:title" content="[Python] sort와 sorted">
+<meta name="twitter:description" content="sort() 와 sorted() 의 차이 sort() 는 리스트 자체를 정렬함 sorted() 는 리스트의 정렬된 복사본을 반환함  예를 들어 다음과 같은 리스트가 있다.1lalaland = [&apos;Mia&apos;, &apos;Sebastian&apos;, &apos;Emily&apos;, &apos;Ryan&apos;] sorted() 를 하면 원래 변수는 변하지 않는다.12345&amp;gt;&amp;gt;&amp;gt; sorted_l">
   
     <link rel="alternate" href="/atom.xml" title="DATASCIENTIST FOXSAY" type="application/atom+xml">
   
@@ -83,7 +90,7 @@ var themeMenus = {};
 </script>
 
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
   <header id="allheader" class="site-header" role="banner">
@@ -159,244 +166,108 @@ var themeMenus = {};
             
       <div id="content" class="outer">
         
-          <section id="main">
-  
-  
-  
+          <section id="main" style="float:none;"><article id="post-Python-sort와-sorted" style="width: 66%; float:left;" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <h1><a href="/archives/2018" class="archive-year">2018</a></h1>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2018/12/28/World-This-Week-Dec-29th-2018/" class="archive-article-date">
-		  <time datetime="2018-12-28T04:21:36.000Z" itemprop="datePublished">Dec 28, 2018</time>
-	  </a>
-      
+      <header class="article-header">
+        
   
     <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2018/12/28/World-This-Week-Dec-29th-2018/">[World This Week] Dec 28th 2018</a>
+      [Python] sort와 sorted
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2018/12/30/Python-sort와-sorted/" class="article-date">
+	  <time datetime="2018-12-30T06:34:21.000Z" itemprop="datePublished">December 30, 2018</time>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="sort-와-sorted-의-차이"><a href="#sort-와-sorted-의-차이" class="headerlink" title="sort() 와 sorted() 의 차이"></a><code>sort()</code> 와 <code>sorted()</code> 의 차이</h3><ul>
+<li><code>sort()</code> 는 리스트 자체를 정렬함</li>
+<li><code>sorted()</code> 는 리스트의 정렬된 복사본을 반환함</li>
+</ul>
+<p>예를 들어 다음과 같은 리스트가 있다.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lalaland = [<span class="string">'Mia'</span>, <span class="string">'Sebastian'</span>, <span class="string">'Emily'</span>, <span class="string">'Ryan'</span>]</span><br></pre></td></tr></table></figure></p>
+<p><code>sorted()</code> 를 하면 원래 변수는 변하지 않는다.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>sorted_lalaland = sorted(lalaland)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sorted_lalaland</span><br><span class="line">[<span class="string">'Emily'</span>, <span class="string">'Mia'</span>, <span class="string">'Ryan'</span>, <span class="string">'Sebastian'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lalaland</span><br><span class="line">[<span class="string">'Mia'</span>, <span class="string">'Sebastian'</span>, <span class="string">'Emily'</span>, <span class="string">'Ryan'</span>]</span><br></pre></td></tr></table></figure></p>
+<p>반면 <code>sort()</code> 를 하면 <code>lalaland</code> 자체를 정렬된 <code>lalaland</code> 로 바꾼다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lalaland.sort()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lalaland</span><br><span class="line">[<span class="string">'Emily'</span>, <span class="string">'Mia'</span>, <span class="string">'Ryan'</span>, <span class="string">'Sebastian'</span>]</span><br></pre></td></tr></table></figure>
+<p>정렬 방식은 기본적으로 오름차순이다. 내림차순으로 정렬하려면 인자에 <code>reverse=True</code> 를 넣어주면 된다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lalaland.sort(reverse=<span class="keyword">True</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lalaland</span><br><span class="line">[<span class="string">'Sebastian'</span>, <span class="string">'Ryan'</span>, <span class="string">'Mia'</span>, <span class="string">'Emily'</span>]</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/29/Crawling-RIDISELECT/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">[Crawling] RIDISELECT</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
+<!-- Table of Contents -->
 
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#sort-와-sorted-의-차이"><span class="nav-number">1.</span> <span class="nav-text">sort() 와 sorted() 의 차이</span></a></li></ol>
+    
+    </div>
+  </aside>
 </section>
-          <aside id="sidebar">
-  
-    <div class="widget-wrap" style="margin: 20px 0;">
-	<div id="search-form-wrap">
-
-    <form class="search-form">
-        <label style="width: 75%;">
-            <span class="screen-reader-text">Search for:</span>
-            <input type="search" class="search-field" style="height: 42px;" placeholder=" Search…" value="" name="s" title="Search for:">
-        </label>
-        <input type="submit" class="search-form-submit" value="Search">
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something...">
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: 'Posts',
-            PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
-            UNTITLED: '(Untitled)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-<script src="/js/insight.js"></script>
-
-</div>
-</div>
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Connect With Us</h3>
-    <div class="widget widget_athemes_social_icons">
-
-    	<ul class="clearfix widget-social-icons">   
-    	
-          
-     			  <li><a href="https://github.com/foxsayy" title="Github"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
-          
-   		
-          
-     			  <li><a href="https://www.instagram.com/roh.sng.hwan/?hl=ko" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li> 
-          
-   		
-          
-            <li><a href="mailto:roh.sng.hwan@gmail.com?subject=请联系我&body=我能帮你什么" title="email"><i class="fa fa-envelope" aria-hidden="true"></i></a></li> 
-          
-   		
-   		</ul>
-
-
-   		<!--
-   		<ul class="clearfix widget-social-icons">   		
-   		<li class="widget-si-twitter"><a href="http://twitter.com" title="Twitter"><i class="ico-twitter"></i></a></li> 
-		<li class="widget-si-facebook"><a href="http://facebook.com" title="Facebook"><i class="ico-facebook"></i></a></li>
-			<li class="widget-si-gplus"><a href="http://plus.google.com" title="Google+"><i class="ico-gplus"></i></a></li>
-			<li class="widget-si-pinterest"><a href="http://pinterest.com" title="Pinterest"><i class="ico-pinterest"></i></a></li>
-			<li class="widget-si-flickr"><a href="http://flickr.com" title="Flickr"><i class="ico-flickr"></i></a></li>
-			<li class="widget-si-instagram"><a href="http://instagram.com" title="Instagram"><i class="ico-instagram"></i></a></li>
-		</ul> -->
-
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget_athemes_tabs">
-    <ul id="widget-tab" class="clearfix widget-tab-nav">
-      <li class="active"><a>Recent Posts</a></li>
-    </ul>
-    <div class="widget">
-      <ul>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/12/30/Python-sort와-sorted/">[Python] sort와 sorted</a></h6>
-              <span>December 30, 2018</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/12/29/Crawling-RIDISELECT/">[Crawling] RIDISELECT</a></h6>
-              <span>December 29, 2018</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/12/28/MySQL-4-2-데이터-정렬-ORDER-BY를-활용한-Natural-Sorting/">[MySQL] 4.2 데이터 정렬 - ORDER BY를 활용한 Natural Sorting</a></h6>
-              <span>December 28, 2018</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/12/28/World-This-Week-Dec-29th-2018/">[World This Week] Dec 28th 2018</a></h6>
-              <span>December 28, 2018</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/12/19/MySQL-4-1-데이터-정렬-ORDER-BY/">[MySQL] 4.1 데이터 정렬 - ORDER BY</a></h6>
-              <span>December 19, 2018</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/12/11/MySQL-3-8-데이터-필터링-IS-NULL/">[MySQL] 3.8 데이터 필터링 - IS NULL</a></h6>
-              <span>December 11, 2018</span>
-            </div>
-
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/The-Economist/">The Economist</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/crawling/">crawling</a><span class="category-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/MySQL/" style="font-size: 20px;">MySQL</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/The-Economist/" style="font-size: 10px;">The Economist</a> <a href="/tags/crawling-ridibooks/" style="font-size: 10px;">crawling, ridibooks</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">15</span></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
         
       </div>
       <footer id="footer" class="site-footer">
