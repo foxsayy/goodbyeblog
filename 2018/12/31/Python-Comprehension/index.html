@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>[python] comprehension | DATASCIENTIST FOXSAY</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Python">
+  
+  
+  
+  
+  <meta name="description" content="1. Comprehension 이란하나 이상의 iterator로부터 파이썬의 자료구조를 간결하게 만드는 방법. 간단한 구문으로 반복문과 조건 테스트를 결합할 수 있게 해준다. 2. list comprehension1부터 10까지 정수 중 홀수로 된 리스트를 만들어보자 1234567# comprehension을 사용하지 않은 방법&amp;gt;&amp;gt;&amp;gt;ls =">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Python] Comprehension">
+<meta property="og:url" content="http://foxsayy.github.io/2018/12/31/Python-Comprehension/index.html">
+<meta property="og:site_name" content="DATASCIENTIST FOXSAY">
+<meta property="og:description" content="1. Comprehension 이란하나 이상의 iterator로부터 파이썬의 자료구조를 간결하게 만드는 방법. 간단한 구문으로 반복문과 조건 테스트를 결합할 수 있게 해준다. 2. list comprehension1부터 10까지 정수 중 홀수로 된 리스트를 만들어보자 1234567# comprehension을 사용하지 않은 방법&amp;gt;&amp;gt;&amp;gt;ls =">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-01-01T04:35:59.774Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Python] Comprehension">
+<meta name="twitter:description" content="1. Comprehension 이란하나 이상의 iterator로부터 파이썬의 자료구조를 간결하게 만드는 방법. 간단한 구문으로 반복문과 조건 테스트를 결합할 수 있게 해준다. 2. list comprehension1부터 10까지 정수 중 홀수로 된 리스트를 만들어보자 1234567# comprehension을 사용하지 않은 방법&amp;gt;&amp;gt;&amp;gt;ls =">
+  
+    <link rel="alternate" href="/atom.xml" title="DATASCIENTIST FOXSAY" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories/index.html"] = "Categories"; 
+
+  themeMenus["/tags/index.html"] = "Tags"; 
+
+  themeMenus["/test/index.html"] = "test"; 
+
+  themeMenus["/about/index.html"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="DATASCIENTIST FOXSAY" rel="home"> DATASCIENTIST FOXSAY </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories/index.html">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags/index.html">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/test/index.html">test</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about/index.html">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt="" src="">
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Python-Comprehension" style="width: 66%; float:left;" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      [Python] Comprehension
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2018/12/31/Python-Comprehension/" class="article-date">
+	  <time datetime="2018-12-30T16:57:13.000Z" itemprop="datePublished">December 31, 2018</time>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Comprehension-이란"><a href="#1-Comprehension-이란" class="headerlink" title="1. Comprehension 이란"></a>1. <code>Comprehension</code> 이란</h3><p>하나 이상의 iterator로부터 파이썬의 자료구조를 간결하게 만드는 방법. 간단한 구문으로 반복문과 조건 테스트를 결합할 수 있게 해준다.</p>
+<h3 id="2-list-comprehension"><a href="#2-list-comprehension" class="headerlink" title="2. list comprehension"></a>2. <code>list comprehension</code></h3><p>1부터 10까지 정수 중 홀수로 된 리스트를 만들어보자</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># comprehension을 사용하지 않은 방법</span></span><br><span class="line">&gt;&gt;&gt;ls = []</span><br><span class="line">&gt;&gt;&gt;<span class="keyword">for</span> num <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">11</span>):</span><br><span class="line">        <span class="keyword">if</span> num % <span class="number">2</span> == <span class="number">1</span>:</span><br><span class="line">            ls.append(num)</span><br><span class="line">&gt;&gt;&gt;ls</span><br><span class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># comprehension을 사용한 방법</span></span><br><span class="line">&gt;&gt;&gt;ls = [num <span class="keyword">for</span> num <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">11</span>) <span class="keyword">if</span> &gt;&gt;&gt;num % <span class="number">2</span> == <span class="number">1</span>]</span><br><span class="line">&gt;&gt;&gt;ls</span><br><span class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>]</span><br></pre></td></tr></table></figure>
+<p>다음 코드를 컴프리헨션을 사용해 바꿔보자.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;rows = range(<span class="number">1</span>, <span class="number">5</span>)</span><br><span class="line">&gt;&gt;&gt;cols = range(<span class="number">1</span>, <span class="number">3</span>)</span><br><span class="line">&gt;&gt;&gt;<span class="keyword">for</span> row <span class="keyword">in</span> rows:</span><br><span class="line">        <span class="keyword">for</span> col <span class="keyword">in</span> cols:</span><br><span class="line">            print(row, col)</span><br><span class="line"><span class="number">1</span> <span class="number">1</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span></span><br><span class="line"><span class="number">2</span> <span class="number">1</span></span><br><span class="line"><span class="number">2</span> <span class="number">2</span></span><br><span class="line"><span class="number">3</span> <span class="number">1</span></span><br><span class="line"><span class="number">3</span> <span class="number">2</span></span><br><span class="line"><span class="number">4</span> <span class="number">1</span></span><br><span class="line"><span class="number">4</span> <span class="number">2</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># comprehension을 사용한 방법</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># (row, col) 튜플 리스트를 만들어서 cells 변수에 할당</span></span><br><span class="line">&gt;&gt;&gt;rows = range(<span class="number">1</span>, <span class="number">5</span>)</span><br><span class="line">&gt;&gt;&gt;cols = range(<span class="number">1</span>, <span class="number">3</span>)</span><br><span class="line">&gt;&gt;&gt;cells = [(row, col) <span class="keyword">for</span> row <span class="keyword">in</span> rows <span class="keyword">for</span> col <span class="keyword">in</span> cols]</span><br><span class="line"><span class="comment"># 각 튜플로부터 row와 col만 출력하도록 tuple unpacking</span></span><br><span class="line">&gt;&gt;&gt;<span class="keyword">for</span> row, col <span class="keyword">in</span> cells:</span><br><span class="line">        print(row, col)</span><br><span class="line"><span class="number">1</span> <span class="number">1</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span></span><br><span class="line"><span class="number">2</span> <span class="number">1</span></span><br><span class="line"><span class="number">2</span> <span class="number">2</span></span><br><span class="line"><span class="number">3</span> <span class="number">1</span></span><br><span class="line"><span class="number">3</span> <span class="number">2</span></span><br><span class="line"><span class="number">4</span> <span class="number">1</span></span><br><span class="line"><span class="number">4</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-dictionary-comprehension"><a href="#3-dictionary-comprehension" class="headerlink" title="3. dictionary comprehension"></a>3. <code>dictionary comprehension</code></h3><p>딕셔너리도 컴프리헨션이 있다. 다음 코드는 문자열 ‘datascience’의 11글자를 반복하면서 글자가 몇 번 나왔는지 센다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;word = <span class="string">'datascience'</span></span><br><span class="line">&gt;&gt;&gt;letter_count = &#123;x: word.count(x) <span class="keyword">for</span> x <span class="keyword">in</span> word&#125;</span><br><span class="line">&gt;&gt;&gt;letter_count</span><br><span class="line">&#123;<span class="string">'d'</span>: <span class="number">1</span>, <span class="string">'a'</span>: <span class="number">2</span>, <span class="string">'t'</span>: <span class="number">1</span>, <span class="string">'s'</span>: <span class="number">1</span>, <span class="string">'c'</span>: <span class="number">2</span>, <span class="string">'i'</span>: <span class="number">1</span>, <span class="string">'e'</span>: <span class="number">2</span>, <span class="string">'n'</span>: <span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-set-comprehension"><a href="#4-set-comprehension" class="headerlink" title="4. set comprehension"></a>4. <code>set comprehension</code></h3><h3 id="5-generator-comprehension"><a href="#5-generator-comprehension" class="headerlink" title="5. generator  comprehension"></a>5. <code>generator  comprehension</code></h3>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/30/Python-sort와-sorted/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">[Python] sort와 sorted</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Comprehension-이란"><span class="nav-number">1.</span> <span class="nav-text">1. Comprehension 이란</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-list-comprehension"><span class="nav-number">2.</span> <span class="nav-text">2. list comprehension</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-dictionary-comprehension"><span class="nav-number">3.</span> <span class="nav-text">3. dictionary comprehension</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-set-comprehension"><span class="nav-number">4.</span> <span class="nav-text">4. set comprehension</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-generator-comprehension"><span class="nav-number">5.</span> <span class="nav-text">5. generator  comprehension</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 DATASCIENTIST FOXSAY All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories/index.html" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags/index.html" class="mobile-nav-link">Tags</a>
+  
+    <a href="/test/index.html" class="mobile-nav-link">Test</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
