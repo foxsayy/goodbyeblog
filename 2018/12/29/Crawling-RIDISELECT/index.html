@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="DATASCIENTIST FOXSAY">
 <meta property="og:description" content="리디셀렉트 보유 도서 리스트 만들기리디셀렉트를 구독 신청을 하기 전에는 도서 검색이 안 된다. 아래 사이트에서 페이지를 하나하나 넘겨가면서 무슨 책들이 있는지 볼 수밖에 없다.https://select.ridibooks.com/books도서 리스트가 있으면 검색하기와 읽고 싶은 책 고르기가 편할 것 같아서 셀레늄으로 책 제목들을 긁어와 도서 리스트를 만들어">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-12-29T02:51:19.129Z">
+<meta property="og:updated_time" content="2019-01-02T16:25:49.517Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Crawling] RIDISELECT">
 <meta name="twitter:description" content="리디셀렉트 보유 도서 리스트 만들기리디셀렉트를 구독 신청을 하기 전에는 도서 검색이 안 된다. 아래 사이트에서 페이지를 하나하나 넘겨가면서 무슨 책들이 있는지 볼 수밖에 없다.https://select.ridibooks.com/books도서 리스트가 있으면 검색하기와 읽고 싶은 책 고르기가 편할 것 같아서 셀레늄으로 책 제목들을 긁어와 도서 리스트를 만들어">
@@ -201,7 +201,6 @@ var themeMenus = {};
 <p>리스트가 완성됐으니 csv 파일로 리스트를 만든다. 판다스 데이터프레임으로 만든 뒤 csv 파일로 내보냈다.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.DataFrame(&#123;<span class="string">"title"</span>: ls&#125;)</span><br><span class="line">df.to_csv(<span class="string">"ridiselect.csv"</span>, mode=<span class="string">'w'</span>)</span><br></pre></td></tr></table></figure>
 <p>csv 파일을 열어서 보고 싶은 책이 있는지 쉽게 검색할 수 있다. 구독한 후에는 보고싶은 책을 미리 체크해두면 좋다.</p>
-<p>좐~~</p>
 
       
     </div>
