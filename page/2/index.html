@@ -161,6 +161,66 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-Crawling-RIDISELECT" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/12/29/Crawling-RIDISELECT/">[Crawling] RIDISELECT</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2018/12/29/Crawling-RIDISELECT/" class="article-date">
+	  <time datetime="2018-12-28T21:17:24.000Z" itemprop="datePublished">December 29, 2018</time>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="리디셀렉트-보유-도서-리스트-만들기"><a href="#리디셀렉트-보유-도서-리스트-만들기" class="headerlink" title="리디셀렉트 보유 도서 리스트 만들기"></a>리디셀렉트 보유 도서 리스트 만들기</h3><p>리디셀렉트를 구독 신청을 하기 전에는 도서 검색이 안 된다. 아래 사이트에서 페이지를 하나하나 넘겨가면서 무슨 책들이 있는지 볼 수밖에 없다.<br><a href="https://select.ridibooks.com/books" target="_blank" rel="noopener">https://select.ridibooks.com/books</a><br>도서 리스트가 있으면 검색하기와 읽고 싶은 책 고르기가 편할 것 같아서 셀레늄으로 책 제목들을 긁어와 도서 리스트를 만들어 봤다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> time</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 브라우저 열기</span></span><br><span class="line">driver = webdriver.Chrome()</span><br></pre></td></tr></table></figure>
+<p>책 목록이 109페이지까지 있는 건 끝으로 가기 버튼을 눌러 확인했다.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">book_list = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">109</span>):</span><br><span class="line">    url = <span class="string">"https://select.ridibooks.com/books?page=&#123;&#125;"</span>.format(i)</span><br><span class="line">    driver.get(url)</span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br><span class="line">    book = driver.find_element_by_css_selector(<span class="string">".GridBookList"</span>).text.split(<span class="string">"\n"</span>)</span><br><span class="line">    book_list.append(book)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 브라우저 닫기</span></span><br><span class="line">driver.quit()</span><br></pre></td></tr></table></figure>
+<p>페이지별로 제목을 긁어오기 때문에 리스트 속의 리스트 형태로 저장되는데 이를 하나의 리스트로 변환해 준다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls = sum(book_list, [])</span><br></pre></td></tr></table></figure>
+<p>리스트가 완성됐으니 csv 파일로 리스트를 만든다. 판다스 데이터프레임으로 만든 뒤 csv 파일로 내보냈다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.DataFrame(&#123;<span class="string">"title"</span>: ls&#125;)</span><br><span class="line">df.to_csv(<span class="string">"ridiselect.csv"</span>, mode=<span class="string">'w'</span>)</span><br></pre></td></tr></table></figure>
+<p>csv 파일을 열어서 보고 싶은 책이 있는지 쉽게 검색할 수 있다. 구독한 후에는 보고싶은 책을 미리 체크해두면 좋다.</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/crawling/">crawling</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/crawling-ridibooks/">crawling, ridibooks</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-MySQL-4-2-데이터-정렬-ORDER-BY를-활용한-Natural-Sorting" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -456,87 +516,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-MySQL-3-7-데이터-필터링-LIMIT" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/12/11/MySQL-3-7-데이터-필터링-LIMIT/">[MySQL] 3.7 데이터 필터링 - LIMIT</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2018/12/11/MySQL-3-7-데이터-필터링-LIMIT/" class="article-date">
-	  <time datetime="2018-12-10T23:16:33.000Z" itemprop="datePublished">December 11, 2018</time>
-	</a>
-
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<p><a href="http://www.mysqltutorial.org" target="_blank" rel="noopener">http://www.mysqltutorial.org</a> 내용을 따라 익히며 정리한 글입니다. 예시에 나오는 데이터셋은 MySQL 샘플 데이터셋인 <code>classicmodels</code> DB입니다.</p>
-<hr>
-<h3 id="1-LIMIT-소개"><a href="#1-LIMIT-소개" class="headerlink" title="1. LIMIT 소개"></a>1. <code>LIMIT</code> 소개</h3><p><code>LIMIT</code> 는 <code>SELECT</code> 문에서 결과값 수를 제한할 때 사용한다.<br>하나 혹은 두 개의 아규먼트를 받는다. 아규먼트는 0 또는 양의 정수여야 한다. 다음과 같이 사용한다.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    column1,column2,...</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    <span class="keyword">table</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="keyword">offset</span> , <span class="keyword">count</span>;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>offset</code> : 리턴하기 시작할 행 넘버를 지정한다. (첫 행이 0번이다)</li>
-<li><code>count</code> : 리턴할 행의 수를 지정한다</li>
-</ul>
-<h3 id="2-LIMIT-로-N번째-행까지-가져오기"><a href="#2-LIMIT-로-N번째-행까지-가져오기" class="headerlink" title="2. LIMIT 로 N번째 행까지 가져오기"></a>2. <code>LIMIT</code> 로 N번째 행까지 가져오기</h3><p><code>customers</code> 테이블에서 5번째 행까지의 고객번호, 고객명, 신용한도를 가져와보자.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> customernumber,</span><br><span class="line"> customername,</span><br><span class="line"> creditlimit</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line"> customers</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">+----------------+----------------------------+-------------+</span><br><span class="line">| customernumber | customername               | creditlimit |</span><br><span class="line">+----------------+----------------------------+-------------+</span><br><span class="line">|            103 | Atelier graphique          |    21000.00 |</span><br><span class="line">|            112 | Signal Gift Stores         |    71800.00 |</span><br><span class="line">|            114 | Australian Collectors, Co. |   117300.00 |</span><br><span class="line">|            119 | La Rochelle Gifts          |   118200.00 |</span><br><span class="line">|            121 | Baane Mini Imports         |    81700.00 |</span><br><span class="line">+----------------+----------------------------+-------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p><code>offset</code> 아규먼트에 0을 넣는 것과 아무것도 넣지 않는 것은 같다. 즉, <code>LIMIT 5</code> 은 <code>LIMIT 0, 5</code> 과 같은 결과를 리턴한다.</p>
-<h3 id="3-LIMIT-로-상위값들-하위값들-가져오기"><a href="#3-LIMIT-로-상위값들-하위값들-가져오기" class="headerlink" title="3. LIMIT 로 상위값들, 하위값들 가져오기"></a>3. <code>LIMIT</code> 로 상위값들, 하위값들 가져오기</h3><p><code>LIMIT</code> 는 <code>ORDER BY</code> 와 같이 자주 쓰인다.</p>
-<p><code>customers</code> 테이블에서 신용한도 상위 5명의 고객번호, 고객명, 신용한도를 내림차순으로 가져오려면 다음과 같이 작성한다.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> customernumber,</span><br><span class="line"> customername,</span><br><span class="line"> creditlimit</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line"> customers</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line"> creditlimit <span class="keyword">DESC</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">+----------------+------------------------------+-------------+</span><br><span class="line">| customernumber | customername                 | creditlimit |</span><br><span class="line">+----------------+------------------------------+-------------+</span><br><span class="line">|            141 | Euro+ Shopping Channel       |   227600.00 |</span><br><span class="line">|            124 | Mini Gifts Distributors Ltd. |   210500.00 |</span><br><span class="line">|            298 | Vida Sport, Ltd              |   141300.00 |</span><br><span class="line">|            151 | Muscle Machine Inc           |   138500.00 |</span><br><span class="line">|            187 | AV Stores, Co.               |   136800.00 |</span><br><span class="line">+----------------+------------------------------+-------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>하위 5명을 오름차순으로 가져오려면 <code>DESC</code> 대신 <code>ASC</code> 을 사용해 다음과 같이 작성한다.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> customernumber,</span><br><span class="line"> customername,</span><br><span class="line"> creditlimit</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line"> customers</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line"> creditlimit <span class="keyword">ASC</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">+----------------+----------------------------+-------------+</span><br><span class="line">| customernumber | customername               | creditlimit |</span><br><span class="line">+----------------+----------------------------+-------------+</span><br><span class="line">|            223 | Natürlich Autos            |        0.00 |</span><br><span class="line">|            168 | American Souvenirs Inc     |        0.00 |</span><br><span class="line">|            169 | Porto Imports Co.          |        0.00 |</span><br><span class="line">|            206 | Asian Shopping Network, Co |        0.00 |</span><br><span class="line">|            125 | Havel &amp; Zbyszek Co         |        0.00 |</span><br><span class="line">+----------------+----------------------------+-------------+</span><br><span class="line">5 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="4-LIMIT-로-상위-N번째-값-가져오기"><a href="#4-LIMIT-로-상위-N번째-값-가져오기" class="headerlink" title="4. LIMIT 로 상위 N번째 값 가져오기"></a>4. <code>LIMIT</code> 로 상위 N번째 값 가져오기</h3><p>상품 중 가장 비싸거나 가장 싼 상품을 찾으려면 <code>MAX</code> 나 <code>MIN</code> 등을 사용할 수 있다. 하지만 세 번째로 비싼 상품을 찾으려면?</p>
-<ol>
-<li>먼저 결과값을 내림차순으로 정렬해보자.</li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> productName,</span><br><span class="line"> buyprice</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line"> products</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line"> buyprice <span class="keyword">DESC</span>;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+---------------------------------------------+----------+</span><br><span class="line">| productName                                 | buyprice |</span><br><span class="line">+---------------------------------------------+----------+</span><br><span class="line">| 1962 LanciaA Delta 16V                      |   103.42 |</span><br><span class="line">| 1998 Chrysler Plymouth Prowler              |   101.51 |</span><br><span class="line">| 1952 Alpine Renault 1300                    |    98.58 |</span><br><span class="line">| 1956 Porsche 356A Coupe                     |    98.30 |</span><br><span class="line">| 2001 Ferrari Enzo                           |    95.59 |</span><br><span class="line">| 1968 Ford Mustang                           |    95.34 |</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>가져와야 할 값은 Alpine Renault 1300 이다. 위 쿼리에 <code>LIMIT 2, 1</code> 을 추가하면 아래처럼 ‘2번행(첫 줄이 0번행)부터 1개 행을 리턴’한다.</li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> productName,</span><br><span class="line"> buyprice</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line"> products</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line"> buyprice <span class="keyword">DESC</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">2</span>, <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+--------------------------+----------+</span><br><span class="line">| productName              | buyprice |</span><br><span class="line">+--------------------------+----------+</span><br><span class="line">| 1952 Alpine Renault 1300 |    98.58 |</span><br><span class="line">+--------------------------+----------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -641,6 +620,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/01/04/World-This-Week-Jan-5th-2019/">[World This Week] Jan 5th 2019</a></h6>
+              <span>January 4, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/01/03/Hexo-YouTube-영상-넣기/">[Hexo] YouTube 영상 넣기</a></h6>
               <span>January 3, 2019</span>
             </div>
@@ -695,18 +686,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/12/28/MySQL-4-2-데이터-정렬-ORDER-BY를-활용한-Natural-Sorting/">[MySQL] 4.2 데이터 정렬 - ORDER BY를 활용한 Natural Sorting</a></h6>
-              <span>December 28, 2018</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -716,7 +695,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/The-Economist/">The Economist</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/books/">books</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/crawling/">crawling</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/The-Economist/">The Economist</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/books/">books</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/crawling/">crawling</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -731,7 +710,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">16</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">16</span></li></ul>
     </div>
   </div>
 
