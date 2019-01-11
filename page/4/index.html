@@ -13,21 +13,21 @@
   <!-- PACE Progress Bar START -->
 
   
-  <title>DATASCIENTIST FOXSAY</title>
+  <title>THE DATASCIENTIST</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
   
   <meta property="og:type" content="website">
-<meta property="og:title" content="DATASCIENTIST FOXSAY">
+<meta property="og:title" content="THE DATASCIENTIST">
 <meta property="og:url" content="http://foxsayy.github.io/page/4/index.html">
-<meta property="og:site_name" content="DATASCIENTIST FOXSAY">
+<meta property="og:site_name" content="THE DATASCIENTIST">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DATASCIENTIST FOXSAY">
+<meta name="twitter:title" content="THE DATASCIENTIST">
   
-    <link rel="alternate" href="/atom.xml" title="DATASCIENTIST FOXSAY" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="THE DATASCIENTIST" type="application/atom+xml">
   
   <link rel="icon" href="/css/images/favicon.ico">
   
@@ -92,7 +92,7 @@ var themeMenus = {};
 
           <h1 class="site-title">
             
-              <a href="/" title="DATASCIENTIST FOXSAY" rel="home"> DATASCIENTIST FOXSAY </a>
+              <a href="/" title="THE DATASCIENTIST" rel="home"> THE DATASCIENTIST </a>
             
           </h1>
 
@@ -160,6 +160,84 @@ var themeMenus = {};
       <div id="content" class="outer">
         
           <section id="main">
+  
+    <article id="post-MySQL-3-4-데이터-필터링-IN" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/12/10/MySQL-3-4-데이터-필터링-IN/">[MySQL] 3.4 데이터 필터링 - IN</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2018/12/10/MySQL-3-4-데이터-필터링-IN/" class="article-date">
+	  <time datetime="2018-12-10T13:05:54.000Z" itemprop="datePublished">December 10, 2018</time>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p><a href="http://www.mysqltutorial.org" target="_blank" rel="noopener">http://www.mysqltutorial.org</a> 내용을 따라 익히며 정리한 글입니다. 예시에 나오는 데이터셋은 MySQL 샘플 데이터셋인 <code>classicmodels</code> DB입니다.</p>
+<hr>
+<h3 id="1-연산자-IN-소개"><a href="#1-연산자-IN-소개" class="headerlink" title="1. 연산자 IN 소개"></a>1. 연산자 <code>IN</code> 소개</h3><p><code>IN</code> 연산자를 사용하면 <code>WHERE</code> 절의 조건을 덕지덕지 붙일 필요 없이 값들의 집합이나 서브쿼리에서 반환된 값들 중 지정된 값과 일치하는 데이터를 보다 간편하게 불러올 수 있다. 예시를 보자.</p>
+<h3 id="2-IN-예시"><a href="#2-IN-예시" class="headerlink" title="2. IN 예시"></a>2. <code>IN</code> 예시</h3><h4 id="2-1"><a href="#2-1" class="headerlink" title="2-1."></a>2-1.</h4><p><code>offices</code> 테이블에서 미국과 프랑스 내 사무실들의 오피스코드, 도시, 전화번호, 국가를 반환하는 쿼리문을 작성하라.(IN을 사용하지 않고 작성)<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    officeCode,</span><br><span class="line">    city,</span><br><span class="line">    phone</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    offices</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    country = <span class="string">'USA'</span> <span class="keyword">OR</span> country = <span class="string">'France'</span>;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+------------+---------------+-----------------+---------+</span><br><span class="line">| officecode | city          | phone           | country |</span><br><span class="line">+------------+---------------+-----------------+---------+</span><br><span class="line">| 1          | San Francisco | +1 650 219 4782 | USA     |</span><br><span class="line">| 2          | Boston        | +1 215 837 0825 | USA     |</span><br><span class="line">| 3          | NYC           | +1 212 555 3000 | USA     |</span><br><span class="line">| 4          | Paris         | +33 14 723 4404 | France  |</span><br><span class="line">+------------+---------------+-----------------+---------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="2-2"><a href="#2-2" class="headerlink" title="2-2."></a>2-2.</h4><p><code>offices</code> 테이블에서 미국과 프랑스 내 사무실들의 오피스코드, 도시, 전화번호, 국가를 반환하는 쿼리문을 작성하라.(IN을 사용해 작성)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    officeCode,</span><br><span class="line">    city,</span><br><span class="line">    phone,</span><br><span class="line">    country</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    offices</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    country <span class="keyword">IN</span> (<span class="string">'USA'</span> , <span class="string">'France'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+------------+---------------+-----------------+---------+</span><br><span class="line">| officecode | city          | phone           | country |</span><br><span class="line">+------------+---------------+-----------------+---------+</span><br><span class="line">| 1          | San Francisco | +1 650 219 4782 | USA     |</span><br><span class="line">| 2          | Boston        | +1 215 837 0825 | USA     |</span><br><span class="line">| 3          | NYC           | +1 212 555 3000 | USA     |</span><br><span class="line">| 4          | Paris         | +33 14 723 4404 | France  |</span><br><span class="line">+------------+---------------+-----------------+---------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="2-3"><a href="#2-3" class="headerlink" title="2-3."></a>2-3.</h4><p><code>offices</code> 테이블에서 미국과 프랑스가 아닌 다른 나라 사무실들의 오피스코드, 도시, 전화번호, 국가를 반환하는 쿼리문을 작성하라.(IN을 사용해 작성)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    officeCode,</span><br><span class="line">    city,</span><br><span class="line">    phone,</span><br><span class="line">    country</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    offices</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    country <span class="keyword">NOT</span> <span class="keyword">IN</span> (<span class="string">'USA'</span> , <span class="string">'France'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+------------+--------+------------------+-----------+</span><br><span class="line">| officeCode | city   | phone            | country   |</span><br><span class="line">+------------+--------+------------------+-----------+</span><br><span class="line">| 5          | Tokyo  | +81 33 224 5000  | Japan     |</span><br><span class="line">| 6          | Sydney | +61 2 9264 2451  | Australia |</span><br><span class="line">| 7          | London | +44 20 7877 2041 | UK        |</span><br><span class="line">+------------+--------+------------------+-----------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h3 id="3-서브쿼리와-IN"><a href="#3-서브쿼리와-IN" class="headerlink" title="3. 서브쿼리와 IN"></a>3. 서브쿼리와 <code>IN</code></h3><p><code>IN</code> 연산자는 서브쿼리와 함께 사용되곤 한다.<br>하나 이상의 테이블에서 값 목록을 가져와 IN 연산자의 입력 값으로 서브쿼리를 사용합니다.</p>
+<h4 id="3-1"><a href="#3-1" class="headerlink" title="3-1."></a>3-1.</h4><p><code>orders</code> 와 <code>orderDetails</code> 테이블에서 주문액 60000 이상인 주문의 주문번호, 고객번호, 상태, 선적일을 가져오는 쿼리를 작성하라.</p>
+<p>이 문제는 다음처럼 두 단계로 풀 수 있다.</p>
+<ol>
+<li>먼저 <code>GROUP BY</code> 와 <code>HAVING</code> 을 사용해 주문액이 60000 이상인 주문번호를 반환하는 쿼리를 작성한다.</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    orderNumber</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    orderdetails</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">    orderNumber</span><br><span class="line"><span class="keyword">HAVING</span></span><br><span class="line">    <span class="keyword">SUM</span>(quantityOrdered * priceEach) &gt; <span class="number">60000</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+-------------+</span><br><span class="line">| orderNumber |</span><br><span class="line">+-------------+</span><br><span class="line">|       10165 |</span><br><span class="line">|       10287 |</span><br><span class="line">|       10310 |</span><br><span class="line">+-------------+</span><br><span class="line">3 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>위에서 알아낸 주문번호를 <code>IN</code> 연산자에 입력해 <code>orders</code> 테이블에서 필요한 데이터를 가져온다.</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    orderNumber,</span><br><span class="line">    customerNumber,</span><br><span class="line">    <span class="keyword">status</span>,</span><br><span class="line">    shippedDate</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    orders</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    orderNumber <span class="keyword">IN</span> (<span class="number">10165</span>,<span class="number">10287</span>,<span class="number">10310</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+-------------+----------------+---------+-------------+</span><br><span class="line">| orderNumber | customerNumber | status  | shippedDate |</span><br><span class="line">+-------------+----------------+---------+-------------+</span><br><span class="line">|       10165 |            148 | Shipped | 2003-12-26  |</span><br><span class="line">|       10287 |            298 | Shipped | 2004-09-01  |</span><br><span class="line">|       10310 |            259 | Shipped | 2004-10-18  |</span><br><span class="line">+-------------+----------------+---------+-------------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="3-2"><a href="#3-2" class="headerlink" title="3-2."></a>3-2.</h4><p>위 풀이에서의 두 쿼리를 합치면 아래와 같이 쓸 수 있다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    orderNumber,</span><br><span class="line">    customerNumber,</span><br><span class="line">    <span class="keyword">status</span>,</span><br><span class="line">    shippedDate</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    orders</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    orderNumber <span class="keyword">IN</span> (<span class="keyword">SELECT</span> orderNumber</span><br><span class="line">        <span class="keyword">FROM</span> orderdetails</span><br><span class="line">        <span class="keyword">GROUP</span> <span class="keyword">BY</span> orderNumber</span><br><span class="line">        <span class="keyword">HAVING</span> <span class="keyword">SUM</span>(quantityOrdered * priceEach) &gt; <span class="number">60000</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+-------------+----------------+---------+-------------+</span><br><span class="line">| orderNumber | customerNumber | status  | shippedDate |</span><br><span class="line">+-------------+----------------+---------+-------------+</span><br><span class="line">|       10165 |            148 | Shipped | 2003-12-26  |</span><br><span class="line">|       10287 |            298 | Shipped | 2004-09-01  |</span><br><span class="line">|       10310 |            259 | Shipped | 2004-10-18  |</span><br><span class="line">+-------------+----------------+---------+-------------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
   
     <article id="post-MySQL-3-3-데이터-필터링-OR" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
@@ -482,81 +560,11 @@ var themeMenus = {};
     
 
   
-    <article id="post-MySQL-2-1-데이터-쿼리-SELECT" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/12/10/MySQL-2-1-데이터-쿼리-SELECT/">[MySQL] 2.1 데이터 쿼리 - SELECT</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2018/12/10/MySQL-2-1-데이터-쿼리-SELECT/" class="article-date">
-	  <time datetime="2018-12-10T06:47:06.000Z" itemprop="datePublished">December 10, 2018</time>
-	</a>
-
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<p><a href="http://www.mysqltutorial.org" target="_blank" rel="noopener">http://www.mysqltutorial.org</a> 내용을 따라 익히며 정리한 글입니다. 예시에 나오는 데이터셋은 MySQL 샘플 데이터셋인 <code>classicmodels</code> DB입니다.</p>
-<hr>
-<h3 id="1-SELECT-소개"><a href="#1-SELECT-소개" class="headerlink" title="1. SELECT 소개"></a>1. <code>SELECT</code> 소개</h3><p>수많은 열과 행으로 이루어진 테이블에서 특정 열(또는 행)만 보고 싶을 때 <code>SELECT</code> 문을 사용한다.</p>
-<p><code>SELECT</code> 문은 아래와 같이 쓸 수 있다.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    column_1, column_2, ...</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    table_1</span><br><span class="line">[<span class="keyword">INNER</span> | <span class="keyword">LEFT</span> |<span class="keyword">RIGHT</span>] <span class="keyword">JOIN</span> table_2 <span class="keyword">ON</span> conditions</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    conditions</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> column_1</span><br><span class="line"><span class="keyword">HAVING</span> group_conditions</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> column_1</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="keyword">offset</span>, <span class="keyword">length</span>;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>SELECT</code> : 가져오고 싶은 열을 콤마(<code>,</code>)로 구분해 입력. 모든 열을 가져오려면 <code>*</code></li>
-<li><code>FROM</code> : 데이터를 쿼리하려는 테이블이나 뷰(일종의 가상 테이블)의 이름을 입력</li>
-<li><code>JOIN</code> : 여러 테이블에서 연관된 데이터를 조건에 맞게 가져오기</li>
-<li><code>WHERE</code> : 특정 조건에 따라 행을 필터링</li>
-<li><code>GROUP BY</code> : 행들을 특정 그룹으로 묶어 집계</li>
-<li><code>HAVING</code> : <code>GROUP BY</code> 로 정의된 그룹에 기초해 그룹을 필터링</li>
-<li><code>ORDER BY</code> : 오름차순 내림차순 설정</li>
-<li><code>LIMIT</code> : 출력하는 행 수를 제한</li>
-</ul>
-<h3 id="2-SELECT-예시"><a href="#2-SELECT-예시" class="headerlink" title="2. SELECT 예시"></a>2. <code>SELECT</code> 예시</h3><h4 id="2-1"><a href="#2-1" class="headerlink" title="2-1."></a>2-1.</h4><p><code>employees</code> 테이블에서 <code>lastName</code>, <code>firstName</code>, <code>jobTitle</code> 열만 나타내는 쿼리를 작성하라.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    lastname, firstname, jobtitle</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    employees;</span><br></pre></td></tr></table></figure>
-<h4 id="2-2"><a href="#2-2" class="headerlink" title="2-2."></a>2-2.</h4><p><code>employees</code> 테이블에서 모든 열의 데이터를 가져오는 쿼리를 작성하라.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> employees;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/3/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/page/3/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next</a>
   </nav>
 
 </section>
@@ -656,6 +664,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/01/11/World-This-Week-Jan-12th-2019/">[World This Week] Jan 12th 2019</a></h6>
+              <span>January 11, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/01/08/Python-위치-인자-모으기-arg-와-키워드-인자-모으기-kwargs/">[Python] 위치 인자 모으기(*arg)와 키워드 인자 모으기(**kwargs)</a></h6>
               <span>January 8, 2019</span>
             </div>
@@ -710,18 +730,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/12/30/Python-sort와-sorted/">[Python] sort와 sorted</a></h6>
-              <span>December 30, 2018</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -731,7 +739,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/The-Economist/">The Economist</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/books/">books</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/crawling/">crawling</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/The-Economist/">The Economist</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/books/">books</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/crawling/">crawling</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -746,7 +754,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">16</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">16</span></li></ul>
     </div>
   </div>
 
@@ -760,7 +768,7 @@ var themeMenus = {};
 
   <div class="clearfix container">
       <div class="site-info">
-	      &copy; 2019 DATASCIENTIST FOXSAY All Rights Reserved.
+	      &copy; 2019 THE DATASCIENTIST All Rights Reserved.
           
       </div>
       <div class="site-credit">
