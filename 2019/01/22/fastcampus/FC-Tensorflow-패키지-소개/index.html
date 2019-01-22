@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>[fc] tensorflow 패키지 소개 | THE DATASCIENTIST</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="fastcampus, Dr.Kim, datascienceschool">
+  
+  
+  
+  
+  <meta name="description" content="패스트캠퍼스 데이터사이언스스쿨의 김도형 박사님 수업을 듣고 정리한 글입니다. 개인적으로 참고하기 위한 요약노트 성격이고, 보다 자세한 내용을 원하시는 분은 https://datascienceschool.net 에 올라와 있는 강의자료를 참고하시기 바랍니다.  TensorFlow 기본 사용법그래프와 세션그래프세션인터랙티브 세션과 eval() 메서드텐서 자료">
+<meta name="keywords" content="fastcampus, Dr.Kim, datascienceschool">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[FC] Tensorflow 패키지 소개">
+<meta property="og:url" content="http://foxsayy.github.io/2019/01/22/fastcampus/FC-Tensorflow-패키지-소개/index.html">
+<meta property="og:site_name" content="THE DATASCIENTIST">
+<meta property="og:description" content="패스트캠퍼스 데이터사이언스스쿨의 김도형 박사님 수업을 듣고 정리한 글입니다. 개인적으로 참고하기 위한 요약노트 성격이고, 보다 자세한 내용을 원하시는 분은 https://datascienceschool.net 에 올라와 있는 강의자료를 참고하시기 바랍니다.  TensorFlow 기본 사용법그래프와 세션그래프세션인터랙티브 세션과 eval() 메서드텐서 자료">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-01-22T04:38:45.050Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[FC] Tensorflow 패키지 소개">
+<meta name="twitter:description" content="패스트캠퍼스 데이터사이언스스쿨의 김도형 박사님 수업을 듣고 정리한 글입니다. 개인적으로 참고하기 위한 요약노트 성격이고, 보다 자세한 내용을 원하시는 분은 https://datascienceschool.net 에 올라와 있는 강의자료를 참고하시기 바랍니다.  TensorFlow 기본 사용법그래프와 세션그래프세션인터랙티브 세션과 eval() 메서드텐서 자료">
+  
+    <link rel="alternate" href="/atom.xml" title="THE DATASCIENTIST" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories/index.html"] = "Categories"; 
+
+  themeMenus["/log/index.html"] = "log"; 
+
+  themeMenus["/about/index.html"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="THE DATASCIENTIST" rel="home"> THE DATASCIENTIST </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories/index.html">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/log/index.html">log</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about/index.html">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt="" src="">
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-fastcampus/FC-Tensorflow-패키지-소개" style="width: 66%; float:left;" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      [FC] Tensorflow 패키지 소개
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/01/22/fastcampus/FC-Tensorflow-패키지-소개/" class="article-date">
+	  <time datetime="2019-01-22T04:26:29.000Z" itemprop="datePublished">January 22, 2019</time>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>패스트캠퍼스 데이터사이언스스쿨의 김도형 박사님 수업을 듣고 정리한 글입니다. 개인적으로 참고하기 위한 요약노트 성격이고, 보다 자세한 내용을 원하시는 분은 <a href="https://datascienceschool.net" target="_blank" rel="noopener">https://datascienceschool.net</a> 에 올라와 있는 강의자료를 참고하시기 바랍니다.</p>
+<hr>
+<h3 id="TensorFlow-기본-사용법"><a href="#TensorFlow-기본-사용법" class="headerlink" title="TensorFlow 기본 사용법"></a>TensorFlow 기본 사용법</h3><h3 id="그래프와-세션"><a href="#그래프와-세션" class="headerlink" title="그래프와 세션"></a>그래프와 세션</h3><h3 id="그래프"><a href="#그래프" class="headerlink" title="그래프"></a>그래프</h3><h3 id="세션"><a href="#세션" class="headerlink" title="세션"></a>세션</h3><h3 id="인터랙티브-세션과-eval-메서드"><a href="#인터랙티브-세션과-eval-메서드" class="headerlink" title="인터랙티브 세션과 eval() 메서드"></a>인터랙티브 세션과 <code>eval()</code> 메서드</h3><h3 id="텐서-자료형"><a href="#텐서-자료형" class="headerlink" title="텐서 자료형"></a>텐서 자료형</h3><h3 id="텐서-자료형의-종류"><a href="#텐서-자료형의-종류" class="headerlink" title="텐서 자료형의 종류"></a>텐서 자료형의 종류</h3><h3 id="상수형-텐서"><a href="#상수형-텐서" class="headerlink" title="상수형 텐서"></a>상수형 텐서</h3><h3 id="플레이스홀더"><a href="#플레이스홀더" class="headerlink" title="플레이스홀더"></a>플레이스홀더</h3><h3 id="변수형-텐서"><a href="#변수형-텐서" class="headerlink" title="변수형 텐서"></a>변수형 텐서</h3><h3 id="초기화-연산자"><a href="#초기화-연산자" class="headerlink" title="초기화 연산자"></a>초기화 연산자</h3><h3 id="name-속성과-이름-공간"><a href="#name-속성과-이름-공간" class="headerlink" title="name 속성과 이름 공간"></a>name 속성과 이름 공간</h3><h3 id="변수-공간과-변수의-재사용"><a href="#변수-공간과-변수의-재사용" class="headerlink" title="변수 공간과 변수의 재사용"></a>변수 공간과 변수의 재사용</h3><h3 id="Tensor-연산"><a href="#Tensor-연산" class="headerlink" title="Tensor 연산"></a>Tensor 연산</h3><h3 id="자동-형변환"><a href="#자동-형변환" class="headerlink" title="자동 형변환"></a>자동 형변환</h3><h3 id="미분"><a href="#미분" class="headerlink" title="미분"></a>미분</h3><h3 id="TensorFlow를-이용한-선형회귀"><a href="#TensorFlow를-이용한-선형회귀" class="headerlink" title="TensorFlow를 이용한 선형회귀"></a>TensorFlow를 이용한 선형회귀</h3><h3 id="퍼셉트론"><a href="#퍼셉트론" class="headerlink" title="퍼셉트론"></a>퍼셉트론</h3><h3 id="최적화"><a href="#최적화" class="headerlink" title="최적화"></a>최적화</h3><h3 id="TensorBoard"><a href="#TensorBoard" class="headerlink" title="TensorBoard"></a>TensorBoard</h3><h4 id="텐서보드용-로그-생성"><a href="#텐서보드용-로그-생성" class="headerlink" title="텐서보드용 로그 생성"></a>텐서보드용 로그 생성</h4><h4 id="텐서보드-가동"><a href="#텐서보드-가동" class="headerlink" title="텐서보드 가동"></a>텐서보드 가동</h4><h5 id="연습문제-20-1-2"><a href="#연습문제-20-1-2" class="headerlink" title="연습문제 20.1.2"></a>연습문제 20.1.2</h5>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/datascienceschool/">datascienceschool</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fastcampus-Dr-Kim-datascienceschool/">fastcampus, Dr.Kim, datascienceschool</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/22/bishop/비숍-5-0-뉴럴-네트워크/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">[비숍] 5.0 뉴럴 네트워크</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#TensorFlow-기본-사용법"><span class="nav-number">1.</span> <span class="nav-text">TensorFlow 기본 사용법</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#그래프와-세션"><span class="nav-number">2.</span> <span class="nav-text">그래프와 세션</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#그래프"><span class="nav-number">3.</span> <span class="nav-text">그래프</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#세션"><span class="nav-number">4.</span> <span class="nav-text">세션</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#인터랙티브-세션과-eval-메서드"><span class="nav-number">5.</span> <span class="nav-text">인터랙티브 세션과 eval() 메서드</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#텐서-자료형"><span class="nav-number">6.</span> <span class="nav-text">텐서 자료형</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#텐서-자료형의-종류"><span class="nav-number">7.</span> <span class="nav-text">텐서 자료형의 종류</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#상수형-텐서"><span class="nav-number">8.</span> <span class="nav-text">상수형 텐서</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#플레이스홀더"><span class="nav-number">9.</span> <span class="nav-text">플레이스홀더</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#변수형-텐서"><span class="nav-number">10.</span> <span class="nav-text">변수형 텐서</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#초기화-연산자"><span class="nav-number">11.</span> <span class="nav-text">초기화 연산자</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#name-속성과-이름-공간"><span class="nav-number">12.</span> <span class="nav-text">name 속성과 이름 공간</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#변수-공간과-변수의-재사용"><span class="nav-number">13.</span> <span class="nav-text">변수 공간과 변수의 재사용</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tensor-연산"><span class="nav-number">14.</span> <span class="nav-text">Tensor 연산</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#자동-형변환"><span class="nav-number">15.</span> <span class="nav-text">자동 형변환</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#미분"><span class="nav-number">16.</span> <span class="nav-text">미분</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TensorFlow를-이용한-선형회귀"><span class="nav-number">17.</span> <span class="nav-text">TensorFlow를 이용한 선형회귀</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#퍼셉트론"><span class="nav-number">18.</span> <span class="nav-text">퍼셉트론</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#최적화"><span class="nav-number">19.</span> <span class="nav-text">최적화</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TensorBoard"><span class="nav-number">20.</span> <span class="nav-text">TensorBoard</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#텐서보드용-로그-생성"><span class="nav-number">20.1.</span> <span class="nav-text">텐서보드용 로그 생성</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#텐서보드-가동"><span class="nav-number">20.2.</span> <span class="nav-text">텐서보드 가동</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#연습문제-20-1-2"><span class="nav-number">20.2.1.</span> <span class="nav-text">연습문제 20.1.2</span></a></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 THE DATASCIENTIST All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories/index.html" class="mobile-nav-link">Categories</a>
+  
+    <a href="/log/index.html" class="mobile-nav-link">Log</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
