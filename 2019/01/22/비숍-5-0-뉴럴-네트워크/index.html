@@ -13,19 +13,26 @@
   <!-- PACE Progress Bar START -->
 
   
-  <title>tag: crawling, ridibooks | THE DATASCIENTIST</title>
+  <title>[비숍] 5.0 뉴럴 네트워크 | THE DATASCIENTIST</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="패턴 인식과 머신 러닝, 비숍">
   
   
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="THE DATASCIENTIST">
-<meta property="og:url" content="http://foxsayy.github.io/tags/crawling-ridibooks/index.html">
+  
+  <meta name="description" content="크리스토퍼 비숍의 ‘패턴 인식과 머신 러닝’을 학습하며 정리한 글입니다. 개인적으로 참고하기 위한 요약노트 성격이다보니 설명이 부실하더라도 양해 바랍니다.  5장. 뉴럴 네트워크1. 피드 포워드 네트워크 함수  다층 퍼셉트론이라고도 알려져 있다. 사실은 연속적인 비선형성을 가진 로지스틱 회귀 모델 여러 층이 모인 것 SVM과 같은 일반화 성능을 가지고 있">
+<meta name="keywords" content="패턴 인식과 머신 러닝, 비숍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[비숍] 5.0 뉴럴 네트워크">
+<meta property="og:url" content="http://foxsayy.github.io/2019/01/22/비숍-5-0-뉴럴-네트워크/index.html">
 <meta property="og:site_name" content="THE DATASCIENTIST">
+<meta property="og:description" content="크리스토퍼 비숍의 ‘패턴 인식과 머신 러닝’을 학습하며 정리한 글입니다. 개인적으로 참고하기 위한 요약노트 성격이다보니 설명이 부실하더라도 양해 바랍니다.  5장. 뉴럴 네트워크1. 피드 포워드 네트워크 함수  다층 퍼셉트론이라고도 알려져 있다. 사실은 연속적인 비선형성을 가진 로지스틱 회귀 모델 여러 층이 모인 것 SVM과 같은 일반화 성능을 가지고 있">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-01-22T04:40:21.781Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="THE DATASCIENTIST">
+<meta name="twitter:title" content="[비숍] 5.0 뉴럴 네트워크">
+<meta name="twitter:description" content="크리스토퍼 비숍의 ‘패턴 인식과 머신 러닝’을 학습하며 정리한 글입니다. 개인적으로 참고하기 위한 요약노트 성격이다보니 설명이 부실하더라도 양해 바랍니다.  5장. 뉴럴 네트워크1. 피드 포워드 네트워크 함수  다층 퍼셉트론이라고도 알려져 있다. 사실은 연속적인 비선형성을 가진 로지스틱 회귀 모델 여러 층이 모인 것 SVM과 같은 일반화 성능을 가지고 있">
   
     <link rel="alternate" href="/atom.xml" title="THE DATASCIENTIST" type="application/atom+xml">
   
@@ -83,7 +90,7 @@ var themeMenus = {};
 </script>
 
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
   <header id="allheader" class="site-header" role="banner">
@@ -159,237 +166,118 @@ var themeMenus = {};
             
       <div id="content" class="outer">
         
-          <section id="main">
-  
-  
-  
+          <section id="main" style="float:none;"><article id="post-비숍-5-0-뉴럴-네트워크" style="width: 66%; float:left;" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <h1><a href="/archives/2018" class="archive-year">2018</a></h1>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2018/12/29/Crawling-RIDISELECT/" class="archive-article-date">
-		  <time datetime="2018-12-28T21:17:24.000Z" itemprop="datePublished">Dec 29, 2018</time>
-	  </a>
-      
+      <header class="article-header">
+        
   
     <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2018/12/29/Crawling-RIDISELECT/">[Crawling] RIDISELECT</a>
+      [비숍] 5.0 뉴럴 네트워크
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/01/22/비숍-5-0-뉴럴-네트워크/" class="article-date">
+	  <time datetime="2019-01-21T17:18:08.000Z" itemprop="datePublished">January 22, 2019</time>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>크리스토퍼 비숍의 ‘패턴 인식과 머신 러닝’을 학습하며 정리한 글입니다. 개인적으로 참고하기 위한 요약노트 성격이다보니 설명이 부실하더라도 양해 바랍니다.</p>
+<hr>
+<h3 id="5장-뉴럴-네트워크"><a href="#5장-뉴럴-네트워크" class="headerlink" title="5장. 뉴럴 네트워크"></a>5장. 뉴럴 네트워크</h3><p><strong>1. 피드 포워드 네트워크 함수</strong></p>
+<ul>
+<li>다층 퍼셉트론이라고도 알려져 있다. 사실은 연속적인 비선형성을 가진 로지스틱 회귀 모델 여러 층이 모인 것</li>
+<li>SVM과 같은 일반화 성능을 가지고 있으면서도 결과 모델이 훨씬 더 작아서 계산이 빠르다</li>
+<li>단점은 네트워크 훈련의 기반을 이루는 가능도 함수가 모델 매개변수에 대해 볼록 함수가 아니라는 것</li>
+<li>그럼에도 실무에선 훈련 단계에서 더 많은 계산 자원을 동원해서라도 작은 모델을 구현하는게 유의미한 경우가 많다. 모델이 작으면 새로운 데이터에 대한 처리가 더 빨라지기 때문</li>
+</ul>
+<p><strong>2. 네트워크 훈련</strong><br><strong>3. 오차 역전파</strong><br><strong>4. 헤시안 행렬</strong><br><strong>5. 뉴럴 네트워크에서의 정규화</strong><br><strong>6. 혼합 밀도 네트워크</strong><br><strong>7. 베이지안 뉴럴 네트워크</strong></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/패턴-인식과-머신-러닝/">패턴 인식과 머신 러닝</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/패턴-인식과-머신-러닝-비숍/">패턴 인식과 머신 러닝, 비숍</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/01/22/FC-Tensorflow-패키지-소개/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          [FC] Tensorflow 패키지 소개
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/01/19/World-This-Week-Jan-19th-2019/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">[World This Week] Jan 19th 2019</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
+<!-- Table of Contents -->
 
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#5장-뉴럴-네트워크"><span class="nav-number">1.</span> <span class="nav-text">5장. 뉴럴 네트워크</span></a></li></ol>
+    
+    </div>
+  </aside>
 </section>
-          <aside id="sidebar">
-  
-    <div class="widget-wrap" style="margin: 20px 0;">
-	<div id="search-form-wrap">
-
-    <form class="search-form">
-        <label style="width: 75%;">
-            <span class="screen-reader-text">Search for:</span>
-            <input type="search" class="search-field" style="height: 42px;" placeholder=" Search…" value="" name="s" title="Search for:">
-        </label>
-        <input type="submit" class="search-form-submit" value="Search">
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something...">
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: 'Posts',
-            PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
-            UNTITLED: '(Untitled)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-<script src="/js/insight.js"></script>
-
-</div>
-</div>
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Connect With Us</h3>
-    <div class="widget widget_athemes_social_icons">
-
-    	<ul class="clearfix widget-social-icons">   
-    	
-          
-     			  <li><a href="https://github.com/foxsayy" title="Github"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
-          
-   		
-          
-     			  <li><a href="https://www.instagram.com/roh.sng.hwan/?hl=ko" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li> 
-          
-   		
-          
-            <li><a href="mailto:roh.sng.hwan@gmail.com?subject=请联系我&body=我能帮你什么" title="email"><i class="fa fa-envelope" aria-hidden="true"></i></a></li> 
-          
-   		
-   		</ul>
-
-
-   		<!--
-   		<ul class="clearfix widget-social-icons">   		
-   		<li class="widget-si-twitter"><a href="http://twitter.com" title="Twitter"><i class="ico-twitter"></i></a></li> 
-		<li class="widget-si-facebook"><a href="http://facebook.com" title="Facebook"><i class="ico-facebook"></i></a></li>
-			<li class="widget-si-gplus"><a href="http://plus.google.com" title="Google+"><i class="ico-gplus"></i></a></li>
-			<li class="widget-si-pinterest"><a href="http://pinterest.com" title="Pinterest"><i class="ico-pinterest"></i></a></li>
-			<li class="widget-si-flickr"><a href="http://flickr.com" title="Flickr"><i class="ico-flickr"></i></a></li>
-			<li class="widget-si-instagram"><a href="http://instagram.com" title="Instagram"><i class="ico-instagram"></i></a></li>
-		</ul> -->
-
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget_athemes_tabs">
-    <ul id="widget-tab" class="clearfix widget-tab-nav">
-      <li class="active"><a>Recent Posts</a></li>
-    </ul>
-    <div class="widget">
-      <ul>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/01/11/World-This-Week-Jan-12th-2019/">[World This Week] Jan 12th 2019</a></h6>
-              <span>January 11, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/01/08/Python-위치-인자-모으기-arg-와-키워드-인자-모으기-kwargs/">[Python] 위치 인자 모으기(*arg)와 키워드 인자 모으기(**kwargs)</a></h6>
-              <span>January 8, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/01/04/World-This-Week-Jan-5th-2019/">[World This Week] Jan 5th 2019</a></h6>
-              <span>January 4, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/01/03/Hexo-YouTube-영상-넣기/">[Hexo] YouTube 영상 넣기</a></h6>
-              <span>January 3, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/01/02/Books-마흔이-되기-전에/">[Books] 마흔이 되기 전에</a></h6>
-              <span>January 2, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/12/31/Python-Comprehension/">[Python] Comprehension</a></h6>
-              <span>December 31, 2018</span>
-            </div>
-
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/The-Economist/">The Economist</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/books/">books</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/crawling/">crawling</a><span class="category-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">16</span></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
         
       </div>
       <footer id="footer" class="site-footer">
