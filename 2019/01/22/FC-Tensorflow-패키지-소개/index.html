@@ -13,7 +13,7 @@
   <!-- PACE Progress Bar START -->
 
   
-  <title>[fc] tensorflow 패키지 소개 | THE DATASCIENTIST</title>
+  <title>[fc] tensorflow 패키지 소개(1) | THE DATASCIENTIST</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="keywords" content="fastcampus, Dr.Kim, datascienceschool">
@@ -24,14 +24,14 @@
   <meta name="description" content="패스트캠퍼스 데이터사이언스스쿨의 김도형 박사님 수업을 듣고 강의자료를 요약한 글입니다. 개인적으로 참고하기 위한 요약노트이니 보다 자세한 내용을 원하시는 분은 https://datascienceschool.net 에 올라와 있는 강의자료를 참고하시기 바랍니다.  TensorFlow 기본 사용법 텐서 정의 텐서 연산 정의 세션 정의 세션 사용  그래프와 세">
 <meta name="keywords" content="fastcampus, Dr.Kim, datascienceschool">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[FC] Tensorflow 패키지 소개">
+<meta property="og:title" content="[FC] Tensorflow 패키지 소개(1)">
 <meta property="og:url" content="http://foxsayy.github.io/2019/01/22/FC-Tensorflow-패키지-소개/index.html">
 <meta property="og:site_name" content="THE DATASCIENTIST">
 <meta property="og:description" content="패스트캠퍼스 데이터사이언스스쿨의 김도형 박사님 수업을 듣고 강의자료를 요약한 글입니다. 개인적으로 참고하기 위한 요약노트이니 보다 자세한 내용을 원하시는 분은 https://datascienceschool.net 에 올라와 있는 강의자료를 참고하시기 바랍니다.  TensorFlow 기본 사용법 텐서 정의 텐서 연산 정의 세션 정의 세션 사용  그래프와 세">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-01-22T16:33:31.579Z">
+<meta property="og:updated_time" content="2019-01-23T01:48:16.396Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[FC] Tensorflow 패키지 소개">
+<meta name="twitter:title" content="[FC] Tensorflow 패키지 소개(1)">
 <meta name="twitter:description" content="패스트캠퍼스 데이터사이언스스쿨의 김도형 박사님 수업을 듣고 강의자료를 요약한 글입니다. 개인적으로 참고하기 위한 요약노트이니 보다 자세한 내용을 원하시는 분은 https://datascienceschool.net 에 올라와 있는 강의자료를 참고하시기 바랍니다.  TensorFlow 기본 사용법 텐서 정의 텐서 연산 정의 세션 정의 세션 사용  그래프와 세">
   
     <link rel="alternate" href="/atom.xml" title="THE DATASCIENTIST" type="application/atom+xml">
@@ -174,7 +174,7 @@ var themeMenus = {};
         
   
     <h1 class="thumb" itemprop="name">
-      [FC] Tensorflow 패키지 소개
+      [FC] Tensorflow 패키지 소개(1)
     </h1>
   
 
@@ -310,7 +310,65 @@ var themeMenus = {};
 </ul>
 <p><code>tf.random_uniform(shape, minval=0, maxval=None, seed=None)</code><br><br><code>tf.random_normal</code><br><br><code>tf.truncated_normal</code><br><br><code>tf.random_shuffle</code><br><br><code>tf.random_crop</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.random_uniform((<span class="number">2</span>, <span class="number">3</span>), seed=<span class="number">0</span>).eval()</span><br></pre></td></tr></table></figure>
-<h3 id="플레이스홀더"><a href="#플레이스홀더" class="headerlink" title="플레이스홀더"></a>플레이스홀더</h3><h3 id="변수형-텐서"><a href="#변수형-텐서" class="headerlink" title="변수형 텐서"></a>변수형 텐서</h3><h3 id="초기화-연산자"><a href="#초기화-연산자" class="headerlink" title="초기화 연산자"></a>초기화 연산자</h3><h3 id="name-속성과-이름-공간"><a href="#name-속성과-이름-공간" class="headerlink" title="name 속성과 이름 공간"></a>name 속성과 이름 공간</h3><h3 id="변수-공간과-변수의-재사용"><a href="#변수-공간과-변수의-재사용" class="headerlink" title="변수 공간과 변수의 재사용"></a>변수 공간과 변수의 재사용</h3><h3 id="Tensor-연산"><a href="#Tensor-연산" class="headerlink" title="Tensor 연산"></a>Tensor 연산</h3><h3 id="자동-형변환"><a href="#자동-형변환" class="headerlink" title="자동 형변환"></a>자동 형변환</h3><h3 id="미분"><a href="#미분" class="headerlink" title="미분"></a>미분</h3><h3 id="TensorFlow를-이용한-선형회귀"><a href="#TensorFlow를-이용한-선형회귀" class="headerlink" title="TensorFlow를 이용한 선형회귀"></a>TensorFlow를 이용한 선형회귀</h3><h3 id="퍼셉트론"><a href="#퍼셉트론" class="headerlink" title="퍼셉트론"></a>퍼셉트론</h3><h3 id="최적화"><a href="#최적화" class="headerlink" title="최적화"></a>최적화</h3><h3 id="TensorBoard"><a href="#TensorBoard" class="headerlink" title="TensorBoard"></a>TensorBoard</h3><h4 id="텐서보드용-로그-생성"><a href="#텐서보드용-로그-생성" class="headerlink" title="텐서보드용 로그 생성"></a>텐서보드용 로그 생성</h4><h4 id="텐서보드-가동"><a href="#텐서보드-가동" class="headerlink" title="텐서보드 가동"></a>텐서보드 가동</h4><p><strong>연습문제 20.1.2</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">array([[0.10086262, 0.9701668 , 0.8487642 ],</span><br><span class="line">       [0.04828131, 0.04852307, 0.77747464]], dtype=float32)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>convert_to_tensor</code> 함수로 NumPy ndarray 자료형 변환하기</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">np_array = np.arange(<span class="number">10</span>)</span><br><span class="line">tf.convert_to_tensor(np_array).eval()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</span><br></pre></td></tr></table></figure>
+<h3 id="플레이스홀더"><a href="#플레이스홀더" class="headerlink" title="플레이스홀더"></a>플레이스홀더</h3><ul>
+<li><code>tf.placeholder</code> 명령으로 구현</li>
+<li>플레이스홀더(Placeholder) 텐서 자료형은 상수형 텐서와 같은 역할을 하지만 크기만 설정하고 값은 미리 주지 않음</li>
+<li>플레이스홀더의 값은 session을 사용한 그래프의 연산 중에 설정할 수 있음</li>
+<li>신경망 모형의 경우 대부분 배치(batch) 단위의 학습이 이루어지기 때문에 학습용 데이터는 플레이스 홀더에 넣음</li>
+<li>플레이스홀더는 데이터의 타입과 크기를 인수로 설정해 생성하고, session을 실행할 때 feed_dict 인수로 플레이스홀더에 데이터를 지정함</li>
+<li>플레이스홀더에 들어가는 데이터 크기의 달라질 때는 shape 인수를 설정할 때 달라지는 차원의 값을 정수가 아닌 None으로 설정</li>
+<li>다음은 플레이스홀더 x의 열의 갯수는 10개이지만 행의 갯수는 미정인 경우</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x = tf.placeholder(dtype=tf.int32, shape=(<span class="keyword">None</span>, <span class="number">10</span>))  <span class="comment"># 행의 갯수는 미정, 열의 갯수는 10개</span></span><br><span class="line">value = np.arange(<span class="number">30</span>).reshape(<span class="number">3</span>, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    x_assigned = sess.run(x, feed_dict=&#123;x: value&#125;)</span><br><span class="line">    print(x_assigned)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[[ 0  1  2  3  4  5  6  7  8  9]</span><br><span class="line"> [10 11 12 13 14 15 16 17 18 19]</span><br><span class="line"> [20 21 22 23 24 25 26 27 28 29]]</span><br></pre></td></tr></table></figure>
+<h3 id="변수형-텐서"><a href="#변수형-텐서" class="headerlink" title="변수형 텐서"></a>변수형 텐서</h3><ul>
+<li><code>tf.Variable</code> 클래스로 구현</li>
+<li>session 내에서 값이 변할 수 있음</li>
+<li>변수형 텐서를 선언하려면 초기값으로 설정할 값을 입력</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var = tf.Variable(tf.zeros((<span class="number">2</span>, <span class="number">3</span>)))</span><br><span class="line">var</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;tf.variable &apos;variable:0&apos; shape=&quot;(2,&quot; 3) dtype=&quot;float32_ref&quot;&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="초기화-연산자"><a href="#초기화-연산자" class="headerlink" title="초기화 연산자"></a>초기화 연산자</h3><ul>
+<li>변수형 텐서를 생성할 때 입력한 초기값은 <code>initial_value</code> 라는 속성에 저장되고 아직 해당 변수형 텐서의 값으로 할당되어 있지 않음 ➜ 이 상태에서 바로 <code>eval</code>을 실행하면 에러 발생</li>
+<li>초기화 연산자는 세션에 변수형 텐서가 들어간 다음에 변수형 텐서의 초기값을 변수형 텐서의 값으로 할당하는 추가 작업을 수행</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var.initial_value</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;tf.tensor &apos;zeros_1:0&apos; shape=&quot;(2,&quot; 3) dtype=&quot;float32&quot;&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>각 변수에는 <code>initializer</code>라는 이름의 초기화 메서드가 있어 이를 세션에서 실행시키면 초기값이 변수로 할당됨</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">interactive_sess.run(var.initializer)</span><br><span class="line">var.eval()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">array([[0., 0., 0.],</span><br><span class="line">       [0., 0., 0.]], dtype=float32)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>그래프 내의 모든 변수의 초기화 연산을 한꺼번에 수행하려면 <code>tf.global_variables_initializer()</code> 함수를 사용</li>
+<li>모든 변수를 생성하기 전에 <code>tf.global_variable_initializer()</code> 함수를 실행하면면 나중에 생성된 변수에 대해서는 초기화 연산이 이루지지 않아 에러가 발생</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">global_init = tf.global_variables_initializer()</span><br><span class="line">interactive_sess.run(global_init)</span><br><span class="line">print(var.eval())</span><br><span class="line">var1 = var + <span class="number">2</span></span><br><span class="line">print(var1.eval())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[[0. 0. 0.]</span><br><span class="line"> [0. 0. 0.]]</span><br><span class="line">[[2. 2. 2.]</span><br><span class="line"> [2. 2. 2.]]</span><br></pre></td></tr></table></figure>
+<h3 id="name-속성과-이름-공간"><a href="#name-속성과-이름-공간" class="headerlink" title="name 속성과 이름 공간"></a>name 속성과 이름 공간</h3><ul>
+<li>모든 텐서는 <code>op.name</code> 속성에 이름(name) 문자열을 가지고 있음</li>
+<li>텐서를 생성할 때 name 인수를 사용하면 각 텐서에 이름을 수동으로 할당할 수 있음</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">v1 = tf.Variable(<span class="number">2</span>, name=<span class="string">"v1"</span>)</span><br><span class="line">v2 = tf.add(v1, <span class="number">3</span>, name=<span class="string">"v2"</span>)</span><br><span class="line">print(v1.op.name)</span><br><span class="line">print(v2.op.name)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">v1</span><br><span class="line">v2</span><br></pre></td></tr></table></figure>
+<ul>
+<li>name 속성을 주지 않으면 자동 생성</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">v3 = tf.constant(<span class="number">1</span>)</span><br><span class="line">v4 = tf.Variable(<span class="number">1</span>)</span><br><span class="line">print(v3.op.name)</span><br><span class="line">print(v4.op.name)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Const_3</span><br><span class="line">Variable_1</span><br></pre></td></tr></table></figure>
+<ul>
+<li>노드 이름은 중복되지 않아야 함</li>
+<li>이름 공간(name scope)를 사용해 중복 방지</li>
+<li><code>tf.name_scope()</code> 문맥 안에서 변수를 생성하면 이름 앞에 이름공간 문자열이 추가됨</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"scope1"</span>):</span><br><span class="line">    v5 = tf.Variable(<span class="number">2</span>, name=<span class="string">"v5"</span>)</span><br><span class="line">    v6 = tf.add(v5, <span class="number">3</span>, name=<span class="string">"v6"</span>)</span><br><span class="line">print(v5.op.name)</span><br><span class="line">print(v6.op.name)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scope1/v5</span><br><span class="line">scope1/v6</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -356,6 +414,15 @@ var themeMenus = {};
     
 <nav id="article-nav">
   
+    <a href="/2019/01/23/FC-Tensorflow-패키지-소개-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          [FC] Tensorflow 패키지 소개(2)
+        
+      </div>
+    </a>
+  
   
     <a href="/2019/01/22/비숍-5-0-뉴럴-네트워크/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
@@ -373,7 +440,7 @@ var themeMenus = {};
     <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
     <strong class="toc-title">Contents</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#TensorFlow-기본-사용법"><span class="nav-number">1.</span> <span class="nav-text">TensorFlow 기본 사용법</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#그래프와-세션"><span class="nav-number">2.</span> <span class="nav-text">그래프와 세션</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#그래프"><span class="nav-number">3.</span> <span class="nav-text">그래프</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#세션"><span class="nav-number">4.</span> <span class="nav-text">세션</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#인터랙티브-세션과-eval-메서드"><span class="nav-number">5.</span> <span class="nav-text">인터랙티브 세션과 eval() 메서드</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#텐서-자료형"><span class="nav-number">6.</span> <span class="nav-text">텐서 자료형</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#텐서-자료형의-종류"><span class="nav-number">7.</span> <span class="nav-text">텐서 자료형의 종류</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#상수형-텐서"><span class="nav-number">8.</span> <span class="nav-text">상수형 텐서</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#플레이스홀더"><span class="nav-number">9.</span> <span class="nav-text">플레이스홀더</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#변수형-텐서"><span class="nav-number">10.</span> <span class="nav-text">변수형 텐서</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#초기화-연산자"><span class="nav-number">11.</span> <span class="nav-text">초기화 연산자</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#name-속성과-이름-공간"><span class="nav-number">12.</span> <span class="nav-text">name 속성과 이름 공간</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#변수-공간과-변수의-재사용"><span class="nav-number">13.</span> <span class="nav-text">변수 공간과 변수의 재사용</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tensor-연산"><span class="nav-number">14.</span> <span class="nav-text">Tensor 연산</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#자동-형변환"><span class="nav-number">15.</span> <span class="nav-text">자동 형변환</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#미분"><span class="nav-number">16.</span> <span class="nav-text">미분</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TensorFlow를-이용한-선형회귀"><span class="nav-number">17.</span> <span class="nav-text">TensorFlow를 이용한 선형회귀</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#퍼셉트론"><span class="nav-number">18.</span> <span class="nav-text">퍼셉트론</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#최적화"><span class="nav-number">19.</span> <span class="nav-text">최적화</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TensorBoard"><span class="nav-number">20.</span> <span class="nav-text">TensorBoard</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#텐서보드용-로그-생성"><span class="nav-number">20.1.</span> <span class="nav-text">텐서보드용 로그 생성</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#텐서보드-가동"><span class="nav-number">20.2.</span> <span class="nav-text">텐서보드 가동</span></a></li></ol></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#TensorFlow-기본-사용법"><span class="nav-number">1.</span> <span class="nav-text">TensorFlow 기본 사용법</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#그래프와-세션"><span class="nav-number">2.</span> <span class="nav-text">그래프와 세션</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#그래프"><span class="nav-number">3.</span> <span class="nav-text">그래프</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#세션"><span class="nav-number">4.</span> <span class="nav-text">세션</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#인터랙티브-세션과-eval-메서드"><span class="nav-number">5.</span> <span class="nav-text">인터랙티브 세션과 eval() 메서드</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#텐서-자료형"><span class="nav-number">6.</span> <span class="nav-text">텐서 자료형</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#텐서-자료형의-종류"><span class="nav-number">7.</span> <span class="nav-text">텐서 자료형의 종류</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#상수형-텐서"><span class="nav-number">8.</span> <span class="nav-text">상수형 텐서</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#플레이스홀더"><span class="nav-number">9.</span> <span class="nav-text">플레이스홀더</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#변수형-텐서"><span class="nav-number">10.</span> <span class="nav-text">변수형 텐서</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#초기화-연산자"><span class="nav-number">11.</span> <span class="nav-text">초기화 연산자</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#name-속성과-이름-공간"><span class="nav-number">12.</span> <span class="nav-text">name 속성과 이름 공간</span></a></li></ol>
     
     </div>
   </aside>
