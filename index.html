@@ -161,6 +161,91 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-Deep-Learning-with-Python-Ch-01" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/01/28/Deep-Learning-with-Python-Ch-01/">Deep Learning with Python - Ch.01</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/01/28/Deep-Learning-with-Python-Ch-01/" class="article-date">
+	  <time datetime="2019-01-28T06:36:09.000Z" itemprop="datePublished">January 28, 2019</time>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://ridibooks.com/v2/Detail?id=754024868&amp;_s=search&amp;_q=%EC%BC%80%EB%9D%BC%EC%8A%A4" target="_blank" rel="noopener"><img src="https://misc.ridibooks.com/cover/754024868/xxlarge" alt="케라스 창시자에게 배우는 딥러닝"></a>을 실습하면서 정리한 포스트입니다. 코드 예제와 코드 설명은 <a href="https://github.com/rickiepark/deep-learning-with-python-notebooks" target="_blank" rel="noopener">역자 깃허브</a>에서 받아볼 수 있습니다. 출판물이고 개인적으로만 참고하기 위한 요약노트라 설명이 불친절한 점은 양해 바랍니다. 보다 자세한 내용을 원하시는 분은 위 링크의 책을 참고하시기 바랍니다.</p>
+<hr>
+<h2 id="1장-딥러닝이란-무엇인가"><a href="#1장-딥러닝이란-무엇인가" class="headerlink" title="1장 딥러닝이란 무엇인가?"></a>1장 딥러닝이란 무엇인가?</h2><h3 id="인공지능과-머신-러닝-딥러닝"><a href="#인공지능과-머신-러닝-딥러닝" class="headerlink" title="인공지능과 머신 러닝, 딥러닝"></a>인공지능과 머신 러닝, 딥러닝</h3><h4 id="인공지능"><a href="#인공지능" class="headerlink" title="인공지능"></a>인공지능</h4><ul>
+<li>보통의 사람이 수행하는 지능적인 작업을 자동화하기 위한 연구 활동</li>
+<li>인공지능 ⊃ 머신러닝 ⊃ 딥러닝</li>
+<li>심볼릭 AI : “명시적인 규칙을 충분히 많이 만들어 지식을 다루면 인간 수준의 인공지능을 만들 수 있다” ☞ 하지만 명확한 규칙을 찾는게 쉽지 않음</li>
+</ul>
+<h4 id="머신러닝"><a href="#머신러닝" class="headerlink" title="머신러닝"></a>머신러닝</h4><ul>
+<li>전통적 프로그래밍 : 규칙, 데이터를 넣어서 해답을 찾는다</li>
+<li>머신러닝 : 데이터, 해답을 넣어서 규칙을 찾는다</li>
+</ul>
+<h4 id="데이터에서-표현을-학습하기"><a href="#데이터에서-표현을-학습하기" class="headerlink" title="데이터에서 표현을 학습하기"></a>데이터에서 표현을 학습하기</h4><ul>
+<li>머신 러닝과 딥러닝의 핵심 문제는 의미 있는 데이터로의 변환</li>
+<li>입력 데이터를 기반으로 기대 출력에 가깝게 만드는 유용한 표현을 학습하는 것</li>
+</ul>
+<h4 id="딥러닝에서-‘딥’이란"><a href="#딥러닝에서-‘딥’이란" class="headerlink" title="딥러닝에서 ‘딥’이란?"></a>딥러닝에서 ‘딥’이란?</h4><ul>
+<li>딥러닝은 머신러닝의 특정한 한 분야로 연속된 층에서 점진적으로 의미 있는 표현을 배우는 데 강점이 있음</li>
+<li>‘딥’이란 연속된 층으로 표현을 학습한다는 개념을 나타냄</li>
+<li>딥러닝에선 기본 층을 겹겹이 쌓아 올려 구성한 신경망이라는 모델을 사용</li>
+</ul>
+<h4 id="그림-3개로-딥러닝의-작동-원리-이해하기"><a href="#그림-3개로-딥러닝의-작동-원리-이해하기" class="headerlink" title="그림 3개로 딥러닝의 작동 원리 이해하기"></a>그림 3개로 딥러닝의 작동 원리 이해하기</h4><ul>
+<li>신경망은 가중치를 파라미터로 가진다</li>
+<li>손실 함수가 신경망의 출력 품질을 측정한다</li>
+<li>손실 점수를 피드백 신호로 사용하여 가중치를 조정한다</li>
+</ul>
+<h4 id="지금까지-딥러닝-성과"><a href="#지금까지-딥러닝-성과" class="headerlink" title="지금까지 딥러닝 성과"></a>지금까지 딥러닝 성과</h4><ul>
+<li>이미지 분류, 음성, 필기 인식 등</li>
+<li>여전히 할 수 있는 일을 알아가는 중. 형식 추론과 같은 다양한 문제에 적용하기 시작</li>
+</ul>
+<h4 id="단기간의-과대-선전을-믿지-말자"><a href="#단기간의-과대-선전을-믿지-말자" class="headerlink" title="단기간의 과대 선전을 믿지 말자"></a>단기간의 과대 선전을 믿지 말자</h4><ul>
+<li>딥러닝이 할 수 있는 것과 할 수 없는 것에 대해 명확히 이해하자</li>
+</ul>
+<h4 id="AI에-대한-전망"><a href="#AI에-대한-전망" class="headerlink" title="AI에 대한 전망"></a>AI에 대한 전망</h4><ul>
+<li>단기 기대는 비현실적일수도 있지만 장기 전망은 매우 밝다<br>-</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/DSBooks/">DSBooks</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deep-learning-Keras/">deep learning, Keras</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-World-This-Week-Jan-26th-2019" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -564,74 +649,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-World-This-Week-Jan-19th-2019" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/01/19/World-This-Week-Jan-19th-2019/">[World This Week] Jan 19th 2019</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/01/19/World-This-Week-Jan-19th-2019/" class="article-date">
-	  <time datetime="2019-01-19T05:36:27.000Z" itemprop="datePublished">January 19, 2019</time>
-	</a>
-
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<h4 id="All-the-world-is-a-laboratory-to-the-inquiring-mind"><a href="#All-the-world-is-a-laboratory-to-the-inquiring-mind" class="headerlink" title="All the world is a laboratory to the inquiring mind."></a><strong>All the world is a laboratory to the inquiring mind.</strong></h4><p> <em>- Martin H. Fischer</em></p>
-</blockquote>
-<p><br></p>
-<p><a href="https://www.economist.com/printedition/2019-01-19" target="_blank" rel="noopener"><img src="https://www.economist.com/sites/default/files/imagecache/400-width/print-covers/20190119_cna400.jpg" alt="2019-01-19"></a></p>
-<h4 id="The-world-this-week-Business-this-Week"><a href="#The-world-this-week-Business-this-Week" class="headerlink" title="| The world this week | Business this Week"></a>| The world this week | Business this Week</h4><ul>
-<li>예상보다 더 나쁘게 나온 무역 데이터는 중국의 경기 둔화에 대한 우려를 심화시킴. 12월 수출은 전년 동기 대비 4.4% 감소했고 수입은 7.6% 감소함. 미-중 무역 전쟁 속에서 미국으로부터의 수입은 36% 줄었음. 관세 부과에도 불구하고 지난해 중국은 미국에 대해 무역 흑자 3230억 달러를 기록함(전년 대비 17% 증가)</li>
-<li>중국 중앙은행은 ‘합리적으로 적절한 유동성을 유지하기 위해’ 뱅킹 시스템에 570억 위안(840억 달러)를 투입함. 2월 5일 시작되는 음력 새해는 중국에서 현금 거래 급증과 관계가 있음</li>
-<li>작년 중국에서의 승용차 판매가 1990년 이후 처음으로 감소함. 2018년 강력한 출발에도 불구하고 승용차 전체 매출은 12개월동안 4.1% 떨어짐. 전기차 판매는 승용차 판매의 4%대로 올라섰는데, 중국 정부는 이를 2025년까지 20%로 늘리길 원함</li>
-<li>카를로스 곤의 보석 신청이 거절당함. 카를로스 곤은 닛산에서의 자금 유용 혐의로 작년 11월 체포된 이후 구속 수감 중임. 닛산 지분 43%를 들고 있는 르노는 곤의 후임 인선을 준비중인 것으로 전해짐</li>
-<li>포드와 폭스바겐이 글로벌마켓을 겨냥한 픽업트럭과 유럽 시장을 노린 상업용 밴을 만들기 위해 손잡음. 포드와 폭스바겐은 전기차와 자율주행차, 모빌리티 서비스에서도 협력 방안을 모색중이라고 밝혔지만 구체적인 방안을 제시하진 않음.</li>
-<li>덴버의 뉴몬트(Newmont) 사가 캐나다 경쟁사인 골드코프(Goldcorp)를 100억 달러에 인수하기로 함에 따라 금 채굴산업의 합병이 한 단계 더 나아가게 됨. 통합된 회사는 최근 합병한 Barrick-Randgold를 제치고 세계 최대 금 채굴업체가 될 예정임.</li>
-<li>언론에 잘 나서지 않는 런정페이(任正非) 화웨이 창립주 겸 회장은 공개 인터뷰에서 중국이 네트워크 시스템에 백도어를 설치하도록 요구하지 않는다며, 화웨이 장비가 다른 나라에 보안 위협을 일으킨다는 주장을 부정함. 화웨이 설비는 미국 등 다른 나라에서 정부 사용이 금지되고 있음. 경영진 중 한 명은 최근 스파이 혐의로 폴란드에서 체포됨</li>
-<li>Pacific Gas and Electric은 유일하게 실행 가능한 옵션으로 파산 보호를 신청할 것이라 밝힘. 이 회사는 캘리포니아 산불을 일으킨 책임이 있는 것으로 지목돼 막대한 배상 책임에 직면해 있음.</li>
-<li>Fiserv는 220억 달러 상당의 First Data를 인수하겠다고 밝힘. 이는 금융서비스와 페이먼트 산업에서 역대 최대 규모 인수임.</li>
-<li>미국 대형은행들은 지난 4분기<br>채권과 통화 거래 감소에도 불구하고 JP모건체이스의 순익은 71억 달러로 급증함. 뱅크오브아메리카의 분기 수익은 73억 달러로 역대 최대치를 기록. 씨티그룹 분기 수익은 43억 달러로 나타남.</li>
-<li>뱅가드 창업자인 존 보글이 89세 나이로 타계함. 보글은 수수료가 저렴한 인덱스 추종형 펀드를 출시하면서 1970년대 투자업계에 혁명을 일으킴. 혹자는 그를 월스트리트를 대중화한 금융의 헨리 포드라고 부르기도 했음. 뱅가드는 현재 4.9조 달러를 관리하는 세계에서 두 번째로 큰 투자회사임. 그의 투자 조언 중 하나. “시간은 당신의 친구다, 충동은 당신의 적이다”</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/The-Economist/">The Economist</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/The-economist/">The economist</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -736,6 +753,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/01/28/Deep-Learning-with-Python-Ch-01/">Deep Learning with Python - Ch.01</a></h6>
+              <span>January 28, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/01/28/World-This-Week-Jan-26th-2019/">[World This Week] Jan 26th 2019</a></h6>
               <span>January 28, 2019</span>
             </div>
@@ -790,18 +819,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/01/12/MySQL-5-테이블-합치기/">[MySQL] 5.테이블 합치기</a></h6>
-              <span>January 12, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -811,7 +828,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NoSQL/">NoSQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/The-Economist/">The Economist</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/books/">books</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/crawling/">crawling</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/datascienceschool/">datascienceschool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/패턴-인식과-머신-러닝/">패턴 인식과 머신 러닝</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DSBooks/">DSBooks</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NoSQL/">NoSQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/The-Economist/">The Economist</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/books/">books</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/crawling/">crawling</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/datascienceschool/">datascienceschool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/패턴-인식과-머신-러닝/">패턴 인식과 머신 러닝</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -826,7 +843,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">16</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">16</span></li></ul>
     </div>
   </div>
 
