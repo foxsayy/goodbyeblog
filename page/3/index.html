@@ -161,6 +161,62 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-Hexo-YouTube-영상-넣기" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/01/03/Hexo-YouTube-영상-넣기/">[Hexo] YouTube 영상 넣기</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/01/03/Hexo-YouTube-영상-넣기/" class="article-date">
+	  <time datetime="2019-01-02T15:53:36.000Z" itemprop="datePublished">January 3, 2019</time>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Hexo-블로그에-YouTube-영상-넣기"><a href="#Hexo-블로그에-YouTube-영상-넣기" class="headerlink" title="Hexo 블로그에 YouTube 영상 넣기"></a>Hexo 블로그에 YouTube 영상 넣기</h3><p>블로그에 유튜브 영상 넣기는 매우 간단합니다. 포스트에 아래 태그를 추가하면 끝.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% youtube video_id %&#125;</span><br></pre></td></tr></table></figure>
+<p>video_id 부분에 아래처럼 동영상 아이디를 적어보겠습니다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% youtube KLeiK0whCdY %&#125;</span><br></pre></td></tr></table></figure>
+<div class="video-container"><iframe src="//www.youtube.com/embed/KLeiK0whCdY" frameborder="0" allowfullscreen></iframe></div>
+<p>The Piano Guys가 연주한 Ed Sheeran의 PERFECT(Piano Solo Cover)</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-Books-마흔이-되기-전에" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -468,79 +524,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-MySQL-4-2-데이터-정렬-ORDER-BY를-활용한-Natural-Sorting" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/12/28/MySQL-4-2-데이터-정렬-ORDER-BY를-활용한-Natural-Sorting/">[MySQL] 4.2 데이터 정렬 - ORDER BY를 활용한 Natural Sorting</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2018/12/28/MySQL-4-2-데이터-정렬-ORDER-BY를-활용한-Natural-Sorting/" class="article-date">
-	  <time datetime="2018-12-28T06:57:59.000Z" itemprop="datePublished">December 28, 2018</time>
-	</a>
-
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<p><a href="http://www.mysqltutorial.org" target="_blank" rel="noopener">http://www.mysqltutorial.org</a> 내용을 따라 익히며 정리한 글입니다.</p>
-<hr>
-<h3 id="1-Natural-Sorting이란"><a href="#1-Natural-Sorting이란" class="headerlink" title="1. Natural Sorting이란"></a>1. Natural Sorting이란</h3><p>데이터를 정렬할 때 사람에겐 다음 순서가 자연스럽다.<br>‘A-1’<br>‘A-2’<br>‘A-3’<br>‘A-4’<br>‘A-5’<br>‘A-10’<br>‘A-11’<br>‘A-20’<br>‘A-30’</p>
-<p>하지만 콤퓨타가 출동하면 어떨까? 콤퓨타라면 아래처럼 정렬해놓고선 잘했다고 여길 수도 있다.<br>‘A-1’<br>‘A-10’<br>‘A-11’<br>‘A-2’<br>‘A-20’<br>‘A-3’<br>‘A-30’<br>‘A-4’<br>‘A-5’</p>
-<p>앞의 예처럼 사람에게 자연스러운 순서로 정렬하는게 바로 Natural Sorting이다. PHP의 경우 <code>natsort()</code> 함수로 간단히 Natural Sorting을 할 수 있지만 MySQL은 얘기가 다르다. <code>ORDER BY</code> 를 활용해 제한적으로만 Natural Sorting이 가능한데 이런 테크닉에 대해서 알아보겠다.</p>
-<p>먼저 <code>id</code> 와 <code>item_no</code> 라는 컬럼이 있는 <code>items</code> 란 테이블을 만든다.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> items (</span><br><span class="line">    <span class="keyword">id</span> <span class="built_in">INT</span> AUTO_INCREMENT PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">    item_no <span class="built_in">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>다음은 위에서 만든 테이블에 데이터를 추가하겠다.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> items(item_no)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="string">'1'</span>),</span><br><span class="line">       (<span class="string">'1C'</span>),</span><br><span class="line">       (<span class="string">'10Z'</span>),</span><br><span class="line">       (<span class="string">'2A'</span>),</span><br><span class="line">       (<span class="string">'2'</span>),</span><br><span class="line">       (<span class="string">'3C'</span>),</span><br><span class="line">       (<span class="string">'20D'</span>);</span><br></pre></td></tr></table></figure>
-<p>위에서 만든 데이터를 <code>item_no</code> 로 정렬해보자.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    item_no</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    items</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> item_no;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">+---------+</span><br><span class="line">| item_no |</span><br><span class="line">+---------+</span><br><span class="line">| 1       |</span><br><span class="line">| 10Z     |</span><br><span class="line">| 1C      |</span><br><span class="line">| 2       |</span><br><span class="line">| 20D     |</span><br><span class="line">| 2A      |</span><br><span class="line">| 3C      |</span><br><span class="line">+---------+</span><br><span class="line">7 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>으으..<br>숫자 부분을 1, 2, 3, 10, 20 순으로 정렬하고 싶을 때 오더바이를 이용하면 그렇게 되지 않는다. 그렇다면 다음과 같은 결과를 얻으려면 어떻게 해야 할까?</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">+---------+</span><br><span class="line">| item_no |</span><br><span class="line">+---------+</span><br><span class="line">| 1       |</span><br><span class="line">| 1C      |</span><br><span class="line">| 2       |</span><br><span class="line">| 2A      |</span><br><span class="line">| 3C      |</span><br><span class="line">| 10Z     |</span><br><span class="line">| 20D     |</span><br><span class="line">+---------+</span><br><span class="line">7 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p><code>CAST</code> 함수를 사용해 다음과 같이 쿼리문을 작성하면 원하는 결과를 얻을 수 있다. <code>CAST</code> 함수는 어떤 값을 특정 타입으로 바꿔주는 역할을 한다.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    item_no</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    items</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">CAST</span>(item_no <span class="keyword">AS</span> <span class="keyword">UNSIGNED</span>) , item_no;</span><br></pre></td></tr></table></figure>
-<p>또 다른 예를 살펴보자. 먼저 아래 쿼리문으로 데이터를 추가한다.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">TRUNCATE</span> <span class="keyword">TABLE</span> items;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> items(item_no)</span><br><span class="line"><span class="keyword">VALUES</span>(<span class="string">'A-1'</span>),</span><br><span class="line">      (<span class="string">'A-2'</span>),</span><br><span class="line">      (<span class="string">'A-3'</span>),</span><br><span class="line">      (<span class="string">'A-4'</span>),</span><br><span class="line">      (<span class="string">'A-5'</span>),</span><br><span class="line">      (<span class="string">'A-10'</span>),</span><br><span class="line">      (<span class="string">'A-11'</span>),</span><br><span class="line">      (<span class="string">'A-20'</span>),</span><br><span class="line">      (<span class="string">'A-30'</span>);</span><br></pre></td></tr></table></figure>
-<p>위 데이터를 Natural Sorting 하려면 문자값의 길이를 반환하는 <code>LENGTH</code> 함수를 활용할 수 있다.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    item_no</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    items</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">LENGTH</span>(item_no) , item_no;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">+---------+</span><br><span class="line">| item_no |</span><br><span class="line">+---------+</span><br><span class="line">| A-1     |</span><br><span class="line">| A-2     |</span><br><span class="line">| A-3     |</span><br><span class="line">| A-4     |</span><br><span class="line">| A-5     |</span><br><span class="line">| A-10    |</span><br><span class="line">| A-11    |</span><br><span class="line">| A-20    |</span><br><span class="line">| A-30    |</span><br><span class="line">+---------+</span><br><span class="line">9 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>좐~~</p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -645,6 +628,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/01/28/World-This-Week-Jan-26th-2019/">[World This Week] Jan 26th 2019</a></h6>
+              <span>January 28, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/01/23/FC-Tensorflow-패키지-소개-2/">[FC] Tensorflow 패키지 소개(2)</a></h6>
               <span>January 23, 2019</span>
             </div>
@@ -699,18 +694,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/01/11/NoSQL-Redis/">[NoSQL] Redis</a></h6>
-              <span>January 11, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -720,7 +703,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NoSQL/">NoSQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/The-Economist/">The Economist</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/books/">books</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/crawling/">crawling</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/datascienceschool/">datascienceschool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/패턴-인식과-머신-러닝/">패턴 인식과 머신 러닝</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NoSQL/">NoSQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/The-Economist/">The Economist</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/books/">books</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/crawling/">crawling</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/datascienceschool/">datascienceschool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/패턴-인식과-머신-러닝/">패턴 인식과 머신 러닝</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -735,7 +718,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">16</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">16</span></li></ul>
     </div>
   </div>
 
