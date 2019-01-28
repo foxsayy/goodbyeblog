@@ -161,6 +161,84 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-MySQL-3-3-데이터-필터링-OR" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/12/10/MySQL-3-3-데이터-필터링-OR/">[MySQL] 3.3 데이터 필터링 - OR</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2018/12/10/MySQL-3-3-데이터-필터링-OR/" class="article-date">
+	  <time datetime="2018-12-10T12:32:51.000Z" itemprop="datePublished">December 10, 2018</time>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p><a href="http://www.mysqltutorial.org" target="_blank" rel="noopener">http://www.mysqltutorial.org</a> 내용을 따라 익히며 정리한 글입니다. 예시에 나오는 데이터셋은 MySQL 샘플 데이터셋인 <code>classicmodels</code> DB입니다.</p>
+<hr>
+<h3 id="1-연산자-OR-소개"><a href="#1-연산자-OR-소개" class="headerlink" title="1. 연산자 OR 소개"></a>1. 연산자 <code>OR</code> 소개</h3><p>논리 연산자 <code>OR</code> 는 두 개의 불리언 값을 받아 하나라도 <code>True</code> 이면 <code>True</code> 를 리턴한다.</p>
+<h3 id="2-OR-short-circuit-evaluation"><a href="#2-OR-short-circuit-evaluation" class="headerlink" title="2. OR short-circuit evaluation"></a>2. <code>OR</code> short-circuit evaluation</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="number">1</span> = <span class="number">1</span> <span class="keyword">OR</span> <span class="number">1</span> / <span class="number">0</span> ;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+------------+</span><br><span class="line">| 1=1 or 1/0 |</span><br><span class="line">+------------+</span><br><span class="line">|          1 |</span><br><span class="line">+------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>위 예에서 <code>1 = 1</code> 은 <code>TRUE</code> 를 리턴한다. Short Circuit Evaluation에 따라 <code>1 / 0</code> 연산은 하지 않는다. 만약 연산을 했다면 division by zero 에러가 떴을 것이다.</p>
+<h3 id="3-연산자-우선순위"><a href="#3-연산자-우선순위" class="headerlink" title="3. 연산자 우선순위"></a>3. 연산자 우선순위</h3><p>연산자 우선 순위(Operator precedence)란 두 개 이상의 논리 연산자를 사용할 경우 어떤 논리 연산자를 먼저 평가할지 판단하는 기준을 말한다. 우선 순위가 더 높은 연산자를 먼저 평가하게 되는데, 예를 들어 <code>AND</code> 와 <code>OR</code>가 함께 있다면 <code>AND</code> 를 먼저 보고 그 뒤에 <code>OR</code> 를 평가한다.</p>
+<h4 id="3-1"><a href="#3-1" class="headerlink" title="3.1"></a>3.1</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="literal">true</span> <span class="keyword">OR</span> <span class="literal">false</span> <span class="keyword">AND</span> <span class="literal">false</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-------------------------+</span><br><span class="line">| true or false and false |</span><br><span class="line">+-------------------------+</span><br><span class="line">|                       1 |</span><br><span class="line">+-------------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<ol>
+<li><code>false AND false</code> 를 먼저 평가한다. <code>false</code> 를 리턴.</li>
+<li>다음으로 <code>true OR false</code> 를 평가한다. <code>true</code> 를 리턴.</li>
+</ol>
+<h4 id="3-2"><a href="#3-2" class="headerlink" title="3.2"></a>3.2</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> (<span class="literal">true</span> <span class="keyword">OR</span> <span class="literal">false</span>) <span class="keyword">AND</span> <span class="literal">false</span>;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>괄호가 쳐진 <code>true OR false</code> 를 먼저 평가한다. <code>true</code> 를 리턴.</li>
+<li>다음으로 <code>true AND false</code> 를 평가한다. <code>false</code> 를 리턴.</li>
+</ol>
+<h3 id="4-OR-예시"><a href="#4-OR-예시" class="headerlink" title="4. OR 예시"></a>4. <code>OR</code> 예시</h3><h4 id="4-1"><a href="#4-1" class="headerlink" title="4.1"></a>4.1</h4><p>USA와 France에 있는 고객들의 이름, 국가를 뽑아내고 싶을 경우 다음과 같이 쿼리를 작성한다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    customername, country</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    customers</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    country = <span class="string">'USA'</span> <span class="keyword">OR</span> country = <span class="string">'France'</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">+------------------------------+---------+</span><br><span class="line">| customername                 | country |</span><br><span class="line">+------------------------------+---------+</span><br><span class="line">| Atelier graphique            | France  |</span><br><span class="line">| Signal Gift Stores           | USA     |</span><br><span class="line">| La Rochelle Gifts            | France  |</span><br><span class="line">| Mini Gifts Distributors Ltd. | USA     |</span><br><span class="line">| Mini Wheels Co.              | USA     |</span><br><span class="line">| Land of Toys Inc.            | USA     |</span><br><span class="line">| Saveley &amp; Henriot, Co.       | France  |</span><br><span class="line">| Muscle Machine Inc           | USA     |</span><br><span class="line">| Diecast Classics Inc.        | USA     |</span><br><span class="line">| Technics Stores Inc.         | USA     |</span><br><span class="line">+------------------------------+---------+</span><br><span class="line">10 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="4-2"><a href="#4-2" class="headerlink" title="4.2"></a>4.2</h4><p>USA와 France에 있는 고객들 중 신용한도가 10만 이상인 고객들의 이름, 국가를 뽑아내고 싶을 경우 다음과 같이 쿼리를 작성한다. <code>AND</code> 가 먼저 계산되지 않도록 <code>OR</code> 를 괄호로 묶어줘야 함에 주의한다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    customername, country, creditLimit</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    customers</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    (country = <span class="string">'USA'</span> <span class="keyword">OR</span> country = <span class="string">'France'</span>)</span><br><span class="line">        <span class="keyword">AND</span> creditlimit &gt; <span class="number">100000</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">8</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">+------------------------------+---------+-------------+</span><br><span class="line">| customername                 | country | creditLimit |</span><br><span class="line">+------------------------------+---------+-------------+</span><br><span class="line">| La Rochelle Gifts            | France  |   118200.00 |</span><br><span class="line">| Mini Gifts Distributors Ltd. | USA     |   210500.00 |</span><br><span class="line">| Land of Toys Inc.            | USA     |   114900.00 |</span><br><span class="line">| Saveley &amp; Henriot, Co.       | France  |   123900.00 |</span><br><span class="line">| Muscle Machine Inc           | USA     |   138500.00 |</span><br><span class="line">| Diecast Classics Inc.        | USA     |   100600.00 |</span><br><span class="line">| Collectable Mini Designs Co. | USA     |   105000.00 |</span><br><span class="line">| Marta&apos;s Replicas Co.         | USA     |   123700.00 |</span><br><span class="line">+------------------------------+---------+-------------+</span><br><span class="line">8 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="4-3"><a href="#4-3" class="headerlink" title="4.3"></a>4.3</h4><p>위 4.2의 예에서 <code>OR</code> 를 괄호로 묶어주지 않으면 <code>AND</code> 가 먼저 계산되면서 아래와 같이 미국 고객에 신용 한도 조건이 붙지 않은 결과가 발생한다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    customername, country, creditLimit</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    customers</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    country = <span class="string">'USA'</span> <span class="keyword">OR</span> country = <span class="string">'France'</span> <span class="keyword">AND</span> creditlimit &gt; <span class="number">100000</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">8</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">+------------------------------+---------+-------------+</span><br><span class="line">| customername                 | country | creditLimit |</span><br><span class="line">+------------------------------+---------+-------------+</span><br><span class="line">| Signal Gift Stores           | USA     |    71800.00 |</span><br><span class="line">| La Rochelle Gifts            | France  |   118200.00 |</span><br><span class="line">| Mini Gifts Distributors Ltd. | USA     |   210500.00 |</span><br><span class="line">| Mini Wheels Co.              | USA     |    64600.00 |</span><br><span class="line">| Land of Toys Inc.            | USA     |   114900.00 |</span><br><span class="line">| Saveley &amp; Henriot, Co.       | France  |   123900.00 |</span><br><span class="line">| Muscle Machine Inc           | USA     |   138500.00 |</span><br><span class="line">| Diecast Classics Inc.        | USA     |   100600.00 |</span><br><span class="line">+------------------------------+---------+-------------+</span><br><span class="line">8 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-MySQL-3-2-데이터-필터링-AND" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -578,6 +656,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/01/28/Deep-Learning-with-Python-Ch-02/">Deep Learning with Python - Ch.02</a></h6>
+              <span>January 28, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/01/28/Deep-Learning-with-Python-Ch-01/">Deep Learning with Python - Ch.01</a></h6>
               <span>January 28, 2019</span>
             </div>
@@ -632,18 +722,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/01/19/World-This-Week-Jan-19th-2019/">[World This Week] Jan 19th 2019</a></h6>
-              <span>January 19, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -668,7 +746,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">16</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">16</span></li></ul>
     </div>
   </div>
 
