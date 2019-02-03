@@ -188,7 +188,7 @@ var themeMenus = {};
       
         <p><a href="https://ridibooks.com/v2/Detail?id=754024868&amp;_s=search&amp;_q=%EC%BC%80%EB%9D%BC%EC%8A%A4" target="_blank" rel="noopener">케라스 창시자에게 배우는 딥러닝</a>을 실습하면서 정리한 포스트입니다. 코드 예제와 코드 설명은 <a href="https://github.com/rickiepark/deep-learning-with-python-notebooks" target="_blank" rel="noopener">역자 깃허브</a>에서 받아볼 수 있습니다. 출판물이고 개인적으로만 참고하기 위한 요약노트이다 보니 설명이 불친절한 점은 양해 바랍니다. 보다 자세한 내용을 원하시는 분은 위 링크의 책을 참고하시기 바랍니다.</p>
 <hr>
-<h2 id="시작-전에-신경망의-수학적-구성-요소"><a href="#시작-전에-신경망의-수학적-구성-요소" class="headerlink" title="시작 전에: 신경망의 수학적 구성 요소"></a>시작 전에: 신경망의 수학적 구성 요소</h2><h3 id="신경망과의-첫-만남"><a href="#신경망과의-첫-만남" class="headerlink" title="신경망과의 첫 만남"></a>신경망과의 첫 만남</h3><ul>
+<h2 id="2장-시작-전에-신경망의-수학적-구성-요소"><a href="#2장-시작-전에-신경망의-수학적-구성-요소" class="headerlink" title="2장. 시작 전에: 신경망의 수학적 구성 요소"></a>2장. 시작 전에: 신경망의 수학적 구성 요소</h2><h3 id="신경망과의-첫-만남"><a href="#신경망과의-첫-만남" class="headerlink" title="신경망과의 첫 만남"></a>신경망과의 첫 만남</h3><ul>
 <li>MNIST 예제</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 케라스에서 MNIST 데이터셋 불러오기</span></span><br><span class="line"><span class="keyword">from</span> keras.datasets <span class="keyword">import</span> mnist</span><br><span class="line">(train_images, train_labels), (test_images, test_labels) = mnist.load_data()</span><br></pre></td></tr></table></figure>
@@ -223,7 +223,64 @@ var themeMenus = {};
 <ul>
 <li>테스트셋의 정확도는 97.8%. 트레이닝셋 정확도와 차이가 나는 이유는 <strong>오버피팅</strong> 때문임</li>
 </ul>
-<h3 id="신경망을-위한-데이터-표현"><a href="#신경망을-위한-데이터-표현" class="headerlink" title="신경망을 위한 데이터 표현"></a>신경망을 위한 데이터 표현</h3><h3 id="신경망의-톱니바퀴-텐서-연산"><a href="#신경망의-톱니바퀴-텐서-연산" class="headerlink" title="신경망의 톱니바퀴 : 텐서 연산"></a>신경망의 톱니바퀴 : 텐서 연산</h3><h3 id="신경망의-엔진-그래디언트-기반-최적화"><a href="#신경망의-엔진-그래디언트-기반-최적화" class="headerlink" title="신경망의 엔진: 그래디언트 기반 최적화"></a>신경망의 엔진: 그래디언트 기반 최적화</h3><h3 id="첫-번째-예제-다시-살펴보기"><a href="#첫-번째-예제-다시-살펴보기" class="headerlink" title="첫 번째 예제 다시 살펴보기"></a>첫 번째 예제 다시 살펴보기</h3><h3 id="요약"><a href="#요약" class="headerlink" title="요약"></a>요약</h3>
+<h3 id="신경망을-위한-데이터-표현"><a href="#신경망을-위한-데이터-표현" class="headerlink" title="신경망을 위한 데이터 표현"></a>신경망을 위한 데이터 표현</h3><ul>
+<li><strong>텐서</strong> : 데이터(숫자)를 위한 컨테이너</li>
+<li>최근의 모든 머신러닝 시스템은 텐서를 기본 데이터 구조로 사용</li>
+</ul>
+<h4 id="스칼라-0D-텐서"><a href="#스칼라-0D-텐서" class="headerlink" title="스칼라(0D 텐서)"></a>스칼라(0D 텐서)</h4><ul>
+<li>하나의 숫자만 담고 있는 텐서</li>
+<li>넘파이에서는 float32나 float64 타입의 숫자가 스칼라 텐서</li>
+<li>ndim 속성을 사용하면 넘파이 배열의 축 개수를 확인 가능</li>
+<li>스칼라 텐서의 축 개수는 0(ndim == 0)</li>
+<li>텐서의 축 개수를 랭크(rank)라고도 부름</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 스칼라 텐서(0D 텐서))</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">x = np.array(<span class="number">12</span>)</span><br><span class="line">x, x.ndim</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(array(12), 0)</span><br></pre></td></tr></table></figure>
+<h4 id="벡터-1D-텐서"><a href="#벡터-1D-텐서" class="headerlink" title="벡터(1D 텐서)"></a>벡터(1D 텐서)</h4><ul>
+<li>숫자의 배열</li>
+<li>하나의 축을 가짐</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 벡터(1D 텐서)</span><br><span class="line">x = np.array([12, 3, 6, 14, 7])</span><br><span class="line">x, x.ndim</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(array([12,  3,  6, 14,  7]), 1)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>위 예에서 x는 5개의 원소를 가지고 있으므로 5차원 벡터<ul>
+<li>5D 벡터: 하나의 축을 따라 5개의 차원을 가진 것</li>
+<li>5D 텐서: 5개의 축을 가진 것</li>
+</ul>
+</li>
+<li>차원수(dimensionality)는 특정 축을 따라 놓인 원소의 개수(5D 벡터와 같은 경우)이거나 텐서의 축 개수(5D 텐서와 같은 경우)이거나 텐ㅅ의 축 개수(5D 텐서와 같은 경우)를 의미하므로 가끔 혼동하기 쉽다</li>
+<li>후자의 경우 랭크 5인 텐서라고 말하는게 보다 정확(텐서의 랭크가 축의 개수)</li>
+</ul>
+<h4 id="행렬-2D-텐서"><a href="#행렬-2D-텐서" class="headerlink" title="행렬(2D 텐서)"></a>행렬(2D 텐서)</h4><ul>
+<li>벡터의 배열이 행렬 또는 2D 텐서</li>
+<li>행렬에는 행과 열 2개의 축이 있음</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = np.array([[<span class="number">5</span>, <span class="number">78</span>, <span class="number">2</span>, <span class="number">34</span>, <span class="number">0</span>],</span><br><span class="line">              [<span class="number">6</span>, <span class="number">79</span>, <span class="number">3</span>, <span class="number">35</span>, <span class="number">1</span>],</span><br><span class="line">              [<span class="number">7</span>, <span class="number">80</span>, <span class="number">4</span>, <span class="number">36</span>, <span class="number">2</span>]])</span><br><span class="line">x.ndim</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+<h4 id="3D-텐서와-고차원-텐서"><a href="#3D-텐서와-고차원-텐서" class="headerlink" title="3D 텐서와 고차원 텐서"></a>3D 텐서와 고차원 텐서</h4><ul>
+<li>행렬들을 하나의 새로운 배열로 합치면 숫자로 채워진 직육면체 형태인 3D 텐서</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 3D 텐서</span></span><br><span class="line">x = np.array([[[<span class="number">2</span>, <span class="number">45</span>, <span class="number">2</span>, <span class="number">34</span>, <span class="number">0</span>],</span><br><span class="line">               [<span class="number">5</span>, <span class="number">34</span>, <span class="number">5</span>, <span class="number">36</span>, <span class="number">1</span>],</span><br><span class="line">               [<span class="number">7</span>, <span class="number">80</span>, <span class="number">4</span>, <span class="number">36</span>, <span class="number">2</span>]],</span><br><span class="line">              [[<span class="number">5</span>, <span class="number">78</span>, <span class="number">2</span>, <span class="number">34</span>, <span class="number">0</span>],</span><br><span class="line">               [<span class="number">6</span>, <span class="number">79</span>, <span class="number">3</span>, <span class="number">35</span>, <span class="number">1</span>],</span><br><span class="line">               [<span class="number">7</span>, <span class="number">80</span>, <span class="number">4</span>, <span class="number">37</span>, <span class="number">2</span>]],</span><br><span class="line">              [[<span class="number">5</span>, <span class="number">89</span>, <span class="number">3</span>, <span class="number">35</span>, <span class="number">1</span>],</span><br><span class="line">               [<span class="number">7</span>, <span class="number">80</span>, <span class="number">4</span>, <span class="number">36</span>, <span class="number">2</span>],</span><br><span class="line">               [<span class="number">8</span>, <span class="number">72</span>, <span class="number">2</span>, <span class="number">40</span>, <span class="number">5</span>]]])</span><br><span class="line">x.ndim</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
+<ul>
+<li>3D 텐서들을 하나의 배열로 합치면 4D 텐서</li>
+<li>딥러닝에선 보통 0D에서 4D까지의 텐서를 다룬다</li>
+<li>동영상 데이터를 다룰 때는 5D 텐서까지 가기도</li>
+</ul>
+<h4 id="핵심-속성"><a href="#핵심-속성" class="headerlink" title="핵심 속성"></a>핵심 속성</h4><ul>
+<li>텐서의 핵심 속성 3가지<ul>
+<li>축의 개수(rank) : 3D 텐서에는 3개의 축, 행렬에는 2개의 축</li>
+<li>크기(shape) : 텐서의 각 축을 따라 얼마나 많은 차원이 있는지 나타낸 파이썬의 튜플.</li>
+<li>데이터 타입 : float32, float64. uint8 등</li>
+</ul>
+</li>
+</ul>
+<h4 id="배치-데이터"><a href="#배치-데이터" class="headerlink" title="배치 데이터"></a>배치 데이터</h4><ul>
+<li>일반적으로 데이터 텐서의 첫 번째 축(0번 축)은 샘플 축(MNIST 예제에서는 숫자 이미지가 샘플)</li>
+<li>딥러닝 모델은 데이터를 작은 batch로 나눠서 처리</li>
+<li>이런 batch 데이터를 다룰 땐 0번 축을 배치 축 또는 배치 차원이라 부른다</li>
+</ul>
+<h4 id="텐서의-실제-사례"><a href="#텐서의-실제-사례" class="headerlink" title="텐서의 실제 사례"></a>텐서의 실제 사례</h4><h3 id="신경망의-톱니바퀴-텐서-연산"><a href="#신경망의-톱니바퀴-텐서-연산" class="headerlink" title="신경망의 톱니바퀴 : 텐서 연산"></a>신경망의 톱니바퀴 : 텐서 연산</h3><h3 id="신경망의-엔진-그래디언트-기반-최적화"><a href="#신경망의-엔진-그래디언트-기반-최적화" class="headerlink" title="신경망의 엔진: 그래디언트 기반 최적화"></a>신경망의 엔진: 그래디언트 기반 최적화</h3><h3 id="첫-번째-예제-다시-살펴보기"><a href="#첫-번째-예제-다시-살펴보기" class="headerlink" title="첫 번째 예제 다시 살펴보기"></a>첫 번째 예제 다시 살펴보기</h3><h3 id="요약"><a href="#요약" class="headerlink" title="요약"></a>요약</h3>
       
     </div>
     <footer class="entry-meta entry-footer">
