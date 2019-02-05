@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="THE DATASCIENTIST">
 <meta property="og:description" content="케라스 창시자에게 배우는 딥러닝을 실습하면서 정리한 포스트입니다. 코드 예제와 코드 설명은 역자 깃허브에서 받아볼 수 있습니다. 출판물이고 개인적으로만 참고하기 위한 요약노트이다 보니 설명이 불친절한 점은 양해 바랍니다. 보다 자세한 내용을 원하시는 분은 위 링크의 책을 참고하시기 바랍니다.  2장. 시작 전에: 신경망의 수학적 구성 요소신경망과의 첫 만남">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-02-03T17:41:55.414Z">
+<meta property="og:updated_time" content="2019-02-05T17:01:44.912Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Deep Learning with Python - Ch.02">
 <meta name="twitter:description" content="케라스 창시자에게 배우는 딥러닝을 실습하면서 정리한 포스트입니다. 코드 예제와 코드 설명은 역자 깃허브에서 받아볼 수 있습니다. 출판물이고 개인적으로만 참고하기 위한 요약노트이다 보니 설명이 불친절한 점은 양해 바랍니다. 보다 자세한 내용을 원하시는 분은 위 링크의 책을 참고하시기 바랍니다.  2장. 시작 전에: 신경망의 수학적 구성 요소신경망과의 첫 만남">
@@ -216,11 +216,17 @@ var themeMenus = {};
 <ul>
 <li>트레이닝 시작 전에 데이터를 네트워크에 맞는 크기로 바꾸고 모든 값을 0과 1 사이로 스케일을 조정</li>
 <li>MNIST 이미지는 [0, 255] 사이의 값인 unit8 타입의 (60000, 28, 28) 크기의 배열로 저장돼 있음. 이를 0과 1 사이 값을 가지는 float32 타입의 (60000, 28*28) 크기인 배열로 변경</li>
+<li>categorical_crossentropy: 손실 함수. 가중치 텐서를 학습하기 위한 피드백 신호로 사용. 훈련하는 동안 최소화됨</li>
+<li>rmsprop : 경사 하강법 적용 방식은 이 옵티마이저에 의해 결정</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 이미지 데이터 준비하기</span></span><br><span class="line">train_images = train_images.reshape((<span class="number">60000</span>, <span class="number">28</span> * <span class="number">28</span>))</span><br><span class="line">train_images = train_images.astype(<span class="string">'float32'</span>) / <span class="number">255</span></span><br><span class="line"></span><br><span class="line">test_images = test_images.reshape((<span class="number">10000</span>, <span class="number">28</span> * <span class="number">28</span>))</span><br><span class="line">test_images = test_images.astype(<span class="string">'float32'</span>) / <span class="number">255</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 레이블 준비_범주형으로 인코딩</span></span><br><span class="line"><span class="keyword">from</span> keras.utils <span class="keyword">import</span> to_categorical</span><br><span class="line">train_labels = to_categorical(train_labels)</span><br><span class="line">test_labels = to_categorical(test_labels)</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># fit 메서드로 트레이닝 데이터에 모델을 학습시킴</span></span><br><span class="line">network.fit(train_images, train_labels, epochs=<span class="number">5</span>, batch_size=<span class="number">128</span>)</span><br></pre></td></tr></table></figure>
-<p>훈련 데이터에 대한 네트워크의 손실과 정확도 정보가 출력됨</p>
+<ul>
+<li>네트워크가 128개 샘플씩 미니 배치로 훈련 데이터를 5번 반복</li>
+<li>5번의 에포크 동안 네트워크는 2345번의 그래디언트 업데이트를 수행(에포크당 469번)</li>
+<li>훈련 데이터에 대한 네트워크의 손실과 정확도 정보가 출력됨</li>
+</ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Epoch 1/5</span><br><span class="line">60000/60000 [==============================] - 3s 54us/step - loss: 0.2556 - acc: 0.9261</span><br><span class="line">Epoch 2/5</span><br><span class="line">60000/60000 [==============================] - 3s 51us/step - loss: 0.1042 - acc: 0.9688</span><br><span class="line">Epoch 3/5</span><br><span class="line">60000/60000 [==============================] - 3s 51us/step - loss: 0.0685 - acc: 0.9796</span><br><span class="line">Epoch 4/5</span><br><span class="line">60000/60000 [==============================] - 3s 52us/step - loss: 0.0499 - acc: 0.9845</span><br><span class="line">Epoch 5/5</span><br><span class="line">60000/60000 [==============================] - 3s 52us/step - loss: 0.0369 - acc: 0.9888</span><br><span class="line">&lt;keras.callbacks.History at 0x137a2e860&gt;</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 테스트셋에서 모델이 잘 작동하는지 확인하기</span></span><br><span class="line">test_loss, test_acc = network.evaluate(test_images, test_labels)</span><br><span class="line">print(<span class="string">'test_acc:'</span>, test_acc)</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">10000/10000 [==============================] - 0s 38us/step</span><br><span class="line">test_acc: 0.9798</span><br></pre></td></tr></table></figure>
@@ -372,9 +378,53 @@ var themeMenus = {};
 <li>신경망에 사용된 연산이 미분 가능하다는 점을 이용해 네트워크 가중치에 대한 손실의 그래디언트를 계산하는 게 더 좋은 방법</li>
 </ul>
 <h4 id="변화율"><a href="#변화율" class="headerlink" title="변화율"></a>변화율</h4><ul>
-<li><h4 id="텐서-연산의-변화율-그래디언트"><a href="#텐서-연산의-변화율-그래디언트" class="headerlink" title="텐서 연산의 변화율: 그래디언트"></a>텐서 연산의 변화율: 그래디언트</h4></li>
+<li>derivative!</li>
 </ul>
-<h4 id="확률적-경사-하강법"><a href="#확률적-경사-하강법" class="headerlink" title="확률적 경사 하강법"></a>확률적 경사 하강법</h4><h4 id="변화율-연결-역전파-알고리즘"><a href="#변화율-연결-역전파-알고리즘" class="headerlink" title="변화율 연결: 역전파 알고리즘"></a>변화율 연결: 역전파 알고리즘</h4><h3 id="첫-번째-예제-다시-살펴보기"><a href="#첫-번째-예제-다시-살펴보기" class="headerlink" title="첫 번째 예제 다시 살펴보기"></a>첫 번째 예제 다시 살펴보기</h3><h3 id="요약"><a href="#요약" class="headerlink" title="요약"></a>요약</h3>
+<h4 id="텐서-연산의-변화율-그래디언트"><a href="#텐서-연산의-변화율-그래디언트" class="headerlink" title="텐서 연산의 변화율: 그래디언트"></a>텐서 연산의 변화율: 그래디언트</h4><ul>
+<li>다차원 입력, 즉 텐서를 입력으로 받는 함수에 변화율 개념을 확장시킨 것</li>
+<li>y_pred = dot(W, x)</li>
+<li>loss_value = loss(y_pred, y)</li>
+<li>입력 데이터 x와 y가 고정돼 있다면 이 함수는 W를 손실 값에 매핑하는 함수로 볼 수 있음</li>
+<li>loss_value = f(W)</li>
+<li>W0(W의 현재값)에서 f의 변화율: W와 같은 크기의 텐서인 gradient(f)(W0)</li>
+<li>이 텐서의 각 원소 gradient(f)(W0)[i, j]: W0[i, j]를 변경했을 때 loss_value가 바뀌는 방향과 크기를 나타냄</li>
+<li>즉 gradient(f)(W0)가 W0에서 함수 f(W) = loss_value의 그래디언트</li>
+<li>gradient(f)(W0)는 W0에서 f(W)의 기울기를 나타내는 텐서로 해석 가능</li>
+<li>f(W)에서 그래디언트의 반대 방향으로 W를 움직이면 f(W) 값을 줄일 수 있음</li>
+</ul>
+<h4 id="확률적-경사-하강법"><a href="#확률적-경사-하강법" class="headerlink" title="확률적 경사 하강법"></a>확률적 경사 하강법</h4><ul>
+<li>절충안: 미니 배치 확률적 경사 하강법(미니 배치 SGD)<ol>
+<li>훈련샘플 배치 x와 타깃 y를 추출</li>
+<li>x로 네트워크를 실행하고 y_pred 구하기</li>
+<li>y와 y_pred 사이의 오차를 측정해 네트워크 손실 계산</li>
+<li>네트워크의 파라미터에 대한 손실 함수의 그래디언트 계산(backward pass)</li>
+<li>그래디언트 반대 방향으로 파라미터 이동</li>
+</ol>
+</li>
+<li>트루 SGD<ul>
+<li>반복마다 하나의 샘플과 하나의 타깃을 뽑음</li>
+</ul>
+</li>
+<li>배치 SGD<ul>
+<li>가용한 모든 데이터로 반복 실행</li>
+<li>업데이트가 정확하지만 많은 비용</li>
+</ul>
+</li>
+<li>SGD 변종들<ul>
+<li>업데이트할 다음 가중치를 계산할 때 현재 그래디언트 값만 보지 않고 이전에 업데이트된 가중치를 여러 가지 다른 방식으로 고려</li>
+<li>ex) 모멘텀을 사용한 SGD, Adagrad, RMSProp 등</li>
+<li>이런 변종들을 최적화 방법 or 옵티마이저라 부름</li>
+<li>모멘텀은 SGD에 있는 2개의 문제점인 수렴 속도와 지역 최솟값을 해결</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 모멘텀 단순 구현</span></span><br><span class="line">past_velocity = <span class="number">0.</span></span><br><span class="line">momentum = <span class="number">0.1</span></span><br><span class="line"><span class="keyword">while</span> loss &gt; <span class="number">0.1</span>:</span><br><span class="line">    w, loss, gradient = get_current_parameters()</span><br><span class="line">    velocity = momentum * past_velocity - learning_rate * gradient</span><br><span class="line">    w = w + momentum * velocity - learning_rate * gradient</span><br><span class="line">    past_velocity = velocity</span><br><span class="line">    update_parameter(w)</span><br></pre></td></tr></table></figure>
+<h4 id="변화율-연결-역전파-알고리즘"><a href="#변화율-연결-역전파-알고리즘" class="headerlink" title="변화율 연결: 역전파 알고리즘"></a>변화율 연결: 역전파 알고리즘</h4><ul>
+<li>3개의 텐서 연산 a, b, c와 가중치 행렬 W1, W2, W3로 구성된 네트워크 f의 예</li>
+<li>f(W1, W2, W3) = a(W1, b(W2, c(W3)))</li>
+<li>연쇄법칙을 신경망 그래디언트 계산에 적용한 역전파 알고리즘</li>
+</ul>
+
       
     </div>
     <footer class="entry-meta entry-footer">
@@ -419,6 +469,15 @@ var themeMenus = {};
     
 <nav id="article-nav">
   
+    <a href="/2019/02/06/Deep-Learning-with-Python-Ch-03/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Deep Learning with Python - Ch.03
+        
+      </div>
+    </a>
+  
   
     <a href="/2019/01/28/Deep-Learning-with-Python-Ch-01/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
@@ -436,7 +495,7 @@ var themeMenus = {};
     <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
     <strong class="toc-title">Contents</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2장-시작-전에-신경망의-수학적-구성-요소"><span class="nav-number">1.</span> <span class="nav-text">2장. 시작 전에: 신경망의 수학적 구성 요소</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#신경망과의-첫-만남"><span class="nav-number">1.1.</span> <span class="nav-text">신경망과의 첫 만남</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#신경망을-위한-데이터-표현"><span class="nav-number">1.2.</span> <span class="nav-text">신경망을 위한 데이터 표현</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#스칼라-0D-텐서"><span class="nav-number">1.2.1.</span> <span class="nav-text">스칼라(0D 텐서)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#벡터-1D-텐서"><span class="nav-number">1.2.2.</span> <span class="nav-text">벡터(1D 텐서)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#행렬-2D-텐서"><span class="nav-number">1.2.3.</span> <span class="nav-text">행렬(2D 텐서)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3D-텐서와-고차원-텐서"><span class="nav-number">1.2.4.</span> <span class="nav-text">3D 텐서와 고차원 텐서</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#핵심-속성"><span class="nav-number">1.2.5.</span> <span class="nav-text">핵심 속성</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#배치-데이터"><span class="nav-number">1.2.6.</span> <span class="nav-text">배치 데이터</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#텐서의-실제-사례"><span class="nav-number">1.2.7.</span> <span class="nav-text">텐서의 실제 사례</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#신경망의-톱니바퀴-텐서-연산"><span class="nav-number">1.3.</span> <span class="nav-text">신경망의 톱니바퀴 : 텐서 연산</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#원소별-연산"><span class="nav-number">1.3.1.</span> <span class="nav-text">원소별 연산</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#브로드캐스팅"><span class="nav-number">1.3.2.</span> <span class="nav-text">브로드캐스팅</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tensor-product"><span class="nav-number">1.3.3.</span> <span class="nav-text">tensor product</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#텐서-크기-변환-tensor-reshaping"><span class="nav-number">1.3.4.</span> <span class="nav-text">텐서 크기 변환(tensor reshaping)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#텐서-연산의-기하학적-해석"><span class="nav-number">1.3.5.</span> <span class="nav-text">텐서 연산의 기하학적 해석</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#딥러닝의-기하학적-해석"><span class="nav-number">1.3.6.</span> <span class="nav-text">딥러닝의 기하학적 해석</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#신경망의-엔진-그래디언트-기반-최적화"><span class="nav-number">1.4.</span> <span class="nav-text">신경망의 엔진: 그래디언트 기반 최적화</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#변화율"><span class="nav-number">1.4.1.</span> <span class="nav-text">변화율</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#텐서-연산의-변화율-그래디언트"><span class="nav-number">1.4.2.</span> <span class="nav-text">텐서 연산의 변화율: 그래디언트</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#확률적-경사-하강법"><span class="nav-number">1.4.3.</span> <span class="nav-text">확률적 경사 하강법</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#변화율-연결-역전파-알고리즘"><span class="nav-number">1.4.4.</span> <span class="nav-text">변화율 연결: 역전파 알고리즘</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#첫-번째-예제-다시-살펴보기"><span class="nav-number">1.5.</span> <span class="nav-text">첫 번째 예제 다시 살펴보기</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#요약"><span class="nav-number">1.6.</span> <span class="nav-text">요약</span></a></li></ol></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2장-시작-전에-신경망의-수학적-구성-요소"><span class="nav-number">1.</span> <span class="nav-text">2장. 시작 전에: 신경망의 수학적 구성 요소</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#신경망과의-첫-만남"><span class="nav-number">1.1.</span> <span class="nav-text">신경망과의 첫 만남</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#신경망을-위한-데이터-표현"><span class="nav-number">1.2.</span> <span class="nav-text">신경망을 위한 데이터 표현</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#스칼라-0D-텐서"><span class="nav-number">1.2.1.</span> <span class="nav-text">스칼라(0D 텐서)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#벡터-1D-텐서"><span class="nav-number">1.2.2.</span> <span class="nav-text">벡터(1D 텐서)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#행렬-2D-텐서"><span class="nav-number">1.2.3.</span> <span class="nav-text">행렬(2D 텐서)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3D-텐서와-고차원-텐서"><span class="nav-number">1.2.4.</span> <span class="nav-text">3D 텐서와 고차원 텐서</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#핵심-속성"><span class="nav-number">1.2.5.</span> <span class="nav-text">핵심 속성</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#배치-데이터"><span class="nav-number">1.2.6.</span> <span class="nav-text">배치 데이터</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#텐서의-실제-사례"><span class="nav-number">1.2.7.</span> <span class="nav-text">텐서의 실제 사례</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#신경망의-톱니바퀴-텐서-연산"><span class="nav-number">1.3.</span> <span class="nav-text">신경망의 톱니바퀴 : 텐서 연산</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#원소별-연산"><span class="nav-number">1.3.1.</span> <span class="nav-text">원소별 연산</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#브로드캐스팅"><span class="nav-number">1.3.2.</span> <span class="nav-text">브로드캐스팅</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tensor-product"><span class="nav-number">1.3.3.</span> <span class="nav-text">tensor product</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#텐서-크기-변환-tensor-reshaping"><span class="nav-number">1.3.4.</span> <span class="nav-text">텐서 크기 변환(tensor reshaping)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#텐서-연산의-기하학적-해석"><span class="nav-number">1.3.5.</span> <span class="nav-text">텐서 연산의 기하학적 해석</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#딥러닝의-기하학적-해석"><span class="nav-number">1.3.6.</span> <span class="nav-text">딥러닝의 기하학적 해석</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#신경망의-엔진-그래디언트-기반-최적화"><span class="nav-number">1.4.</span> <span class="nav-text">신경망의 엔진: 그래디언트 기반 최적화</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#변화율"><span class="nav-number">1.4.1.</span> <span class="nav-text">변화율</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#텐서-연산의-변화율-그래디언트"><span class="nav-number">1.4.2.</span> <span class="nav-text">텐서 연산의 변화율: 그래디언트</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#확률적-경사-하강법"><span class="nav-number">1.4.3.</span> <span class="nav-text">확률적 경사 하강법</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#변화율-연결-역전파-알고리즘"><span class="nav-number">1.4.4.</span> <span class="nav-text">변화율 연결: 역전파 알고리즘</span></a></li></ol></li></ol></li></ol>
     
     </div>
   </aside>

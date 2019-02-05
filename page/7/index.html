@@ -13,7 +13,7 @@
   <!-- PACE Progress Bar START -->
 
   
-  <title>archives: 2019/1 | THE DATASCIENTIST</title>
+  <title>THE DATASCIENTIST</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
@@ -21,7 +21,7 @@
   
   <meta property="og:type" content="website">
 <meta property="og:title" content="THE DATASCIENTIST">
-<meta property="og:url" content="http://foxsayy.github.io/archives/2019/01/index.html">
+<meta property="og:url" content="http://foxsayy.github.io/page/7/index.html">
 <meta property="og:site_name" content="THE DATASCIENTIST">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
@@ -160,137 +160,85 @@ var themeMenus = {};
       <div id="content" class="outer">
         
           <section id="main">
-  <div class="archives-tags-wrap"><blockquote><span>There are 31 posts in total till now.</span></blockquote>
-
-
-
-
-	<!-- 分页显示 -->
-	
-	
-		
-		
-		  
-		  
-		  <section class="archives-wrap">
-		    <div class="archive-year-wrap">
-		      <h1><a href="/archives/2019" class="archive-year">2019</a></h1>
-		    </div>
-		    <div class="archives">
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2019/01/28/Deep-Learning-with-Python-Ch-02/" class="archive-article-date">
-		  <time datetime="2019-01-28T07:04:24.000Z" itemprop="datePublished">Jan 28, 2019</time>
-	  </a>
-      
+  
+    <article id="post-MySQL-2-1-데이터-쿼리-SELECT" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
   
     <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2019/01/28/Deep-Learning-with-Python-Ch-02/">Deep Learning with Python - Ch.02</a>
+      <a class="article-title" href="/2018/12/10/MySQL-2-1-데이터-쿼리-SELECT/">[MySQL] 2.1 데이터 쿼리 - SELECT</a>
     </h1>
   
 
-    </header>
-  </div>
-</article>
-	
-		
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2019/01/28/Deep-Learning-with-Python-Ch-01/" class="archive-article-date">
-		  <time datetime="2019-01-28T06:36:09.000Z" itemprop="datePublished">Jan 28, 2019</time>
-	  </a>
+      </header>
+    
+    <div class="article-meta">
       
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2019/01/28/Deep-Learning-with-Python-Ch-01/">Deep Learning with Python - Ch.01</a>
-    </h1>
-  
+	Posted on <a href="/2018/12/10/MySQL-2-1-데이터-쿼리-SELECT/" class="article-date">
+	  <time datetime="2018-12-10T06:47:06.000Z" itemprop="datePublished">December 10, 2018</time>
+	</a>
 
-    </header>
-  </div>
-</article>
-	
-		
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2019/01/28/World-This-Week-Jan-26th-2019/" class="archive-article-date">
-		  <time datetime="2019-01-28T05:42:35.000Z" itemprop="datePublished">Jan 28, 2019</time>
-	  </a>
       
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2019/01/28/World-This-Week-Jan-26th-2019/">[World This Week] Jan 26th 2019</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-	
-		
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2019/01/23/FC-Tensorflow-패키지-소개-2/" class="archive-article-date">
-		  <time datetime="2019-01-23T01:47:33.000Z" itemprop="datePublished">Jan 23, 2019</time>
-	  </a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2019/01/23/FC-Tensorflow-패키지-소개-2/">[FC] Tensorflow 패키지 소개(2)</a>
-    </h1>
-  
+        <hr>
+<p><a href="http://www.mysqltutorial.org" target="_blank" rel="noopener">http://www.mysqltutorial.org</a> 내용을 따라 익히며 정리한 글입니다. 예시에 나오는 데이터셋은 MySQL 샘플 데이터셋인 <code>classicmodels</code> DB입니다.</p>
+<hr>
+<h3 id="1-SELECT-소개"><a href="#1-SELECT-소개" class="headerlink" title="1. SELECT 소개"></a>1. <code>SELECT</code> 소개</h3><p>수많은 열과 행으로 이루어진 테이블에서 특정 열(또는 행)만 보고 싶을 때 <code>SELECT</code> 문을 사용한다.</p>
+<p><code>SELECT</code> 문은 아래와 같이 쓸 수 있다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    column_1, column_2, ...</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    table_1</span><br><span class="line">[<span class="keyword">INNER</span> | <span class="keyword">LEFT</span> |<span class="keyword">RIGHT</span>] <span class="keyword">JOIN</span> table_2 <span class="keyword">ON</span> conditions</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    conditions</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> column_1</span><br><span class="line"><span class="keyword">HAVING</span> group_conditions</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> column_1</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="keyword">offset</span>, <span class="keyword">length</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>SELECT</code> : 가져오고 싶은 열을 콤마(<code>,</code>)로 구분해 입력. 모든 열을 가져오려면 <code>*</code></li>
+<li><code>FROM</code> : 데이터를 쿼리하려는 테이블이나 뷰(일종의 가상 테이블)의 이름을 입력</li>
+<li><code>JOIN</code> : 여러 테이블에서 연관된 데이터를 조건에 맞게 가져오기</li>
+<li><code>WHERE</code> : 특정 조건에 따라 행을 필터링</li>
+<li><code>GROUP BY</code> : 행들을 특정 그룹으로 묶어 집계</li>
+<li><code>HAVING</code> : <code>GROUP BY</code> 로 정의된 그룹에 기초해 그룹을 필터링</li>
+<li><code>ORDER BY</code> : 오름차순 내림차순 설정</li>
+<li><code>LIMIT</code> : 출력하는 행 수를 제한</li>
+</ul>
+<h3 id="2-SELECT-예시"><a href="#2-SELECT-예시" class="headerlink" title="2. SELECT 예시"></a>2. <code>SELECT</code> 예시</h3><h4 id="2-1"><a href="#2-1" class="headerlink" title="2-1."></a>2-1.</h4><p><code>employees</code> 테이블에서 <code>lastName</code>, <code>firstName</code>, <code>jobTitle</code> 열만 나타내는 쿼리를 작성하라.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    lastname, firstname, jobtitle</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    employees;</span><br></pre></td></tr></table></figure>
+<h4 id="2-2"><a href="#2-2" class="headerlink" title="2-2."></a>2-2.</h4><p><code>employees</code> 테이블에서 모든 열의 데이터를 가져오는 쿼리를 작성하라.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> employees;</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </div>
-</article>
-	
-		
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2019/01/22/FC-Tensorflow-패키지-소개/" class="archive-article-date">
-		  <time datetime="2019-01-22T04:26:29.000Z" itemprop="datePublished">Jan 22, 2019</time>
-	  </a>
       
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2019/01/22/FC-Tensorflow-패키지-소개/">[FC] Tensorflow 패키지 소개</a>
-    </h1>
-  
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
 
-    </header>
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
+
+      
+            
+      
+    </footer>
   </div>
+  
 </article>
-	
-	
-		</div></section>
-	
 
-	<!-- 页数指示器 -->
-	
-	  <nav id="page-nav">
-	    
-	    <span class="page-number current">1</span><a class="page-number" href="/archives/2019/01/page/2/">2</a><a class="page-number" href="/archives/2019/01/page/3/">3</a><a class="extend next" rel="next" href="/archives/2019/01/page/2/">Next</a>
-	  </nav>
-	
+<!-- Table of Contents -->
+
+    
+
+  
 
 
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/6/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
+  </nav>
 
-</div></section>
+</section>
           <aside id="sidebar">
   
     <div class="widget-wrap" style="margin: 20px 0;">
