@@ -195,7 +195,86 @@ var themeMenus = {};
 <li>손실 함수: 피드백 신호를 정의</li>
 <li>옵티마이저: 학습 진행 방식을 결정</li>
 </ul>
-<h4 id="층-딥러닝의-구성-단위"><a href="#층-딥러닝의-구성-단위" class="headerlink" title="층: 딥러닝의 구성 단위"></a>층: 딥러닝의 구성 단위</h4><h4 id="모델-층의-네트워크"><a href="#모델-층의-네트워크" class="headerlink" title="모델: 층의 네트워크"></a>모델: 층의 네트워크</h4><h4 id="손실-함수와-옵티마이저-학습-과정을-조절하는-열쇠"><a href="#손실-함수와-옵티마이저-학습-과정을-조절하는-열쇠" class="headerlink" title="손실 함수와 옵티마이저: 학습 과정을 조절하는 열쇠"></a>손실 함수와 옵티마이저: 학습 과정을 조절하는 열쇠</h4><h3 id="케라스-소개"><a href="#케라스-소개" class="headerlink" title="케라스 소개"></a>케라스 소개</h3><h3 id="딥러닝-컴퓨터-셋팅"><a href="#딥러닝-컴퓨터-셋팅" class="headerlink" title="딥러닝 컴퓨터 셋팅"></a>딥러닝 컴퓨터 셋팅</h3><h3 id="영화-리뷰-분류-이진-분류-예제"><a href="#영화-리뷰-분류-이진-분류-예제" class="headerlink" title="영화 리뷰 분류: 이진 분류 예제"></a>영화 리뷰 분류: 이진 분류 예제</h3><h3 id="뉴스-기사-분류-다중-분류-문제"><a href="#뉴스-기사-분류-다중-분류-문제" class="headerlink" title="뉴스 기사 분류: 다중 분류 문제"></a>뉴스 기사 분류: 다중 분류 문제</h3><h3 id="주택-가격-예측-회귀-문제"><a href="#주택-가격-예측-회귀-문제" class="headerlink" title="주택 가격 예측: 회귀 문제"></a>주택 가격 예측: 회귀 문제</h3>
+<h4 id="층-딥러닝의-구성-단위"><a href="#층-딥러닝의-구성-단위" class="headerlink" title="층: 딥러닝의 구성 단위"></a>층: 딥러닝의 구성 단위</h4><ul>
+<li>층: 하나 이상의 텐서를 입력받아 하나 이상의 텐서를 출력하는 데이터 처리 모듈</li>
+<li>대부분 가중치라는 층의 상태를 가짐(상태가 없는 층도 존재)</li>
+<li>가중치는 확률적 경사 하강법에 의해 학습되는 하나 이상의 텐서</li>
+<li>층마다 적절한 텐서 포맷과 데이터 처리 방식이 다름<ul>
+<li>벡터 데이터(2D 텐서) : 밀집 연결 층</li>
+<li>시퀀스 데이터(3D 텐서) : LSTM 같은 순환 층</li>
+<li>이미지 데이터(4D 텐서) : Conv2D 클래스. 2D 합성곱 층</li>
+</ul>
+</li>
+<li>케라스는 호환 가능한 층(호환성: 각 층이 특정 크기의 입력 텐서만 받고 특정 크기의 출력 텐서를 반환)을 엮어 데이터 변환 파이프라인을 구성해 딥러딩 모델을 만듦</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 첫 번째 차원이 784인 2D 텐서만 입력으로 받는 층</span></span><br><span class="line"><span class="comment"># 첫 번째 차원 크기가 32로 변환된 텐서를 출력</span></span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> layers</span><br><span class="line">layer = layers.Dense(<span class="number">32</span>, input_shape=(<span class="number">784</span>,))</span><br></pre></td></tr></table></figure>
+<ul>
+<li>위 층에는 32차원의 벡터를 입력으로 받는 하위 층이 연결돼야 함</li>
+<li>케라스가 모델에 추가된 층을 자동으로 상위 층에 맞춰줌</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> layers</span><br><span class="line"></span><br><span class="line">model = models.Sequential()</span><br><span class="line">model.add(layers.Dense(<span class="number">32</span>, input_shape=(<span class="number">784</span>,)))</span><br><span class="line">modle.add(layers.Dense(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+<ul>
+<li>두 번째 층에는 input_shape 매개변수를 지정하지 않음(앞 층의 출력 크기를 입력 크기로 자동으로 채택)</li>
+</ul>
+<h4 id="모델-층의-네트워크"><a href="#모델-층의-네트워크" class="headerlink" title="모델: 층의 네트워크"></a>모델: 층의 네트워크</h4><ul>
+<li>딥러닝 모델은 층으로 만든 Directed Acyclic Graph(DAG)</li>
+<li>자주 등장하는 네트워크 구조<ul>
+<li>branch가 2개인 네트워크</li>
+<li>출력이 여러 개인 네트워크</li>
+<li>inception 블록</li>
+</ul>
+</li>
+<li>네트워크 구조는 가설 공간(가능성 있는 공간)을 정의</li>
+<li>네트워크 구조 선택 : 가설 공간을 입력 데이터에서 출력 데이터로 매핑하는 일련의 특정 텐서 연산으로 제한</li>
+<li>딱 맞는 네트워크 구조 찾기는 과학보다 예술</li>
+<li>네트워크 구조 정의 후에는 손실함수와 옵티마이저를 선택해야 함</li>
+</ul>
+<h4 id="손실-함수와-옵티마이저-학습-과정을-조절하는-열쇠"><a href="#손실-함수와-옵티마이저-학습-과정을-조절하는-열쇠" class="headerlink" title="손실 함수와 옵티마이저: 학습 과정을 조절하는 열쇠"></a>손실 함수와 옵티마이저: 학습 과정을 조절하는 열쇠</h4><ul>
+<li>손실 함수: 훈련하는 동안 최소화될 값. 문제에 대한 성공 지표</li>
+<li>옵티마이저: 손실 함수를 기반으로 네트워크가 어떻게 업데이트될지 결정.</li>
+<li>출력 여러 개를 내는 신경망은 여러 개의 손실 함수를 가질 수 있음</li>
+<li>But, 경사 하강법 과정은 하나의 스칼라 손실 값을 기준으로 함</li>
+<li>따라서 손실이 여러 개인 네트워크에서는 모든 손실이 (평균을 내서) 하나의 스칼라 양으로 합쳐짐</li>
+<li>문제에 따라 올바른 목적 함수 선택해야<ul>
+<li>2개의 클래스 분류 문제 : binary crossentropy</li>
+<li>여러개 클래스 분류 문제 : categorical crossentropy</li>
+<li>회귀 문제 : 평균 제곱 오차</li>
+<li>시퀀스 학습 문제 : Connection Temporal Classification</li>
+<li>완전히 새로운 연구: 독자적인 목적 함수</li>
+</ul>
+</li>
+</ul>
+<h3 id="케라스-소개"><a href="#케라스-소개" class="headerlink" title="케라스 소개"></a>케라스 소개</h3><ul>
+<li>생략</li>
+</ul>
+<h3 id="딥러닝-컴퓨터-셋팅"><a href="#딥러닝-컴퓨터-셋팅" class="headerlink" title="딥러닝 컴퓨터 셋팅"></a>딥러닝 컴퓨터 셋팅</h3><ul>
+<li>생략</li>
+</ul>
+<h3 id="영화-리뷰-분류-이진-분류-예제"><a href="#영화-리뷰-분류-이진-분류-예제" class="headerlink" title="영화 리뷰 분류: 이진 분류 예제"></a>영화 리뷰 분류: 이진 분류 예제</h3><p>리뷰 텍스트를 기반으로 영화 리뷰를 긍정과 부정으로 분류</p>
+<h4 id="IMDB-데이터셋"><a href="#IMDB-데이터셋" class="headerlink" title="IMDB 데이터셋"></a>IMDB 데이터셋</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> keras.datasets <span class="keyword">import</span> imdb</span><br><span class="line">(train_data, train_labels), (test_data, test_labels) = imdb.load_data(num_words=<span class="number">10000</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>num_words=10000 : 트레이닝셋에서 가장 많이 등장하는 단어 1만 개만 사용</li>
+<li>labels는 0(부정)과 1(긍정)을 나타내는 리스트</li>
+</ul>
+<h4 id="데이터-준비"><a href="#데이터-준비" class="headerlink" title="데이터 준비"></a>데이터 준비</h4><ul>
+<li>숫자 리스트를 신경망에 넣기 위해 텐서로 바꾸는 두 가지 방법<ul>
+<li>리스트에 padding을 추가하고 (samples, sequence-length) 크기의 정수 텐서로 변환. 신경망 첫 번째 층으로 사용</li>
+<li>리스트를 원핫인코딩해 0, 1 벡터로 변환. (아래 예시)</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 정수 시퀀스를 이진 행렬로 인코딩</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">vectorize_sequences</span><span class="params">(sequences, dimension=<span class="number">10000</span>)</span>:</span></span><br><span class="line">    <span class="comment"># (시퀀스 길이, 차원) 크기의 0행렬 만들기</span></span><br><span class="line">    results = np.zeros((len(sequences), dimension))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># results[i]에서 특정 인덱스 위치를 1로 바꾸기</span></span><br><span class="line">    <span class="keyword">for</span> i, sequence <span class="keyword">in</span> enumerate(sequences):</span><br><span class="line">        results[i, sequence] = <span class="number">1.</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> results</span><br><span class="line"></span><br><span class="line"><span class="comment"># 데이터를 벡터로 변환</span></span><br><span class="line">x_train = vectorize_sequences(train_data)</span><br><span class="line">x_test = vectorize_sequences(test_data)</span><br></pre></td></tr></table></figure>
+<p>x_train.shape, x_test.shape는 각각 (25000, 10000) 모양이 됨</p>
+<h4 id="신경망-모델-만들기"><a href="#신경망-모델-만들기" class="headerlink" title="신경망 모델 만들기"></a>신경망 모델 만들기</h4><ul>
+<li>입력 데이터는 벡터, 라벨은 1 or 0의 스칼라</li>
+<li>이런 문제에 잘 작동하는 네트워크는 relu 활성화 함수를 사용한 완전 연결 층(Dense(16, activation=’relu’))을 그냥 쌓은 것</li>
+<li>16은 은닉 유닛의 수. 하나의 은닉 유닛은 층이 나타내는 표현 공간에서 하나의 차원이 됨.</li>
+<li><code>output = relu(dot(W, input) + b)</code></li>
+<li>16개 은닉 유닛이 있다는 건 가중치 행렬 W의 크기가 (input_dimension, 16)이라는 의미. 입력 데이터와 W를 점곱하면 입력 데이터가 16차원으로 표현된 공간으로 투영됨(+ 편향 벡터 b를 더하고 relu 연산 적용)</li>
+<li>표현공간의 차원: ‘신경망이 내재된 표현을 학습할 때 가질 수 있는 자유도’</li>
+<li></li>
+</ul>
+<h4 id="훈련-검증"><a href="#훈련-검증" class="headerlink" title="훈련 검증"></a>훈련 검증</h4><h4 id="훈련된-모델로-새로운-데이터에-대해-예측하기"><a href="#훈련된-모델로-새로운-데이터에-대해-예측하기" class="headerlink" title="훈련된 모델로 새로운 데이터에 대해 예측하기"></a>훈련된 모델로 새로운 데이터에 대해 예측하기</h4><h4 id="추가-실험"><a href="#추가-실험" class="headerlink" title="추가 실험"></a>추가 실험</h4><h4 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h4><h3 id="뉴스-기사-분류-다중-분류-문제"><a href="#뉴스-기사-분류-다중-분류-문제" class="headerlink" title="뉴스 기사 분류: 다중 분류 문제"></a>뉴스 기사 분류: 다중 분류 문제</h3><h4 id="로이터-데이터셋"><a href="#로이터-데이터셋" class="headerlink" title="로이터 데이터셋"></a>로이터 데이터셋</h4><h4 id="데이터-준비-1"><a href="#데이터-준비-1" class="headerlink" title="데이터 준비"></a>데이터 준비</h4><h4 id="모델-구성"><a href="#모델-구성" class="headerlink" title="모델 구성"></a>모델 구성</h4><h4 id="훈련-검증-1"><a href="#훈련-검증-1" class="headerlink" title="훈련 검증"></a>훈련 검증</h4><h4 id="새로운-데이터에-대해-예측하기"><a href="#새로운-데이터에-대해-예측하기" class="headerlink" title="새로운 데이터에 대해 예측하기"></a>새로운 데이터에 대해 예측하기</h4><h4 id="레이블과-손실을-다루는-다른-방법"><a href="#레이블과-손실을-다루는-다른-방법" class="headerlink" title="레이블과 손실을 다루는 다른 방법"></a>레이블과 손실을 다루는 다른 방법</h4><h4 id="충분히-큰-중간층을-두어야-하는-이유"><a href="#충분히-큰-중간층을-두어야-하는-이유" class="headerlink" title="충분히 큰 중간층을 두어야 하는 이유"></a>충분히 큰 중간층을 두어야 하는 이유</h4><h4 id="추가-실험-1"><a href="#추가-실험-1" class="headerlink" title="추가 실험"></a>추가 실험</h4><h4 id="정리-1"><a href="#정리-1" class="headerlink" title="정리"></a>정리</h4><h3 id="주택-가격-예측-회귀-문제"><a href="#주택-가격-예측-회귀-문제" class="headerlink" title="주택 가격 예측: 회귀 문제"></a>주택 가격 예측: 회귀 문제</h3>
       
     </div>
     <footer class="entry-meta entry-footer">
