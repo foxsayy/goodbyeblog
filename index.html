@@ -161,6 +161,79 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-Deep-Learning-with-Python-Ch-04" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/02/14/Deep-Learning-with-Python-Ch-04/">Deep Learning with Python - Ch.04</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/02/14/Deep-Learning-with-Python-Ch-04/" class="article-date">
+	  <time datetime="2019-02-14T02:00:45.000Z" itemprop="datePublished">February 14, 2019</time>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p><a href="https://ridibooks.com/v2/Detail?id=754024868&amp;_s=search&amp;_q=%EC%BC%80%EB%9D%BC%EC%8A%A4" target="_blank" rel="noopener">케라스 창시자에게 배우는 딥러닝</a>을 실습하면서 정리한 포스트입니다. 코드 예제와 코드 설명은 <a href="https://github.com/rickiepark/deep-learning-with-python-notebooks" target="_blank" rel="noopener">역자 깃허브</a>에서 받아볼 수 있습니다. 출판물이고 개인적으로만 참고하기 위한 요약노트이다 보니 설명이 불친절한 점은 양해 바랍니다. 보다 자세한 내용을 원하시는 분은 위 링크의 책을 참고하시기 바랍니다.</p>
+<hr>
+<h2 id="4장-머신러닝의-기본-요소"><a href="#4장-머신러닝의-기본-요소" class="headerlink" title="4장. 머신러닝의 기본 요소"></a>4장. 머신러닝의 기본 요소</h2><h3 id="머신러닝의-4가지-분류"><a href="#머신러닝의-4가지-분류" class="headerlink" title="머신러닝의 4가지 분류"></a>머신러닝의 4가지 분류</h3><h4 id="지도학습"><a href="#지도학습" class="headerlink" title="지도학습"></a>지도학습</h4><ul>
+<li>가장 흔한 경우. 앞의 예제들과 광학 문자 판독, ㅇ므성 인식, 이미지 분류, 번역 등</li>
+<li>대부분 회귀지만 이런 변종도 있음<ul>
+<li>sequence generation: 사진이 주어지면 이를 설명하는 캡션 생성</li>
+<li>syntax tree expectation: 문장이 주어지면 분해된 구문 트리를 예측</li>
+<li>object detection: 사진 안의 특정 물체에 bounding box를 그림</li>
+<li>image segmentation: 사진을 픽셀 단위로 특정 물체에 masking</li>
+</ul>
+</li>
+</ul>
+<h4 id="비지도학습"><a href="#비지도학습" class="headerlink" title="비지도학습"></a>비지도학습</h4><ul>
+<li>타깃 사용하지 않고 입력에 대한 흥미로운 변환을 찾는다</li>
+<li>데이터 시각화, 데이터 ㅏㅂ축, 데이터 노이즈 제거, 상관관계 이해에 사용</li>
+<li>차원 축소와 클러스터링</li>
+</ul>
+<h4 id="자기지도학습"><a href="#자기지도학습" class="headerlink" title="자기지도학습"></a>자기지도학습</h4><ul>
+<li>지도학습의 특별한 경우. 지도학습이지만 사람이 만든 라벨을 사용하지 않음</li>
+<li>라벨이 필요하지만 휴리스틱 알고리즘(경험적인 알고리즘)을 사용해 입력 데이터에서 생성</li>
+<li>ex) 오토인코더, 지난 프레임이 주어졌을 때 다음 프레임을 예측, 단어가 주어졌을때 다음 단어를 예측</li>
+</ul>
+<h4 id="강화학습"><a href="#강화학습" class="headerlink" title="강화학습"></a>강화학습</h4><h3 id="머신러닝-모델-평가"><a href="#머신러닝-모델-평가" class="headerlink" title="머신러닝 모델 평가"></a>머신러닝 모델 평가</h3><h4 id="훈련-검증-테스트셋"><a href="#훈련-검증-테스트셋" class="headerlink" title="훈련, 검증, 테스트셋"></a>훈련, 검증, 테스트셋</h4><h4 id="기억해야-할-것"><a href="#기억해야-할-것" class="headerlink" title="기억해야 할 것"></a>기억해야 할 것</h4><h3 id="데이터-전처리-피쳐-엔지니어링-피쳐-학습"><a href="#데이터-전처리-피쳐-엔지니어링-피쳐-학습" class="headerlink" title="데이터 전처리, 피쳐 엔지니어링, 피쳐 학습"></a>데이터 전처리, 피쳐 엔지니어링, 피쳐 학습</h3><h4 id="신경망을-위한-데이터-전처리"><a href="#신경망을-위한-데이터-전처리" class="headerlink" title="신경망을 위한 데이터 전처리"></a>신경망을 위한 데이터 전처리</h4><h4 id="특성-공학"><a href="#특성-공학" class="headerlink" title="특성 공학"></a>특성 공학</h4><h3 id="과대적합과-과소적합"><a href="#과대적합과-과소적합" class="headerlink" title="과대적합과 과소적합"></a>과대적합과 과소적합</h3><h4 id="네트워크-크기-축소"><a href="#네트워크-크기-축소" class="headerlink" title="네트워크 크기 축소"></a>네트워크 크기 축소</h4><h4 id="가중치-규제-추가"><a href="#가중치-규제-추가" class="headerlink" title="가중치 규제 추가"></a>가중치 규제 추가</h4><h4 id="dropout-추가"><a href="#dropout-추가" class="headerlink" title="dropout 추가"></a>dropout 추가</h4><h3 id="보편적인-머신러닝-작업-흐름"><a href="#보편적인-머신러닝-작업-흐름" class="headerlink" title="보편적인 머신러닝 작업 흐름"></a>보편적인 머신러닝 작업 흐름</h3><h4 id="문제-정의와-데이터셋-수집"><a href="#문제-정의와-데이터셋-수집" class="headerlink" title="문제 정의와 데이터셋 수집"></a>문제 정의와 데이터셋 수집</h4><h4 id="성공-지표-선택"><a href="#성공-지표-선택" class="headerlink" title="성공 지표 선택"></a>성공 지표 선택</h4><h4 id="평가-방법-선택"><a href="#평가-방법-선택" class="headerlink" title="평가 방법 선택"></a>평가 방법 선택</h4><h4 id="데이터-준비"><a href="#데이터-준비" class="headerlink" title="데이터 준비"></a>데이터 준비</h4><h4 id="기본보다-나은-모델-훈련하기"><a href="#기본보다-나은-모델-훈련하기" class="headerlink" title="기본보다 나은 모델 훈련하기"></a>기본보다 나은 모델 훈련하기</h4><h4 id="몸집-키우기-과대적합-모델-구축"><a href="#몸집-키우기-과대적합-모델-구축" class="headerlink" title="몸집 키우기: 과대적합 모델 구축"></a>몸집 키우기: 과대적합 모델 구축</h4><h4 id="모델-규제와-하이퍼파라미터-튜닝"><a href="#모델-규제와-하이퍼파라미터-튜닝" class="headerlink" title="모델 규제와 하이퍼파라미터 튜닝"></a>모델 규제와 하이퍼파라미터 튜닝</h4>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/DSBooks/">DSBooks</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Keras-Deep-Learning-with-Python/">Keras, Deep Learning with Python</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-Deep-Learning-with-Python-Ch-03" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -416,7 +489,25 @@ var themeMenus = {};
 <li>mse(평균 제곱 오차) 손실 함수로 컴파일(예측과 타깃 사이 거리의 제곱)</li>
 <li>훈련하는 동안 mae(평균 절대 오차)를 측정(예측과 타깃 사이의 절대값)</li>
 </ul>
-<h4 id="K-겹-검증을-사용한-훈련-검증"><a href="#K-겹-검증을-사용한-훈련-검증" class="headerlink" title="K-겹 검증을 사용한 훈련 검증"></a>K-겹 검증을 사용한 훈련 검증</h4><h4 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h4><h3 id="요"><a href="#요" class="headerlink" title="요"></a>요</h3>
+<h4 id="K-겹-검증을-사용한-훈련-검증"><a href="#K-겹-검증을-사용한-훈련-검증" class="headerlink" title="K-겹 검증을 사용한 훈련 검증"></a>K-겹 검증을 사용한 훈련 검증</h4><ul>
+<li>데이터셋이 작으면 트레이닝셋과 테스트셋으로 어떤 데이터가 선택됐는지에 따라 검증 점수가 크게 달라지는데 이럴 때 사용</li>
+<li>데이터를 K개로 나누고 K개의 모델을 각각 만들어 K-1개의 분할에서 훈련하고 나머지 분할에서 평가</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">k = <span class="number">4</span></span><br><span class="line">num_val_samples = len(train_data) // k</span><br><span class="line">num_epochs = <span class="number">100</span></span><br><span class="line">all_scores = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(k):</span><br><span class="line">    print(<span class="string">"처리중인 폴드 #"</span>, i)</span><br><span class="line">    <span class="comment"># 검증 데이터 준비: k번째 분할</span></span><br><span class="line">    val_data = train_data[i * num_val_samples: (i + <span class="number">1</span>) * num_val_samples]</span><br><span class="line">    val_targets = train_targets[i * num_val_samples: (i + <span class="number">1</span>) * num_val_samples]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 훈련 데이터 준비: 다른 분할 전체</span></span><br><span class="line">    partial_train_data = np.concatenate(</span><br><span class="line">        [train_data[:i * num_val_samples],</span><br><span class="line">         train_data[(i + <span class="number">1</span>) * num_val_samples:]], axis=<span class="number">0</span>)</span><br><span class="line">    partial_train_targets = np.concatenate(</span><br><span class="line">        [train_targets[:i * num_val_samples],</span><br><span class="line">         train_targets[(i + <span class="number">1</span>) * num_val_samples:]], axis=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 케라스 모델 구성(컴파일 포함)</span></span><br><span class="line">    model = build_model()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 모델 훈련(verbose=0 이므로 훈련 과정 출력은 없다)</span></span><br><span class="line">    model.fit(partial_train_data, partial_train_targets,</span><br><span class="line">             epochs=num_epochs, batch_size=<span class="number">1</span>, verbose=<span class="number">0</span>)</span><br><span class="line">    val_mse, val_mae = model.evaluate(val_data, val_targets, verbose=<span class="number">0</span>)</span><br><span class="line">    all_scores.append(val_mae)</span><br><span class="line"></span><br><span class="line">print(all_scores)</span><br><span class="line">print(np.mean(all_scores))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[2.0463592958922434, 2.3122981940165603, 3.0172314785494665, 2.323145497553419]</span><br><span class="line">2.4247586165029222</span><br></pre></td></tr></table></figure>
+<ul>
+<li>4가지 검증 점수는 2.04부터 3.01까지 편차가 크지만 평균값인 2.42는 이보다 신뢰할 만하다</li>
+<li>다음은 신경망을 500 에포크 동안 훈련</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 각 폴드에서 검증점수 로그에 저장하기</span></span><br><span class="line">num_epochs = <span class="number">500</span></span><br><span class="line">all_mae_histories = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(k):</span><br><span class="line">    print(<span class="string">'처리중인 폴드 #'</span>, i)</span><br><span class="line">    val_data = train_data[i * num_val_samples: (i + <span class="number">1</span>) * num_val_samples]</span><br><span class="line">    val_targets = train_targets[i * num_val_samples: (i + <span class="number">1</span>) * num_val_samples]</span><br><span class="line">    partial_train_data = np.concatenate(</span><br><span class="line">        [train_data[:i * num_val_samples],</span><br><span class="line">         train_data[(i + <span class="number">1</span>) * num_val_samples:]], axis=<span class="number">0</span>)</span><br><span class="line">    partial_train_targets = np.concatenate(</span><br><span class="line">        [train_targets[:i * num_val_samples],</span><br><span class="line">         train_targets[(i + <span class="number">1</span>) * num_val_samples:]], axis=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 케라스 모델 구성(컴파일 포함)</span></span><br><span class="line">    model = build_model()</span><br><span class="line">    hisgory = model.fit(partial_train_data, partial_train_targets,</span><br><span class="line">                       validation_data=(val_data, val_targets),</span><br><span class="line">                        epochs=num_epochs, batch_size=<span class="number">1</span>, verbose=<span class="number">0</span>)</span><br><span class="line">    mae_history = history.history[<span class="string">'val_mean_absolute_error'</span>]</span><br><span class="line">    all_mae_histories.append(mae_history)</span><br></pre></td></tr></table></figure>
+<p>**</p>
+<h4 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h4><ul>
+<li>회귀는 손실함수로 평균제곱오차(MSE)를 자주 사용한다</li>
+<li>회귀는 평가 지표로 평균절대오차(MAE)를 자주 사용한다</li>
+<li>입력 피쳐들이 서로 다른 범위면 스케일을 하자</li>
+<li>트레이닝셋이 적다면 은닉층을 한 두개 정도만 사용하자</li>
+</ul>
+
       
     </div>
     <footer class="entry-meta entry-footer">
@@ -924,60 +1015,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-FC-Tensorflow-패키지-소개-2" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/01/23/FC-Tensorflow-패키지-소개-2/">[FC] Tensorflow 패키지 소개(2)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/01/23/FC-Tensorflow-패키지-소개-2/" class="article-date">
-	  <time datetime="2019-01-23T01:47:33.000Z" itemprop="datePublished">January 23, 2019</time>
-	</a>
-
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<p>패스트캠퍼스 데이터사이언스스쿨의 김도형 박사님 수업을 듣고 강의자료를 요약한 글입니다. 개인적으로 참고하기 위한 요약노트이니 보다 자세한 내용을 원하시는 분은 <a href="https://datascienceschool.net" target="_blank" rel="noopener">https://datascienceschool.net</a> 에 올라와 있는 강의자료를 참고하시기 바랍니다.</p>
-<hr>
-<h3 id="변수-공간과-변수의-재사용"><a href="#변수-공간과-변수의-재사용" class="headerlink" title="변수 공간과 변수의 재사용"></a>변수 공간과 변수의 재사용</h3><h3 id="Tensor-연산"><a href="#Tensor-연산" class="headerlink" title="Tensor 연산"></a>Tensor 연산</h3><h3 id="자동-형변환"><a href="#자동-형변환" class="headerlink" title="자동 형변환"></a>자동 형변환</h3><h3 id="미분"><a href="#미분" class="headerlink" title="미분"></a>미분</h3><h3 id="TensorFlow를-이용한-선형회귀"><a href="#TensorFlow를-이용한-선형회귀" class="headerlink" title="TensorFlow를 이용한 선형회귀"></a>TensorFlow를 이용한 선형회귀</h3><h3 id="퍼셉트론"><a href="#퍼셉트론" class="headerlink" title="퍼셉트론"></a>퍼셉트론</h3><h3 id="최적화"><a href="#최적화" class="headerlink" title="최적화"></a>최적화</h3><h3 id="TensorBoard"><a href="#TensorBoard" class="headerlink" title="TensorBoard"></a>TensorBoard</h3><h4 id="텐서보드용-로그-생성"><a href="#텐서보드용-로그-생성" class="headerlink" title="텐서보드용 로그 생성"></a>텐서보드용 로그 생성</h4><h4 id="텐서보드-가동"><a href="#텐서보드-가동" class="headerlink" title="텐서보드 가동"></a>텐서보드 가동</h4><p><strong>연습문제 20.1.2</strong></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/datascienceschool/">datascienceschool</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fastcampus-Dr-Kim-datascienceschool/">fastcampus, Dr.Kim, datascienceschool</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -1082,6 +1119,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/02/14/Deep-Learning-with-Python-Ch-04/">Deep Learning with Python - Ch.04</a></h6>
+              <span>February 14, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/02/06/Deep-Learning-with-Python-Ch-03/">Deep Learning with Python - Ch.03</a></h6>
               <span>February 6, 2019</span>
             </div>
@@ -1136,18 +1185,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/01/22/FC-Tensorflow-패키지-소개/">[FC] Tensorflow 패키지 소개</a></h6>
-              <span>January 22, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1157,7 +1194,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DSBooks/">DSBooks</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NoSQL/">NoSQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/The-Economist/">The Economist</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/books/">books</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/crawling/">crawling</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/datascienceschool/">datascienceschool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/패턴-인식과-머신-러닝/">패턴 인식과 머신 러닝</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DSBooks/">DSBooks</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NoSQL/">NoSQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/The-Economist/">The Economist</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/books/">books</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/crawling/">crawling</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/datascienceschool/">datascienceschool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/패턴-인식과-머신-러닝/">패턴 인식과 머신 러닝</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -1172,7 +1209,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">16</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">16</span></li></ul>
     </div>
   </div>
 
