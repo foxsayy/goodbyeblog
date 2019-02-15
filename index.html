@@ -189,7 +189,7 @@ var themeMenus = {};
         <hr>
 <p><a href="https://ridibooks.com/v2/Detail?id=754024868&amp;_s=search&amp;_q=%EC%BC%80%EB%9D%BC%EC%8A%A4" target="_blank" rel="noopener">케라스 창시자에게 배우는 딥러닝</a>을 실습하면서 정리한 포스트입니다. 코드 예제와 코드 설명은 <a href="https://github.com/rickiepark/deep-learning-with-python-notebooks" target="_blank" rel="noopener">역자 깃허브</a>에서 받아볼 수 있습니다. 출판물이고 개인적으로만 참고하기 위한 요약노트이다 보니 설명이 불친절한 점은 양해 바랍니다. 보다 자세한 내용을 원하시는 분은 위 링크의 책을 참고하시기 바랍니다.</p>
 <hr>
-<h2 id="6장-텍스트와-시퀀스를-위한-딥러닝"><a href="#6장-텍스트와-시퀀스를-위한-딥러닝" class="headerlink" title="6장. 텍스트와 시퀀스를 위한 딥러닝"></a>6장. 텍스트와 시퀀스를 위한 딥러닝</h2><p><strong>학습 목표</strong></p>
+<p><strong>익힐 것</strong></p>
 <ul>
 <li>원본 텍스트를 신경망이 처리할 수 있는 형태로 변환</li>
 <li>케라스 모델에 임베딩 층을 추가해 특정 작업에 특화된 토큰 임베딩 학습</li>
@@ -197,6 +197,22 @@ var themeMenus = {};
 <li>RNN과 동작방법</li>
 <li>LSTM과 이게 긴 시퀀스에서 단순 RNN보다 더 잘 작동하는 이유</li>
 <li>케라스의 RNN 층을 사용해 시퀀스 데이터 처리하기</li>
+</ul>
+<h2 id="6장-텍스트와-시퀀스를-위한-딥러닝"><a href="#6장-텍스트와-시퀀스를-위한-딥러닝" class="headerlink" title="6장. 텍스트와 시퀀스를 위한 딥러닝"></a>6장. 텍스트와 시퀀스를 위한 딥러닝</h2><ul>
+<li>단어의 시퀀스, 문자의 시퀀스, 시계열 또는 일반적인 시퀀스 데이터를 처리하는 딥러닝 모델.</li>
+<li>크게 두 가지<ul>
+<li>순환 신경망(Recurrent Neural Network)</li>
+<li>1D 컨브넷</li>
+</ul>
+</li>
+<li>사용처<ul>
+<li>문서 분류나 시계열 분류, 글의 주제나 책의 저자 식별</li>
+<li>시계열 비교. 두 문서나 두 주식 가격이 얼마나 밀접하게 관련 있는지 추정</li>
+<li>시퀀스 투 시퀀스 학습. 번역</li>
+<li>감성 분석. 트윗이나 영화 리뷰가 긍정적인가 부정적인가</li>
+<li>시계열 예측. 최근 날씨 데이터로 향후 날씨 예측하기</li>
+</ul>
+</li>
 </ul>
 <h3 id="텍스트-데이터-다루기"><a href="#텍스트-데이터-다루기" class="headerlink" title="텍스트 데이터 다루기"></a>텍스트 데이터 다루기</h3><h4 id="단어와-문자의-원핫-인코딩"><a href="#단어와-문자의-원핫-인코딩" class="headerlink" title="단어와 문자의 원핫 인코딩"></a>단어와 문자의 원핫 인코딩</h4><h4 id="단어-임베딩-사용하기"><a href="#단어-임베딩-사용하기" class="headerlink" title="단어 임베딩 사용하기"></a>단어 임베딩 사용하기</h4><h4 id="모든-내용을-적용하기-원본-텍스트에서-단어-임베딩까지"><a href="#모든-내용을-적용하기-원본-텍스트에서-단어-임베딩까지" class="headerlink" title="모든 내용을 적용하기: 원본 텍스트에서 단어 임베딩까지"></a>모든 내용을 적용하기: 원본 텍스트에서 단어 임베딩까지</h4><h4 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h4><h3 id="순환-신경망-이해하기"><a href="#순환-신경망-이해하기" class="headerlink" title="순환 신경망 이해하기"></a>순환 신경망 이해하기</h3><h4 id="케라스의-순환-층"><a href="#케라스의-순환-층" class="headerlink" title="케라스의 순환 층"></a>케라스의 순환 층</h4><h4 id="LSTM과-GRU-층-이해하기"><a href="#LSTM과-GRU-층-이해하기" class="headerlink" title="LSTM과 GRU 층 이해하기"></a>LSTM과 GRU 층 이해하기</h4><h4 id="케라스를-사용한-LSTM-예제"><a href="#케라스를-사용한-LSTM-예제" class="headerlink" title="케라스를 사용한 LSTM 예제"></a>케라스를 사용한 LSTM 예제</h4><h3 id="순환-신경망의-고급-사용법"><a href="#순환-신경망의-고급-사용법" class="headerlink" title="순환 신경망의 고급 사용법"></a>순환 신경망의 고급 사용법</h3><h4 id="기온-예측-문제"><a href="#기온-예측-문제" class="headerlink" title="기온 예측 문제"></a>기온 예측 문제</h4><h4 id="데이터-준비"><a href="#데이터-준비" class="headerlink" title="데이터 준비"></a>데이터 준비</h4><h4 id="상식-수준의-기준점"><a href="#상식-수준의-기준점" class="headerlink" title="상식 수준의 기준점"></a>상식 수준의 기준점</h4><h4 id="기본적인-머신-러닝-방법"><a href="#기본적인-머신-러닝-방법" class="headerlink" title="기본적인 머신 러닝 방법"></a>기본적인 머신 러닝 방법</h4><h4 id="첫-번째-순환-신경망"><a href="#첫-번째-순환-신경망" class="headerlink" title="첫 번째 순환 신경망"></a>첫 번째 순환 신경망</h4><h4 id="과대적합을-줄이기-위해-순환-드랍아웃-사용하기"><a href="#과대적합을-줄이기-위해-순환-드랍아웃-사용하기" class="headerlink" title="과대적합을 줄이기 위해 순환 드랍아웃 사용하기"></a>과대적합을 줄이기 위해 순환 드랍아웃 사용하기</h4><h4 id="스태킹-순환-층"><a href="#스태킹-순환-층" class="headerlink" title="스태킹 순환 층"></a>스태킹 순환 층</h4><h4 id="양방향-RNN-사용하기"><a href="#양방향-RNN-사용하기" class="headerlink" title="양방향 RNN 사용하기"></a>양방향 RNN 사용하기</h4><h3 id="컨브넷을-사용한-시퀀스-처리"><a href="#컨브넷을-사용한-시퀀스-처리" class="headerlink" title="컨브넷을 사용한 시퀀스 처리"></a>컨브넷을 사용한 시퀀스 처리</h3><h4 id="시퀀스-데이터를-위한-1D-합성곱-이해하기"><a href="#시퀀스-데이터를-위한-1D-합성곱-이해하기" class="headerlink" title="시퀀스 데이터를 위한 1D 합성곱 이해하기"></a>시퀀스 데이터를 위한 1D 합성곱 이해하기</h4><h4 id="시퀀스-데이터를-위한-1D-풀링"><a href="#시퀀스-데이터를-위한-1D-풀링" class="headerlink" title="시퀀스 데이터를 위한 1D 풀링"></a>시퀀스 데이터를 위한 1D 풀링</h4><h4 id="1D-컨브넷-구현"><a href="#1D-컨브넷-구현" class="headerlink" title="1D 컨브넷 구현"></a>1D 컨브넷 구현</h4><h4 id="CNN과-RNN을-연결해-긴-시퀀스-처리"><a href="#CNN과-RNN을-연결해-긴-시퀀스-처리" class="headerlink" title="CNN과 RNN을 연결해 긴 시퀀스 처리"></a>CNN과 RNN을 연결해 긴 시퀀스 처리</h4><h3 id="요약"><a href="#요약" class="headerlink" title="요약"></a>요약</h3>
       
