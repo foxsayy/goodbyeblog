@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="THE DATASCIENTIST">
 <meta property="og:description" content="케라스 창시자에게 배우는 딥러닝을 실습하면서 정리한 포스트입니다. 코드 예제와 코드 설명은 역자 깃허브에서 받아볼 수 있습니다. 출판물이고 개인적으로만 참고하기 위한 요약노트이다 보니 설명이 불친절한 점은 양해 바랍니다. 보다 자세한 내용을 원하시는 분은 위 링크의 책을 참고하시기 바랍니다.  4장. 머신러닝의 기본 요소머신러닝의 4가지 분류지도학습 가장">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-02-14T17:23:28.422Z">
+<meta property="og:updated_time" content="2019-02-15T09:04:55.465Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Deep Learning with Python - Ch.04">
 <meta name="twitter:description" content="케라스 창시자에게 배우는 딥러닝을 실습하면서 정리한 포스트입니다. 코드 예제와 코드 설명은 역자 깃허브에서 받아볼 수 있습니다. 출판물이고 개인적으로만 참고하기 위한 요약노트이다 보니 설명이 불친절한 점은 양해 바랍니다. 보다 자세한 내용을 원하시는 분은 위 링크의 책을 참고하시기 바랍니다.  4장. 머신러닝의 기본 요소머신러닝의 4가지 분류지도학습 가장">
@@ -286,8 +286,54 @@ var themeMenus = {};
 </ul>
 </li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 원본 모델</span></span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> layers</span><br><span class="line"></span><br><span class="line">model = models.Sequential()</span><br><span class="line">model.add(layers.Dense(<span class="number">16</span>, activation=<span class="string">'relu'</span>, input_shape=(<span class="number">10000</span>,)))</span><br><span class="line">model.add(layers.Dense(<span class="number">16</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Dense(<span class="number">1</span>, activation=<span class="string">'sigmoid'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 작은 용량의 모델</span></span><br><span class="line">model = models.Sequential()</span><br><span class="line">model.add(layers.Dense(<span class="number">6</span>, activation=<span class="string">'relu'</span>, input_shape=(<span class="number">10000</span>,)))</span><br><span class="line">model.add(layers.Dense(<span class="number">6</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Dense(<span class="number">1</span>, activation=<span class="string">'sigmoid'</span>))</span><br></pre></td></tr></table></figure>
-<h4 id="가중치-규제-추가"><a href="#가중치-규제-추가" class="headerlink" title="가중치 규제 추가"></a>가중치 규제 추가</h4><h4 id="dropout-추가"><a href="#dropout-추가" class="headerlink" title="dropout 추가"></a>dropout 추가</h4><p>####</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 원본 모델</span></span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> layers</span><br><span class="line"></span><br><span class="line">model = models.Sequential()</span><br><span class="line">model.add(layers.Dense(<span class="number">16</span>, activation=<span class="string">'relu'</span>, input_shape=(<span class="number">10000</span>,)))</span><br><span class="line">model.add(layers.Dense(<span class="number">16</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Dense(<span class="number">1</span>, activation=<span class="string">'sigmoid'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 작은 용량의 모델</span></span><br><span class="line">model = models.Sequential()</span><br><span class="line">model.add(layers.Dense(<span class="number">6</span>, activation=<span class="string">'relu'</span>, input_shape=(<span class="number">10000</span>,)))</span><br><span class="line">model.add(layers.Dense(<span class="number">6</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Dense(<span class="number">1</span>, activation=<span class="string">'sigmoid'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 큰 용량의 모델</span></span><br><span class="line">model = models.Sequential()</span><br><span class="line">model.add(layers.Dense(<span class="number">1024</span>, activation=<span class="string">'relu'</span>, input_shape=(<span class="number">10000</span>,)))</span><br><span class="line">model.add(layers.Dense(<span class="number">1024</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Dense(<span class="number">1</span>, activation=<span class="string">'sigmoid'</span>))</span><br></pre></td></tr></table></figure>
+<ul>
+<li>작은 네트워크가 기본 네트워크보다 더 나중에 과대적합되기 시작. 과대적합이 시작됐을 때 성능이 더 천천히 감소</li>
+<li>용량이 큰 네트워크는 빨리 과대적합이 시작돼 갈수록 더 심해짐. 검증손실도 불안정</li>
+<li>용량이 큰 네트워크일수록 빠르게 훈련 데이터를 모델링하지만 과대적합에 민감해짐(트레이닝과 테스트 손실 사이 차이 발생)</li>
+</ul>
+<h4 id="가중치-규제-추가"><a href="#가중치-규제-추가" class="headerlink" title="가중치 규제 추가"></a>가중치 규제 추가</h4><ul>
+<li>오캄의 면도날 이론<ul>
+<li>두 가지 설명이 있다면 더 적은 가정이 필요한 간단한 설명이 옳다는 이론</li>
+<li>신경망 학습모델에도 적용됨. 복잡한 모델이 간단한 모델보다 과대적합될 가능성이 높음</li>
+</ul>
+</li>
+<li>간단한 모델이란 파라미터 값 분포의 엔트로피가 작은 모델(혹은 적은 수의 파라미터를 가진 모델)</li>
+<li>과대적합 완화법: 네트워크의 복잡도에 제한을 둬서 가중치가 작은 값을 가지도록 강제하는 것</li>
+<li>가중치 값의 분포가 더 균일해짐(가중치 규제) -&gt; 네트워크의 손실 함수에 큰 가중치에 연관된 두 가지 형태의 비용을 추가함<ul>
+<li>L1 규제: 가중치의 절댓값에 비례하는 비용이 추가됨(가중치의 L1 norm)</li>
+<li>L2 규제(=가중치 감쇠, weight decay): 가중치의 제곱에 비례하는 비용이 추가됨(가중치의 L2 norm).</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 모델에 L2 가중치 추가하기</span></span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> regularizers</span><br><span class="line"></span><br><span class="line">model = models.Sequential()</span><br><span class="line">model.add(layers.Dense(<span class="number">16</span>, kernel_regularizer=regularizers.l2(<span class="number">0.001</span>),</span><br><span class="line">                       activation=<span class="string">'relu'</span>, input_shape=(<span class="number">10000</span>,)))</span><br><span class="line">model.add(layers.Dense(<span class="number">16</span>, kernel_regularizer=regularizers.l2(<span class="number">0.001</span>),</span><br><span class="line">                       activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Dense(<span class="number">1</span>, activation=<span class="string">'sigmoid'</span>))</span><br></pre></td></tr></table></figure>
+<ul>
+<li>l2(0.001)는 가중치 행렬의 모든 원소를 제곱하고 0.001을 곱해 네트워크 전체 손실에 더해진다는 의미. 이 페널티 항은 트레이닝에서만 추가됨</li>
+<li>L2 규제를 사용한 모델이 사용하지 않은 모델보다 과대적합을 잘 견딤(에포크 반복에 따라 loss가 덜 오름)</li>
+<li>L2 규제 대신 사용 가능한 옵션<ul>
+<li>L1 규제 <code>regularizers.l1(0.001)</code></li>
+<li>L1, L2 규제 병행 <code>regularizers.l1_l2(l1=0.001, l2=0.001)</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="dropout-추가"><a href="#dropout-추가" class="headerlink" title="dropout 추가"></a>dropout 추가</h4><ul>
+<li>네트워크 층에 드랍아웃을 적용하면 트레이닝 동안 랜덤으로 층의 일부 출력 특성을 제외시킴(0으로..)<ul>
+<li>ex) 한 층이 트레이닝되는 동안 어떤 입력샘플에 대해 [0.2, 0.5, 1.3, 0.8, 1.1] 벡터를 출력한다고 가정하면, 일부가 무작위로 0이 됨([0, 0.5, 1.3, 0, 1.1]</li>
+</ul>
+</li>
+<li>드랍아웃 비율은 0이 될 특성의 비율(대개 0.2~0.5 로 지정)</li>
+<li><p>테스트 단계에서는 드랍아웃이 일어나지 않는다</p>
+</li>
+<li><p><code>layer_output *= np.random.randint(0, high=2, size=layer_output.shape)</code> : 트레이닝시 유닛의 출력 중 50%를 버림</p>
+</li>
+<li>테스트 시 드랍아웃 비율로 출력을 낮춰야: <code>layer_output *= 0.5</code></li>
+<li>드랍아웃이 과대적합을 줄이는 원리<ul>
+<li>층의 출력값에 노이즈를 추가해 중요하지 않은 우연한 패턴을 깨뜨림</li>
+</ul>
+</li>
+<li>케라스에선 층의 출력 바로 뒤에 Dropout 층을 추가해 네트워크에 드랍아웃 적용 가능</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># IMDB 네트워크에 드랍아웃 추가</span></span><br><span class="line">model = models.Sequential()</span><br><span class="line">model.add(layers.Dense(<span class="number">16</span>, activation=<span class="string">'relu'</span>, input_shape=(<span class="number">10000</span>,)))</span><br><span class="line">model.add(layers.Dropout(<span class="number">0.5</span>))</span><br><span class="line">model.add(layers.Dense(<span class="number">16</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Dropout(<span class="number">0.5</span>))</span><br><span class="line">model.add(layers.Dense(<span class="number">1</span>, activation=<span class="string">'sigmoid'</span>))</span><br></pre></td></tr></table></figure>
 <h3 id="보편적인-머신러닝-작업-흐름"><a href="#보편적인-머신러닝-작업-흐름" class="headerlink" title="보편적인 머신러닝 작업 흐름"></a>보편적인 머신러닝 작업 흐름</h3><h4 id="문제-정의와-데이터셋-수집"><a href="#문제-정의와-데이터셋-수집" class="headerlink" title="문제 정의와 데이터셋 수집"></a>문제 정의와 데이터셋 수집</h4><h4 id="성공-지표-선택"><a href="#성공-지표-선택" class="headerlink" title="성공 지표 선택"></a>성공 지표 선택</h4><h4 id="평가-방법-선택"><a href="#평가-방법-선택" class="headerlink" title="평가 방법 선택"></a>평가 방법 선택</h4><h4 id="데이터-준비"><a href="#데이터-준비" class="headerlink" title="데이터 준비"></a>데이터 준비</h4><h4 id="기본보다-나은-모델-훈련하기"><a href="#기본보다-나은-모델-훈련하기" class="headerlink" title="기본보다 나은 모델 훈련하기"></a>기본보다 나은 모델 훈련하기</h4><h4 id="몸집-키우기-과대적합-모델-구축"><a href="#몸집-키우기-과대적합-모델-구축" class="headerlink" title="몸집 키우기: 과대적합 모델 구축"></a>몸집 키우기: 과대적합 모델 구축</h4><h4 id="모델-규제와-하이퍼파라미터-튜닝"><a href="#모델-규제와-하이퍼파라미터-튜닝" class="headerlink" title="모델 규제와 하이퍼파라미터 튜닝"></a>모델 규제와 하이퍼파라미터 튜닝</h4>
       
     </div>
