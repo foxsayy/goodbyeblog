@@ -161,6 +161,122 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-Deep-Learning-with-Python-Ch-06" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/02/15/Deep-Learning-with-Python-Ch-06/">Deep Learning with Python - Ch.06</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/02/15/Deep-Learning-with-Python-Ch-06/" class="article-date">
+	  <time datetime="2019-02-15T09:35:43.000Z" itemprop="datePublished">February 15, 2019</time>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p><a href="https://ridibooks.com/v2/Detail?id=754024868&amp;_s=search&amp;_q=%EC%BC%80%EB%9D%BC%EC%8A%A4" target="_blank" rel="noopener">케라스 창시자에게 배우는 딥러닝</a>을 실습하면서 정리한 포스트입니다. 코드 예제와 코드 설명은 <a href="https://github.com/rickiepark/deep-learning-with-python-notebooks" target="_blank" rel="noopener">역자 깃허브</a>에서 받아볼 수 있습니다. 출판물이고 개인적으로만 참고하기 위한 요약노트이다 보니 설명이 불친절한 점은 양해 바랍니다. 보다 자세한 내용을 원하시는 분은 위 링크의 책을 참고하시기 바랍니다.</p>
+<hr>
+<h2 id="6장-텍스트와-시퀀스를-위한-딥러닝"><a href="#6장-텍스트와-시퀀스를-위한-딥러닝" class="headerlink" title="6장. 텍스트와 시퀀스를 위한 딥러닝"></a>6장. 텍스트와 시퀀스를 위한 딥러닝</h2><p><strong>학습 목표</strong></p>
+<ul>
+<li>원본 텍스트를 신경망이 처리할 수 있는 형태로 변환</li>
+<li>케라스 모델에 임베딩 층을 추가해 특정 작업에 특화된 토큰 임베딩 학습</li>
+<li>데이터가 부족한 자연어 처리 문제에서 사전 훈련된 단어 임베딩을 사용해 성능 높이기</li>
+<li>RNN과 동작방법</li>
+<li>LSTM과 이게 긴 시퀀스에서 단순 RNN보다 더 잘 작동하는 이유</li>
+<li>케라스의 RNN 층을 사용해 시퀀스 데이터 처리하기</li>
+</ul>
+<h3 id="텍스트-데이터-다루기"><a href="#텍스트-데이터-다루기" class="headerlink" title="텍스트 데이터 다루기"></a>텍스트 데이터 다루기</h3><h4 id="단어와-문자의-원핫-인코딩"><a href="#단어와-문자의-원핫-인코딩" class="headerlink" title="단어와 문자의 원핫 인코딩"></a>단어와 문자의 원핫 인코딩</h4><h4 id="단어-임베딩-사용하기"><a href="#단어-임베딩-사용하기" class="headerlink" title="단어 임베딩 사용하기"></a>단어 임베딩 사용하기</h4><h4 id="모든-내용을-적용하기-원본-텍스트에서-단어-임베딩까지"><a href="#모든-내용을-적용하기-원본-텍스트에서-단어-임베딩까지" class="headerlink" title="모든 내용을 적용하기: 원본 텍스트에서 단어 임베딩까지"></a>모든 내용을 적용하기: 원본 텍스트에서 단어 임베딩까지</h4><h4 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h4><h3 id="순환-신경망-이해하기"><a href="#순환-신경망-이해하기" class="headerlink" title="순환 신경망 이해하기"></a>순환 신경망 이해하기</h3><h4 id="케라스의-순환-층"><a href="#케라스의-순환-층" class="headerlink" title="케라스의 순환 층"></a>케라스의 순환 층</h4><h4 id="LSTM과-GRU-층-이해하기"><a href="#LSTM과-GRU-층-이해하기" class="headerlink" title="LSTM과 GRU 층 이해하기"></a>LSTM과 GRU 층 이해하기</h4><h4 id="케라스를-사용한-LSTM-예제"><a href="#케라스를-사용한-LSTM-예제" class="headerlink" title="케라스를 사용한 LSTM 예제"></a>케라스를 사용한 LSTM 예제</h4><h3 id="순환-신경망의-고급-사용법"><a href="#순환-신경망의-고급-사용법" class="headerlink" title="순환 신경망의 고급 사용법"></a>순환 신경망의 고급 사용법</h3><h4 id="기온-예측-문제"><a href="#기온-예측-문제" class="headerlink" title="기온 예측 문제"></a>기온 예측 문제</h4><h4 id="데이터-준비"><a href="#데이터-준비" class="headerlink" title="데이터 준비"></a>데이터 준비</h4><h4 id="상식-수준의-기준점"><a href="#상식-수준의-기준점" class="headerlink" title="상식 수준의 기준점"></a>상식 수준의 기준점</h4><h4 id="기본적인-머신-러닝-방법"><a href="#기본적인-머신-러닝-방법" class="headerlink" title="기본적인 머신 러닝 방법"></a>기본적인 머신 러닝 방법</h4><h4 id="첫-번째-순환-신경망"><a href="#첫-번째-순환-신경망" class="headerlink" title="첫 번째 순환 신경망"></a>첫 번째 순환 신경망</h4><h4 id="과대적합을-줄이기-위해-순환-드랍아웃-사용하기"><a href="#과대적합을-줄이기-위해-순환-드랍아웃-사용하기" class="headerlink" title="과대적합을 줄이기 위해 순환 드랍아웃 사용하기"></a>과대적합을 줄이기 위해 순환 드랍아웃 사용하기</h4><h4 id="스태킹-순환-층"><a href="#스태킹-순환-층" class="headerlink" title="스태킹 순환 층"></a>스태킹 순환 층</h4><h4 id="양방향-RNN-사용하기"><a href="#양방향-RNN-사용하기" class="headerlink" title="양방향 RNN 사용하기"></a>양방향 RNN 사용하기</h4><h3 id="컨브넷을-사용한-시퀀스-처리"><a href="#컨브넷을-사용한-시퀀스-처리" class="headerlink" title="컨브넷을 사용한 시퀀스 처리"></a>컨브넷을 사용한 시퀀스 처리</h3><h4 id="시퀀스-데이터를-위한-1D-합성곱-이해하기"><a href="#시퀀스-데이터를-위한-1D-합성곱-이해하기" class="headerlink" title="시퀀스 데이터를 위한 1D 합성곱 이해하기"></a>시퀀스 데이터를 위한 1D 합성곱 이해하기</h4><h4 id="시퀀스-데이터를-위한-1D-풀링"><a href="#시퀀스-데이터를-위한-1D-풀링" class="headerlink" title="시퀀스 데이터를 위한 1D 풀링"></a>시퀀스 데이터를 위한 1D 풀링</h4><h4 id="1D-컨브넷-구현"><a href="#1D-컨브넷-구현" class="headerlink" title="1D 컨브넷 구현"></a>1D 컨브넷 구현</h4><h4 id="CNN과-RNN을-연결해-긴-시퀀스-처리"><a href="#CNN과-RNN을-연결해-긴-시퀀스-처리" class="headerlink" title="CNN과 RNN을 연결해 긴 시퀀스 처리"></a>CNN과 RNN을 연결해 긴 시퀀스 처리</h4><h3 id="요약"><a href="#요약" class="headerlink" title="요약"></a>요약</h3>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/DSBooks/">DSBooks</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Keras-Deep-Learning-with-Python/">Keras, Deep Learning with Python</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-Deep-Learning-with-Python-Ch-05" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/02/15/Deep-Learning-with-Python-Ch-05/">Deep Learning with Python - Ch.05</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/02/15/Deep-Learning-with-Python-Ch-05/" class="article-date">
+	  <time datetime="2019-02-15T09:32:56.000Z" itemprop="datePublished">February 15, 2019</time>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p><a href="https://ridibooks.com/v2/Detail?id=754024868&amp;_s=search&amp;_q=%EC%BC%80%EB%9D%BC%EC%8A%A4" target="_blank" rel="noopener">케라스 창시자에게 배우는 딥러닝</a>을 실습하면서 정리한 포스트입니다. 코드 예제와 코드 설명은 <a href="https://github.com/rickiepark/deep-learning-with-python-notebooks" target="_blank" rel="noopener">역자 깃허브</a>에서 받아볼 수 있습니다. 출판물이고 개인적으로만 참고하기 위한 요약노트이다 보니 설명이 불친절한 점은 양해 바랍니다. 보다 자세한 내용을 원하시는 분은 위 링크의 책을 참고하시기 바랍니다.</p>
+<hr>
+<h2 id="5장-컴퓨터-비전을-위한-딥러닝"><a href="#5장-컴퓨터-비전을-위한-딥러닝" class="headerlink" title="5장. 컴퓨터 비전을 위한 딥러닝"></a>5장. 컴퓨터 비전을 위한 딥러닝</h2><p>6장(텍스트)부터 학습 뒤 볼 예정입니다.</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/DSBooks/">DSBooks</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Keras-Deep-Learning-with-Python/">Keras, Deep Learning with Python</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-Deep-Learning-with-Python-Ch-04" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -329,7 +445,99 @@ var themeMenus = {};
 <li>케라스에선 층의 출력 바로 뒤에 Dropout 층을 추가해 네트워크에 드랍아웃 적용 가능</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># IMDB 네트워크에 드랍아웃 추가</span></span><br><span class="line">model = models.Sequential()</span><br><span class="line">model.add(layers.Dense(<span class="number">16</span>, activation=<span class="string">'relu'</span>, input_shape=(<span class="number">10000</span>,)))</span><br><span class="line">model.add(layers.Dropout(<span class="number">0.5</span>))</span><br><span class="line">model.add(layers.Dense(<span class="number">16</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Dropout(<span class="number">0.5</span>))</span><br><span class="line">model.add(layers.Dense(<span class="number">1</span>, activation=<span class="string">'sigmoid'</span>))</span><br></pre></td></tr></table></figure>
-<h3 id="보편적인-머신러닝-작업-흐름"><a href="#보편적인-머신러닝-작업-흐름" class="headerlink" title="보편적인 머신러닝 작업 흐름"></a>보편적인 머신러닝 작업 흐름</h3><h4 id="문제-정의와-데이터셋-수집"><a href="#문제-정의와-데이터셋-수집" class="headerlink" title="문제 정의와 데이터셋 수집"></a>문제 정의와 데이터셋 수집</h4><h4 id="성공-지표-선택"><a href="#성공-지표-선택" class="headerlink" title="성공 지표 선택"></a>성공 지표 선택</h4><h4 id="평가-방법-선택"><a href="#평가-방법-선택" class="headerlink" title="평가 방법 선택"></a>평가 방법 선택</h4><h4 id="데이터-준비"><a href="#데이터-준비" class="headerlink" title="데이터 준비"></a>데이터 준비</h4><h4 id="기본보다-나은-모델-훈련하기"><a href="#기본보다-나은-모델-훈련하기" class="headerlink" title="기본보다 나은 모델 훈련하기"></a>기본보다 나은 모델 훈련하기</h4><h4 id="몸집-키우기-과대적합-모델-구축"><a href="#몸집-키우기-과대적합-모델-구축" class="headerlink" title="몸집 키우기: 과대적합 모델 구축"></a>몸집 키우기: 과대적합 모델 구축</h4><h4 id="모델-규제와-하이퍼파라미터-튜닝"><a href="#모델-규제와-하이퍼파라미터-튜닝" class="headerlink" title="모델 규제와 하이퍼파라미터 튜닝"></a>모델 규제와 하이퍼파라미터 튜닝</h4>
+<h3 id="보편적인-머신러닝-작업-흐름"><a href="#보편적인-머신러닝-작업-흐름" class="headerlink" title="보편적인 머신러닝 작업 흐름"></a>보편적인 머신러닝 작업 흐름</h3><h4 id="문제-정의와-데이터셋-수집"><a href="#문제-정의와-데이터셋-수집" class="headerlink" title="문제 정의와 데이터셋 수집"></a>문제 정의와 데이터셋 수집</h4><ul>
+<li>무엇을 예측할 것인가</li>
+<li>입력 데이터는?</li>
+<li>어떤 종류의 문제인가? (이진분류 / 다중분류 / 스칼라 회귀 / 벡터회귀 / 다중 레이블 분류 / 군집 / 생성 / 강화학습)</li>
+<li>입력과 출력이 무엇인지</li>
+</ul>
+<h4 id="성공-지표-선택"><a href="#성공-지표-선택" class="headerlink" title="성공 지표 선택"></a>성공 지표 선택</h4><ul>
+<li>클래스 분포가 균일한 분류 문제<ul>
+<li>정확도와 ROC AUC</li>
+</ul>
+</li>
+<li>클래스 분폴가 균일하지 않은 문제<ul>
+<li>정밀도와 재현율</li>
+</ul>
+</li>
+<li>랭킹 문제나 다중 레이블 문제<ul>
+<li>평균 정밀도</li>
+</ul>
+</li>
+</ul>
+<h4 id="평가-방법-선택"><a href="#평가-방법-선택" class="headerlink" title="평가 방법 선택"></a>평가 방법 선택</h4><ul>
+<li>현재의 진척 상황 평가법<ul>
+<li>홀드아웃 검증 세트 분리(데이터가 풍부할 때)</li>
+<li>K-겹 교차 검증(샘플 수가 너무 적을 때)</li>
+<li>반복 K-겹 교차 검증(데이터가 적고 정확한 모델 평가 필요시)</li>
+</ul>
+</li>
+</ul>
+<h4 id="데이터-준비"><a href="#데이터-준비" class="headerlink" title="데이터 준비"></a>데이터 준비</h4><ul>
+<li>머신러닝 모델을 심층 신경망이라 가정<ul>
+<li>데이터는 텐서로 구성</li>
+<li>텐서에 있는 값은 일반적으로 작은 값으로 스케일 조정돼 있음 [-1, 1] or [0, 1]</li>
+<li>특성마다 범위가 다르면 정규화</li>
+<li>피처 엔지니어링</li>
+</ul>
+</li>
+</ul>
+<h4 id="기본보다-나은-모델-훈련하기"><a href="#기본보다-나은-모델-훈련하기" class="headerlink" title="기본보다 나은 모델 훈련하기"></a>기본보다 나은 모델 훈련하기</h4><ul>
+<li>통계적 검정력을 달성하는게 목표</li>
+<li>MNIST에서 통계적 검정력을 달성하려면 0.1보다 높은 정확도를 내는 모델이어야 함</li>
+<li>모델을 위해 고려할 세 가지<ul>
+<li>마지막 층의 활성화 함수: 네트워크 출력에 필요한 제한을 가함. IMDB 분류에선 마지막 층에 시그모이드 함수 사용. 회귀에서는 마지막 층에 활성화 함수 사용 안함</li>
+<li>손실 함수: 풀려고 하는 문제의 종류에 적합해야. IMDB에선 binary_crossentropy, 회귀에선 mse.</li>
+<li>최적화 설정: 대부분의 경우 rmsprop과 기본 학습률 사용하는게 무난함</li>
+</ul>
+</li>
+<li>손실함수는 미니 배치 데이터에서 계산 가능해야 하고 미분 가능해야 함</li>
+<li>문제 유형에 따른 마지막층 활성화 함수와 손실 함수 선택<ul>
+<li>이진 분류<ul>
+<li>시그모이드 / binary_crossentropy</li>
+</ul>
+</li>
+<li>단일 레이블 다중 분류<ul>
+<li>소프트맥스 / categorical_crossentropy</li>
+</ul>
+</li>
+<li>다중 레이블 다중 분류<ul>
+<li>시그모이드 / binary_crossentropy</li>
+</ul>
+</li>
+<li>임의 값에 대한 회귀<ul>
+<li>없음 / mse</li>
+</ul>
+</li>
+<li>0과 1 가시 값에 대한 회귀<ul>
+<li>시그모이드 / mse or binary_crossentropy</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="몸집-키우기-과대적합-모델-구축"><a href="#몸집-키우기-과대적합-모델-구축" class="headerlink" title="몸집 키우기: 과대적합 모델 구축"></a>몸집 키우기: 과대적합 모델 구축</h4><ul>
+<li>머신러닝은 최적화와 일반화 사이의 줄다리기<ul>
+<li>과소적합과 과대적합 사이</li>
+<li>과소용량과 과대용량 사이</li>
+</ul>
+</li>
+<li>얼마나 큰 모델을 만들어야 할까? 일단 과대적합된 모델을 만들어본다<ol>
+<li>층을 추가</li>
+<li>층의 크기를 키움</li>
+<li>더 많은 에포크 동안 트레이닝</li>
+</ol>
+</li>
+<li>훈련 손실과 검증 손실을 모니터링. 검증 데이터에서 모델 성능이 감소하기 시작했을 때 과대적합에 도달한 것</li>
+</ul>
+<h4 id="모델-규제와-하이퍼파라미터-튜닝"><a href="#모델-규제와-하이퍼파라미터-튜닝" class="headerlink" title="모델 규제와 하이퍼파라미터 튜닝"></a>모델 규제와 하이퍼파라미터 튜닝</h4><ul>
+<li>드랍아웃 추가</li>
+<li>층을 추가하거나 제거</li>
+<li>L1, L2 또는 둘 다를 추가해보기</li>
+<li>하이퍼파라미터를 바꿔보기(층의 유닛 수나 옵티마이저의 학습률 등)</li>
+<li>피처 엔지니어링</li>
+</ul>
+
       
     </div>
     <footer class="entry-meta entry-footer">
@@ -935,206 +1143,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-Deep-Learning-with-Python-Ch-01" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/01/28/Deep-Learning-with-Python-Ch-01/">Deep Learning with Python - Ch.01</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/01/28/Deep-Learning-with-Python-Ch-01/" class="article-date">
-	  <time datetime="2019-01-28T06:36:09.000Z" itemprop="datePublished">January 28, 2019</time>
-	</a>
-
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://ridibooks.com/v2/Detail?id=754024868&amp;_s=search&amp;_q=%EC%BC%80%EB%9D%BC%EC%8A%A4" target="_blank" rel="noopener">케라스 창시자에게 배우는 딥러닝</a>을 실습하면서 정리한 포스트입니다. 코드 예제와 코드 설명은 <a href="https://github.com/rickiepark/deep-learning-with-python-notebooks" target="_blank" rel="noopener">역자 깃허브</a>에서 받아볼 수 있습니다. 출판물이고 개인적으로만 참고하기 위한 요약노트이다 보니 설명이 불친절한 점은 양해 바랍니다. 보다 자세한 내용을 원하시는 분은 위 링크의 책을 참고하시기 바랍니다.</p>
-<hr>
-<h2 id="1장-딥러닝이란-무엇인가"><a href="#1장-딥러닝이란-무엇인가" class="headerlink" title="1장 딥러닝이란 무엇인가?"></a>1장 딥러닝이란 무엇인가?</h2><h3 id="인공지능과-머신-러닝-딥러닝"><a href="#인공지능과-머신-러닝-딥러닝" class="headerlink" title="인공지능과 머신 러닝, 딥러닝"></a>인공지능과 머신 러닝, 딥러닝</h3><h4 id="인공지능"><a href="#인공지능" class="headerlink" title="인공지능"></a>인공지능</h4><ul>
-<li>보통의 사람이 수행하는 지능적인 작업을 자동화하기 위한 연구 활동</li>
-<li>인공지능 ⊃ 머신러닝 ⊃ 딥러닝</li>
-<li>심볼릭 AI : “명시적인 규칙을 충분히 많이 만들어 지식을 다루면 인간 수준의 인공지능을 만들 수 있다” ☞ 하지만 명확한 규칙을 찾는게 쉽지 않음</li>
-</ul>
-<h4 id="머신러닝"><a href="#머신러닝" class="headerlink" title="머신러닝"></a>머신러닝</h4><ul>
-<li>전통적 프로그래밍 : 규칙, 데이터를 넣어서 해답을 찾는다</li>
-<li>머신러닝 : 데이터, 해답을 넣어서 규칙을 찾는다</li>
-</ul>
-<h4 id="데이터에서-표현을-학습하기"><a href="#데이터에서-표현을-학습하기" class="headerlink" title="데이터에서 표현을 학습하기"></a>데이터에서 표현을 학습하기</h4><ul>
-<li>머신 러닝과 딥러닝의 핵심 문제는 의미 있는 데이터로의 변환</li>
-<li>입력 데이터를 기반으로 기대 출력에 가깝게 만드는 유용한 표현을 학습하는 것</li>
-</ul>
-<h4 id="딥러닝에서-‘딥’이란"><a href="#딥러닝에서-‘딥’이란" class="headerlink" title="딥러닝에서 ‘딥’이란?"></a>딥러닝에서 ‘딥’이란?</h4><ul>
-<li>딥러닝은 머신러닝의 특정한 한 분야로 연속된 층에서 점진적으로 의미 있는 표현을 배우는 데 강점이 있음</li>
-<li>‘딥’이란 연속된 층으로 표현을 학습한다는 개념을 나타냄</li>
-<li>딥러닝에선 기본 층을 겹겹이 쌓아 올려 구성한 신경망이라는 모델을 사용</li>
-</ul>
-<h4 id="그림-3개로-딥러닝의-작동-원리-이해하기"><a href="#그림-3개로-딥러닝의-작동-원리-이해하기" class="headerlink" title="그림 3개로 딥러닝의 작동 원리 이해하기"></a>그림 3개로 딥러닝의 작동 원리 이해하기</h4><ul>
-<li>신경망은 가중치를 파라미터로 가진다</li>
-<li>손실 함수가 신경망의 출력 품질을 측정한다</li>
-<li>손실 점수를 피드백 신호로 사용하여 가중치를 조정한다</li>
-</ul>
-<h4 id="지금까지-딥러닝-성과"><a href="#지금까지-딥러닝-성과" class="headerlink" title="지금까지 딥러닝 성과"></a>지금까지 딥러닝 성과</h4><ul>
-<li>이미지 분류, 음성, 필기 인식 등</li>
-<li>여전히 할 수 있는 일을 알아가는 중. 형식 추론과 같은 다양한 문제에 적용하기 시작</li>
-</ul>
-<h4 id="단기간의-과대-선전을-믿지-말자"><a href="#단기간의-과대-선전을-믿지-말자" class="headerlink" title="단기간의 과대 선전을 믿지 말자"></a>단기간의 과대 선전을 믿지 말자</h4><ul>
-<li>딥러닝이 할 수 있는 것과 할 수 없는 것에 대해 명확히 이해하자</li>
-</ul>
-<h4 id="AI에-대한-전망"><a href="#AI에-대한-전망" class="headerlink" title="AI에 대한 전망"></a>AI에 대한 전망</h4><ul>
-<li>단기 기대는 비현실적일수도 있지만 장기 전망은 매우 밝다</li>
-</ul>
-<h3 id="딥러닝-이전-머신-러닝의-간략한-역사"><a href="#딥러닝-이전-머신-러닝의-간략한-역사" class="headerlink" title="딥러닝 이전: 머신 러닝의 간략한 역사"></a>딥러닝 이전: 머신 러닝의 간략한 역사</h3><h4 id="확률적-모델링"><a href="#확률적-모델링" class="headerlink" title="확률적 모델링"></a>확률적 모델링</h4><ul>
-<li>통계학 이론을 데이터 분석에 응용한 것</li>
-<li>나이브 베이즈 알고리즘 : 입력 데이터의 특성이 모두 독립적이라 가정하고 베이즈 정리를 적용하는 머신 러닝 분류 알고리즘</li>
-<li>로지스틱 회귀 : 현대 머신 러닝의 “hello world”</li>
-</ul>
-<h4 id="초창기-신경망"><a href="#초창기-신경망" class="headerlink" title="초창기 신경망"></a>초창기 신경망</h4><ul>
-<li>경사 하강법 최적화를 사용해 연쇄적으로 변수가 연결된 연산을 훈련하는 방법</li>
-<li>최초의 성공적인 신경망 애플리케이션은 합성곱 신경망과 역전파를 연결해 손글씨 숫자 이미지를 분류하는 문제에 적용됨</li>
-</ul>
-<h4 id="커널-방법"><a href="#커널-방법" class="headerlink" title="커널 방법"></a>커널 방법</h4><ul>
-<li>분류 알고리즘의 한 종류로 SVM(서포트 벡터 머신)이 가장 유명</li>
-<li>SVM은 2개의 다른 범주에 속한 데이터 그룹 사이에 결정 경계(decision boundary)를 찾는다</li>
-<li>decision boundary를 찾는 두 단계 과정<ul>
-<li>decision boundary가 하나의 초평면(hyperplane)으로 표현될 수 있는 새로운 고차원 표현으로 데이터를 매핑</li>
-<li>초평면과 각 클래스의 가장 가까운 데이터 포인트 사이의 거리가 최대가 되는 최선의 결정 경계(하나의 분할 초평면)를 찾는다 == 마진 최대화 단계</li>
-</ul>
-</li>
-</ul>
-<h4 id="결정트리-랜덤-포레스트-그래디언트-부스팅"><a href="#결정트리-랜덤-포레스트-그래디언트-부스팅" class="headerlink" title="결정트리, 랜덤 포레스트, 그래디언트 부스팅"></a>결정트리, 랜덤 포레스트, 그래디언트 부스팅</h4><ul>
-<li>결정트리 : 플로차트 같은 구조를 가지며 입력 데이터 포인트를 분류하거나 주어진 입력에 대해 출력 값을 예측</li>
-<li>랜덤 포레스트 : 서로 다른 결정 트리를 많이 만들고 그 출력을 앙상블하는 방법을 사용</li>
-<li>그래디언트 부스팅 : 이전 모델에서 놓친 데이터 포인트를 보완하는 새로운 모델을 반복적으로 훈련해 모델을 향상시킴</li>
-</ul>
-<h4 id="다시-신경망으로"><a href="#다시-신경망으로" class="headerlink" title="다시 신경망으로"></a>다시 신경망으로</h4><ul>
-<li>2011년 IDSIA의 댄 크리슨이 심층 신경망으로 이미지 분류 대회에서 우승했는데 이것이 현대적 딥러닝의 첫 번째 성공</li>
-<li>2012년부터 심층 합성곱이 모든 컴퓨터 비전 작업의 주력 알고리즘이 됨</li>
-</ul>
-<h4 id="딥러닝의-특징"><a href="#딥러닝의-특징" class="headerlink" title="딥러닝의 특징"></a>딥러닝의 특징</h4><ul>
-<li>딥러닝의 변환 능력은 모델이 모든 표현 층을 순차적이 아니라 동시에 공동으로 학습하게 만든다</li>
-<li>딥러닝이 데이터로부터 학습하는 방법의 특징<ul>
-<li>층을 거치면서 점진적으로 더 복잡한 표현이 만들어진다</li>
-<li>이런 점진적인 중간 표현이 공동으로 학습된다</li>
-</ul>
-</li>
-</ul>
-<h4 id="머신러닝의-최근-동향"><a href="#머신러닝의-최근-동향" class="headerlink" title="머신러닝의 최근 동향"></a>머신러닝의 최근 동향</h4><ul>
-<li>캐글의 머신 러닝 경연을 살펴보면 동향을 알 수 있다</li>
-<li>2016 2017년 캐글 주류는 그래디언트 부스팅 머신(구조적인 데이터의 경우)과 딥러닝(이미지 분류 등 지각에 관한 문제)</li>
-</ul>
-<h3 id="왜-딥러닝일까-왜-지금"><a href="#왜-딥러닝일까-왜-지금" class="headerlink" title="왜 딥러닝일까? 왜 지금?"></a>왜 딥러닝일까? 왜 지금?</h3><ul>
-<li>컴퓨터 비전 딥러닝 핵심 아이디어인 합성곱 신경망과 역전파는 1989년에, 시계열을 위한 딥러닝 기본인 LSTM(Long Short-Term Memory) 알고리즘은 1997년에 개발됐는데 2012년 이후에 딥러닝이 부상한 배경에는 다음 세 가지가 있다<ul>
-<li>하드웨어</li>
-<li>데이터셋과 벤치마크</li>
-<li>알고리즘 향상</li>
-</ul>
-</li>
-</ul>
-<h4 id="새로운-투자의-바람"><a href="#새로운-투자의-바람" class="headerlink" title="새로운 투자의 바람"></a>새로운 투자의 바람</h4><ul>
-<li>딥러닝은 테크 공룡들의 핵심 상품 전략</li>
-</ul>
-<h4 id="딥러닝의-대중화"><a href="#딥러닝의-대중화" class="headerlink" title="딥러닝의 대중화"></a>딥러닝의 대중화</h4><ul>
-<li>초창기에는 C++과 CUDA 전문가가 되어야 했지만 요즘에는 기본 파이썬 스크립트 기술만 있으면 딥러닝 연구에 충분(씨아노와 텐서플로 덕분)</li>
-</ul>
-<h4 id="지속될까"><a href="#지속될까" class="headerlink" title="지속될까?"></a>지속될까?</h4><ul>
-<li>20년 뒤에는 신경망을 쓰지 않을지도 모르지만 딥러닝과 그 핵심개념에서 파생된 무엇인가를 사용할 것</li>
-<li>단순함, 확장성, 다용도와 재사용성</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/DSBooks/">DSBooks</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Keras-Deep-Learning-with-Python/">Keras, Deep Learning with Python</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-World-This-Week-Jan-26th-2019" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/01/28/World-This-Week-Jan-26th-2019/">[World This Week] Jan 26th 2019</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/01/28/World-This-Week-Jan-26th-2019/" class="article-date">
-	  <time datetime="2019-01-28T05:42:35.000Z" itemprop="datePublished">January 28, 2019</time>
-	</a>
-
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<h4 id="All-the-world-is-a-laboratory-to-the-inquiring-mind"><a href="#All-the-world-is-a-laboratory-to-the-inquiring-mind" class="headerlink" title="All the world is a laboratory to the inquiring mind."></a><strong>All the world is a laboratory to the inquiring mind.</strong></h4><p> <em>- Martin H. Fischer</em></p>
-</blockquote>
-<p><br></p>
-<p><a href="https://www.economist.com/printedition/2019-01-26" target="_blank" rel="noopener"><img src="https://www.economist.com/sites/default/files/imagecache/400-width/print-covers/20190126_cuk400hires_0.jpg" alt="2019-01-26"></a></p>
-<h4 id="The-world-this-week-Business-this-Week"><a href="#The-world-this-week-Business-this-Week" class="headerlink" title="| The world this week | Business this Week"></a>| The world this week | Business this Week</h4><ul>
-<li></li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/The-Economist/">The Economist</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/The-economist/">The economist</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -1239,6 +1247,30 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/02/15/Deep-Learning-with-Python-Ch-06/">Deep Learning with Python - Ch.06</a></h6>
+              <span>February 15, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/02/15/Deep-Learning-with-Python-Ch-05/">Deep Learning with Python - Ch.05</a></h6>
+              <span>February 15, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/02/14/Deep-Learning-with-Python-Ch-04/">Deep Learning with Python - Ch.04</a></h6>
               <span>February 14, 2019</span>
             </div>
@@ -1281,30 +1313,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/01/28/World-This-Week-Jan-26th-2019/">[World This Week] Jan 26th 2019</a></h6>
-              <span>January 28, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/01/23/FC-Tensorflow-패키지-소개-2/">[FC] Tensorflow 패키지 소개(2)</a></h6>
-              <span>January 23, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1314,7 +1322,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DSBooks/">DSBooks</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NoSQL/">NoSQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/The-Economist/">The Economist</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/books/">books</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/crawling/">crawling</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/datascienceschool/">datascienceschool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/패턴-인식과-머신-러닝/">패턴 인식과 머신 러닝</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DSBooks/">DSBooks</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NoSQL/">NoSQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/The-Economist/">The Economist</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/books/">books</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/crawling/">crawling</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/datascienceschool/">datascienceschool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/패턴-인식과-머신-러닝/">패턴 인식과 머신 러닝</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -1329,7 +1337,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">16</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">16</span></li></ul>
     </div>
   </div>
 

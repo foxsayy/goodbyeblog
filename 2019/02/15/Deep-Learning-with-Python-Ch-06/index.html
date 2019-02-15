@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>deep learning with python - ch.06 | THE DATASCIENTIST</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Keras, Deep Learning with Python">
+  
+  
+  
+  
+  <meta name="description" content="케라스 창시자에게 배우는 딥러닝을 실습하면서 정리한 포스트입니다. 코드 예제와 코드 설명은 역자 깃허브에서 받아볼 수 있습니다. 출판물이고 개인적으로만 참고하기 위한 요약노트이다 보니 설명이 불친절한 점은 양해 바랍니다. 보다 자세한 내용을 원하시는 분은 위 링크의 책을 참고하시기 바랍니다.  6장. 텍스트와 시퀀스를 위한 딥러닝학습 목표  원본 텍스트를">
+<meta name="keywords" content="Keras, Deep Learning with Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Learning with Python - Ch.06">
+<meta property="og:url" content="http://foxsayy.github.io/2019/02/15/Deep-Learning-with-Python-Ch-06/index.html">
+<meta property="og:site_name" content="THE DATASCIENTIST">
+<meta property="og:description" content="케라스 창시자에게 배우는 딥러닝을 실습하면서 정리한 포스트입니다. 코드 예제와 코드 설명은 역자 깃허브에서 받아볼 수 있습니다. 출판물이고 개인적으로만 참고하기 위한 요약노트이다 보니 설명이 불친절한 점은 양해 바랍니다. 보다 자세한 내용을 원하시는 분은 위 링크의 책을 참고하시기 바랍니다.  6장. 텍스트와 시퀀스를 위한 딥러닝학습 목표  원본 텍스트를">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-02-15T09:44:22.569Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Deep Learning with Python - Ch.06">
+<meta name="twitter:description" content="케라스 창시자에게 배우는 딥러닝을 실습하면서 정리한 포스트입니다. 코드 예제와 코드 설명은 역자 깃허브에서 받아볼 수 있습니다. 출판물이고 개인적으로만 참고하기 위한 요약노트이다 보니 설명이 불친절한 점은 양해 바랍니다. 보다 자세한 내용을 원하시는 분은 위 링크의 책을 참고하시기 바랍니다.  6장. 텍스트와 시퀀스를 위한 딥러닝학습 목표  원본 텍스트를">
+  
+    <link rel="alternate" href="/atom.xml" title="THE DATASCIENTIST" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories/index.html"] = "Categories"; 
+
+  themeMenus["/log/index.html"] = "log"; 
+
+  themeMenus["/about/index.html"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="THE DATASCIENTIST" rel="home"> THE DATASCIENTIST </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories/index.html">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/log/index.html">log</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about/index.html">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt="" src="">
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Deep-Learning-with-Python-Ch-06" style="width: 66%; float:left;" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      Deep Learning with Python - Ch.06
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/02/15/Deep-Learning-with-Python-Ch-06/" class="article-date">
+	  <time datetime="2019-02-15T09:35:43.000Z" itemprop="datePublished">February 15, 2019</time>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p><a href="https://ridibooks.com/v2/Detail?id=754024868&amp;_s=search&amp;_q=%EC%BC%80%EB%9D%BC%EC%8A%A4" target="_blank" rel="noopener">케라스 창시자에게 배우는 딥러닝</a>을 실습하면서 정리한 포스트입니다. 코드 예제와 코드 설명은 <a href="https://github.com/rickiepark/deep-learning-with-python-notebooks" target="_blank" rel="noopener">역자 깃허브</a>에서 받아볼 수 있습니다. 출판물이고 개인적으로만 참고하기 위한 요약노트이다 보니 설명이 불친절한 점은 양해 바랍니다. 보다 자세한 내용을 원하시는 분은 위 링크의 책을 참고하시기 바랍니다.</p>
+<hr>
+<h2 id="6장-텍스트와-시퀀스를-위한-딥러닝"><a href="#6장-텍스트와-시퀀스를-위한-딥러닝" class="headerlink" title="6장. 텍스트와 시퀀스를 위한 딥러닝"></a>6장. 텍스트와 시퀀스를 위한 딥러닝</h2><p><strong>학습 목표</strong></p>
+<ul>
+<li>원본 텍스트를 신경망이 처리할 수 있는 형태로 변환</li>
+<li>케라스 모델에 임베딩 층을 추가해 특정 작업에 특화된 토큰 임베딩 학습</li>
+<li>데이터가 부족한 자연어 처리 문제에서 사전 훈련된 단어 임베딩을 사용해 성능 높이기</li>
+<li>RNN과 동작방법</li>
+<li>LSTM과 이게 긴 시퀀스에서 단순 RNN보다 더 잘 작동하는 이유</li>
+<li>케라스의 RNN 층을 사용해 시퀀스 데이터 처리하기</li>
+</ul>
+<h3 id="텍스트-데이터-다루기"><a href="#텍스트-데이터-다루기" class="headerlink" title="텍스트 데이터 다루기"></a>텍스트 데이터 다루기</h3><h4 id="단어와-문자의-원핫-인코딩"><a href="#단어와-문자의-원핫-인코딩" class="headerlink" title="단어와 문자의 원핫 인코딩"></a>단어와 문자의 원핫 인코딩</h4><h4 id="단어-임베딩-사용하기"><a href="#단어-임베딩-사용하기" class="headerlink" title="단어 임베딩 사용하기"></a>단어 임베딩 사용하기</h4><h4 id="모든-내용을-적용하기-원본-텍스트에서-단어-임베딩까지"><a href="#모든-내용을-적용하기-원본-텍스트에서-단어-임베딩까지" class="headerlink" title="모든 내용을 적용하기: 원본 텍스트에서 단어 임베딩까지"></a>모든 내용을 적용하기: 원본 텍스트에서 단어 임베딩까지</h4><h4 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h4><h3 id="순환-신경망-이해하기"><a href="#순환-신경망-이해하기" class="headerlink" title="순환 신경망 이해하기"></a>순환 신경망 이해하기</h3><h4 id="케라스의-순환-층"><a href="#케라스의-순환-층" class="headerlink" title="케라스의 순환 층"></a>케라스의 순환 층</h4><h4 id="LSTM과-GRU-층-이해하기"><a href="#LSTM과-GRU-층-이해하기" class="headerlink" title="LSTM과 GRU 층 이해하기"></a>LSTM과 GRU 층 이해하기</h4><h4 id="케라스를-사용한-LSTM-예제"><a href="#케라스를-사용한-LSTM-예제" class="headerlink" title="케라스를 사용한 LSTM 예제"></a>케라스를 사용한 LSTM 예제</h4><h3 id="순환-신경망의-고급-사용법"><a href="#순환-신경망의-고급-사용법" class="headerlink" title="순환 신경망의 고급 사용법"></a>순환 신경망의 고급 사용법</h3><h4 id="기온-예측-문제"><a href="#기온-예측-문제" class="headerlink" title="기온 예측 문제"></a>기온 예측 문제</h4><h4 id="데이터-준비"><a href="#데이터-준비" class="headerlink" title="데이터 준비"></a>데이터 준비</h4><h4 id="상식-수준의-기준점"><a href="#상식-수준의-기준점" class="headerlink" title="상식 수준의 기준점"></a>상식 수준의 기준점</h4><h4 id="기본적인-머신-러닝-방법"><a href="#기본적인-머신-러닝-방법" class="headerlink" title="기본적인 머신 러닝 방법"></a>기본적인 머신 러닝 방법</h4><h4 id="첫-번째-순환-신경망"><a href="#첫-번째-순환-신경망" class="headerlink" title="첫 번째 순환 신경망"></a>첫 번째 순환 신경망</h4><h4 id="과대적합을-줄이기-위해-순환-드랍아웃-사용하기"><a href="#과대적합을-줄이기-위해-순환-드랍아웃-사용하기" class="headerlink" title="과대적합을 줄이기 위해 순환 드랍아웃 사용하기"></a>과대적합을 줄이기 위해 순환 드랍아웃 사용하기</h4><h4 id="스태킹-순환-층"><a href="#스태킹-순환-층" class="headerlink" title="스태킹 순환 층"></a>스태킹 순환 층</h4><h4 id="양방향-RNN-사용하기"><a href="#양방향-RNN-사용하기" class="headerlink" title="양방향 RNN 사용하기"></a>양방향 RNN 사용하기</h4><h3 id="컨브넷을-사용한-시퀀스-처리"><a href="#컨브넷을-사용한-시퀀스-처리" class="headerlink" title="컨브넷을 사용한 시퀀스 처리"></a>컨브넷을 사용한 시퀀스 처리</h3><h4 id="시퀀스-데이터를-위한-1D-합성곱-이해하기"><a href="#시퀀스-데이터를-위한-1D-합성곱-이해하기" class="headerlink" title="시퀀스 데이터를 위한 1D 합성곱 이해하기"></a>시퀀스 데이터를 위한 1D 합성곱 이해하기</h4><h4 id="시퀀스-데이터를-위한-1D-풀링"><a href="#시퀀스-데이터를-위한-1D-풀링" class="headerlink" title="시퀀스 데이터를 위한 1D 풀링"></a>시퀀스 데이터를 위한 1D 풀링</h4><h4 id="1D-컨브넷-구현"><a href="#1D-컨브넷-구현" class="headerlink" title="1D 컨브넷 구현"></a>1D 컨브넷 구현</h4><h4 id="CNN과-RNN을-연결해-긴-시퀀스-처리"><a href="#CNN과-RNN을-연결해-긴-시퀀스-처리" class="headerlink" title="CNN과 RNN을 연결해 긴 시퀀스 처리"></a>CNN과 RNN을 연결해 긴 시퀀스 처리</h4><h3 id="요약"><a href="#요약" class="headerlink" title="요약"></a>요약</h3>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/DSBooks/">DSBooks</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Keras-Deep-Learning-with-Python/">Keras, Deep Learning with Python</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/02/15/Deep-Learning-with-Python-Ch-05/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Deep Learning with Python - Ch.05</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#6장-텍스트와-시퀀스를-위한-딥러닝"><span class="nav-number">1.</span> <span class="nav-text">6장. 텍스트와 시퀀스를 위한 딥러닝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#텍스트-데이터-다루기"><span class="nav-number">1.1.</span> <span class="nav-text">텍스트 데이터 다루기</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#단어와-문자의-원핫-인코딩"><span class="nav-number">1.1.1.</span> <span class="nav-text">단어와 문자의 원핫 인코딩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#단어-임베딩-사용하기"><span class="nav-number">1.1.2.</span> <span class="nav-text">단어 임베딩 사용하기</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#모든-내용을-적용하기-원본-텍스트에서-단어-임베딩까지"><span class="nav-number">1.1.3.</span> <span class="nav-text">모든 내용을 적용하기: 원본 텍스트에서 단어 임베딩까지</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#정리"><span class="nav-number">1.1.4.</span> <span class="nav-text">정리</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#순환-신경망-이해하기"><span class="nav-number">1.2.</span> <span class="nav-text">순환 신경망 이해하기</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#케라스의-순환-층"><span class="nav-number">1.2.1.</span> <span class="nav-text">케라스의 순환 층</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LSTM과-GRU-층-이해하기"><span class="nav-number">1.2.2.</span> <span class="nav-text">LSTM과 GRU 층 이해하기</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#케라스를-사용한-LSTM-예제"><span class="nav-number">1.2.3.</span> <span class="nav-text">케라스를 사용한 LSTM 예제</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#순환-신경망의-고급-사용법"><span class="nav-number">1.3.</span> <span class="nav-text">순환 신경망의 고급 사용법</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#기온-예측-문제"><span class="nav-number">1.3.1.</span> <span class="nav-text">기온 예측 문제</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#데이터-준비"><span class="nav-number">1.3.2.</span> <span class="nav-text">데이터 준비</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#상식-수준의-기준점"><span class="nav-number">1.3.3.</span> <span class="nav-text">상식 수준의 기준점</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#기본적인-머신-러닝-방법"><span class="nav-number">1.3.4.</span> <span class="nav-text">기본적인 머신 러닝 방법</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#첫-번째-순환-신경망"><span class="nav-number">1.3.5.</span> <span class="nav-text">첫 번째 순환 신경망</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#과대적합을-줄이기-위해-순환-드랍아웃-사용하기"><span class="nav-number">1.3.6.</span> <span class="nav-text">과대적합을 줄이기 위해 순환 드랍아웃 사용하기</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#스태킹-순환-층"><span class="nav-number">1.3.7.</span> <span class="nav-text">스태킹 순환 층</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#양방향-RNN-사용하기"><span class="nav-number">1.3.8.</span> <span class="nav-text">양방향 RNN 사용하기</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#컨브넷을-사용한-시퀀스-처리"><span class="nav-number">1.4.</span> <span class="nav-text">컨브넷을 사용한 시퀀스 처리</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#시퀀스-데이터를-위한-1D-합성곱-이해하기"><span class="nav-number">1.4.1.</span> <span class="nav-text">시퀀스 데이터를 위한 1D 합성곱 이해하기</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#시퀀스-데이터를-위한-1D-풀링"><span class="nav-number">1.4.2.</span> <span class="nav-text">시퀀스 데이터를 위한 1D 풀링</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1D-컨브넷-구현"><span class="nav-number">1.4.3.</span> <span class="nav-text">1D 컨브넷 구현</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CNN과-RNN을-연결해-긴-시퀀스-처리"><span class="nav-number">1.4.4.</span> <span class="nav-text">CNN과 RNN을 연결해 긴 시퀀스 처리</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#요약"><span class="nav-number">1.5.</span> <span class="nav-text">요약</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 THE DATASCIENTIST All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories/index.html" class="mobile-nav-link">Categories</a>
+  
+    <a href="/log/index.html" class="mobile-nav-link">Log</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
