@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="THE DATASCIENTIST">
 <meta property="og:description" content="케라스 창시자에게 배우는 딥러닝을 실습하면서 정리한 포스트입니다. 코드 예제와 코드 설명은 역자 깃허브에서 받아볼 수 있습니다. 출판물이고 개인적으로만 참고하기 위한 요약노트이다 보니 설명이 불친절한 점은 양해 바랍니다. 보다 자세한 내용을 원하시는 분은 위 링크의 책을 참고하시기 바랍니다.  4장. 머신러닝의 기본 요소머신러닝의 4가지 분류지도학습 가장">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-02-14T03:54:04.996Z">
+<meta property="og:updated_time" content="2019-02-14T17:23:28.422Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Deep Learning with Python - Ch.04">
 <meta name="twitter:description" content="케라스 창시자에게 배우는 딥러닝을 실습하면서 정리한 포스트입니다. 코드 예제와 코드 설명은 역자 깃허브에서 받아볼 수 있습니다. 출판물이고 개인적으로만 참고하기 위한 요약노트이다 보니 설명이 불친절한 점은 양해 바랍니다. 보다 자세한 내용을 원하시는 분은 위 링크의 책을 참고하시기 바랍니다.  4장. 머신러닝의 기본 요소머신러닝의 4가지 분류지도학습 가장">
@@ -195,7 +195,7 @@ var themeMenus = {};
 <p><a href="https://ridibooks.com/v2/Detail?id=754024868&amp;_s=search&amp;_q=%EC%BC%80%EB%9D%BC%EC%8A%A4" target="_blank" rel="noopener">케라스 창시자에게 배우는 딥러닝</a>을 실습하면서 정리한 포스트입니다. 코드 예제와 코드 설명은 <a href="https://github.com/rickiepark/deep-learning-with-python-notebooks" target="_blank" rel="noopener">역자 깃허브</a>에서 받아볼 수 있습니다. 출판물이고 개인적으로만 참고하기 위한 요약노트이다 보니 설명이 불친절한 점은 양해 바랍니다. 보다 자세한 내용을 원하시는 분은 위 링크의 책을 참고하시기 바랍니다.</p>
 <hr>
 <h2 id="4장-머신러닝의-기본-요소"><a href="#4장-머신러닝의-기본-요소" class="headerlink" title="4장. 머신러닝의 기본 요소"></a>4장. 머신러닝의 기본 요소</h2><h3 id="머신러닝의-4가지-분류"><a href="#머신러닝의-4가지-분류" class="headerlink" title="머신러닝의 4가지 분류"></a>머신러닝의 4가지 분류</h3><h4 id="지도학습"><a href="#지도학습" class="headerlink" title="지도학습"></a>지도학습</h4><ul>
-<li>가장 흔한 경우. 앞의 예제들과 광학 문자 판독, ㅇ므성 인식, 이미지 분류, 번역 등</li>
+<li>가장 흔한 경우. 앞의 예제들과 광학 문자 판독, 음성 인식, 이미지 분류, 번역 등</li>
 <li>대부분 회귀지만 이런 변종도 있음<ul>
 <li>sequence generation: 사진이 주어지면 이를 설명하는 캡션 생성</li>
 <li>syntax tree expectation: 문장이 주어지면 분해된 구문 트리를 예측</li>
@@ -206,7 +206,7 @@ var themeMenus = {};
 </ul>
 <h4 id="비지도학습"><a href="#비지도학습" class="headerlink" title="비지도학습"></a>비지도학습</h4><ul>
 <li>타깃 사용하지 않고 입력에 대한 흥미로운 변환을 찾는다</li>
-<li>데이터 시각화, 데이터 ㅏㅂ축, 데이터 노이즈 제거, 상관관계 이해에 사용</li>
+<li>데이터 시각화, 데이터 압축, 데이터 노이즈 제거, 상관관계 이해에 사용</li>
 <li>차원 축소와 클러스터링</li>
 </ul>
 <h4 id="자기지도학습"><a href="#자기지도학습" class="headerlink" title="자기지도학습"></a>자기지도학습</h4><ul>
@@ -214,7 +214,81 @@ var themeMenus = {};
 <li>라벨이 필요하지만 휴리스틱 알고리즘(경험적인 알고리즘)을 사용해 입력 데이터에서 생성</li>
 <li>ex) 오토인코더, 지난 프레임이 주어졌을 때 다음 프레임을 예측, 단어가 주어졌을때 다음 단어를 예측</li>
 </ul>
-<h4 id="강화학습"><a href="#강화학습" class="headerlink" title="강화학습"></a>강화학습</h4><h3 id="머신러닝-모델-평가"><a href="#머신러닝-모델-평가" class="headerlink" title="머신러닝 모델 평가"></a>머신러닝 모델 평가</h3><h4 id="훈련-검증-테스트셋"><a href="#훈련-검증-테스트셋" class="headerlink" title="훈련, 검증, 테스트셋"></a>훈련, 검증, 테스트셋</h4><h4 id="기억해야-할-것"><a href="#기억해야-할-것" class="headerlink" title="기억해야 할 것"></a>기억해야 할 것</h4><h3 id="데이터-전처리-피쳐-엔지니어링-피쳐-학습"><a href="#데이터-전처리-피쳐-엔지니어링-피쳐-학습" class="headerlink" title="데이터 전처리, 피쳐 엔지니어링, 피쳐 학습"></a>데이터 전처리, 피쳐 엔지니어링, 피쳐 학습</h3><h4 id="신경망을-위한-데이터-전처리"><a href="#신경망을-위한-데이터-전처리" class="headerlink" title="신경망을 위한 데이터 전처리"></a>신경망을 위한 데이터 전처리</h4><h4 id="특성-공학"><a href="#특성-공학" class="headerlink" title="특성 공학"></a>특성 공학</h4><h3 id="과대적합과-과소적합"><a href="#과대적합과-과소적합" class="headerlink" title="과대적합과 과소적합"></a>과대적합과 과소적합</h3><h4 id="네트워크-크기-축소"><a href="#네트워크-크기-축소" class="headerlink" title="네트워크 크기 축소"></a>네트워크 크기 축소</h4><h4 id="가중치-규제-추가"><a href="#가중치-규제-추가" class="headerlink" title="가중치 규제 추가"></a>가중치 규제 추가</h4><h4 id="dropout-추가"><a href="#dropout-추가" class="headerlink" title="dropout 추가"></a>dropout 추가</h4><h3 id="보편적인-머신러닝-작업-흐름"><a href="#보편적인-머신러닝-작업-흐름" class="headerlink" title="보편적인 머신러닝 작업 흐름"></a>보편적인 머신러닝 작업 흐름</h3><h4 id="문제-정의와-데이터셋-수집"><a href="#문제-정의와-데이터셋-수집" class="headerlink" title="문제 정의와 데이터셋 수집"></a>문제 정의와 데이터셋 수집</h4><h4 id="성공-지표-선택"><a href="#성공-지표-선택" class="headerlink" title="성공 지표 선택"></a>성공 지표 선택</h4><h4 id="평가-방법-선택"><a href="#평가-방법-선택" class="headerlink" title="평가 방법 선택"></a>평가 방법 선택</h4><h4 id="데이터-준비"><a href="#데이터-준비" class="headerlink" title="데이터 준비"></a>데이터 준비</h4><h4 id="기본보다-나은-모델-훈련하기"><a href="#기본보다-나은-모델-훈련하기" class="headerlink" title="기본보다 나은 모델 훈련하기"></a>기본보다 나은 모델 훈련하기</h4><h4 id="몸집-키우기-과대적합-모델-구축"><a href="#몸집-키우기-과대적합-모델-구축" class="headerlink" title="몸집 키우기: 과대적합 모델 구축"></a>몸집 키우기: 과대적합 모델 구축</h4><h4 id="모델-규제와-하이퍼파라미터-튜닝"><a href="#모델-규제와-하이퍼파라미터-튜닝" class="headerlink" title="모델 규제와 하이퍼파라미터 튜닝"></a>모델 규제와 하이퍼파라미터 튜닝</h4>
+<h4 id="강화학습"><a href="#강화학습" class="headerlink" title="강화학습"></a>강화학습</h4><ul>
+<li>자율주행 자동차, 자원 관리, 교육 등에서 애플리케이션 등장 예상됨</li>
+</ul>
+<h3 id="머신러닝-모델-평가"><a href="#머신러닝-모델-평가" class="headerlink" title="머신러닝 모델 평가"></a>머신러닝 모델 평가</h3><ul>
+<li>과대적합을 완화하고 일반화를 최대화하기 위한 전략(처음 본 데이터에서 잘 작동하는 모델 찾기)</li>
+</ul>
+<h4 id="훈련-검증-테스트셋"><a href="#훈련-검증-테스트셋" class="headerlink" title="훈련, 검증, 테스트셋"></a>훈련, 검증, 테스트셋</h4><ul>
+<li>데이터가 적을 때 데이터셋을 나누려면 다음과 같은 고급 기법이 도움이 됨<ul>
+<li>단순 홀드아웃 검증: 데이터 일부를 테스트셋으로 떼어 둠</li>
+<li>K-겹 교차검증: 데이터를 동일한 크기를 가진 K개 분할로 나눠 각 분할 i에 대해 남은 K-1개의 분할로 모델을 훈련하고 분할 i 에서 모델을 평가</li>
+<li>셔플링을 사용한 반복 K-겹 교차 검증: K개의 분할로 나누기 전에 매번 데이터를 무작위로 섞기</li>
+</ul>
+</li>
+</ul>
+<h4 id="기억해야-할-것"><a href="#기억해야-할-것" class="headerlink" title="기억해야 할 것"></a>기억해야 할 것</h4><ul>
+<li>대표성 있는 데이터를 골라야 한다. 타깃이 0~9까지 9가지 숫자인데 테스트셋에 타깃이 0~7까지 있는 데이터만 넣는다면?</li>
+<li>시간의 방향: 과거로부터 미래를 예측하려고 한다면 테스트셋에 있는 데이터가 트레이닝셋 데이터보다 미래에 있어야 한다</li>
+<li>데이터 중복: 한 데이터셋에 같은 데이터가 두 번 등장하면 트레이닝셋의 일부로 테스트를 하는 일이 발생할 수 있다.</li>
+</ul>
+<h3 id="데이터-전처리-피쳐-엔지니어링-피쳐-학습"><a href="#데이터-전처리-피쳐-엔지니어링-피쳐-학습" class="headerlink" title="데이터 전처리, 피쳐 엔지니어링, 피쳐 학습"></a>데이터 전처리, 피쳐 엔지니어링, 피쳐 학습</h3><h4 id="신경망을-위한-데이터-전처리"><a href="#신경망을-위한-데이터-전처리" class="headerlink" title="신경망을 위한 데이터 전처리"></a>신경망을 위한 데이터 전처리</h4><ul>
+<li>원본 데이터를 신경망에 적용하기 쉽게 만들기 위해 데이터를 전처리</li>
+<li>벡터화<ul>
+<li>신경망에서 모든 입력과 타깃은 부동 소수 데이터로 이뤄진 텐서여야 함(특정 경우에는 정수로 이뤄진 텐서)</li>
+<li>데이터가 사운드 이미지 텍스트 뭐든 일단 텐서로 변환</li>
+</ul>
+</li>
+<li>값 정규화<ul>
+<li>(MNIST) 숫자 이미지를 그레이스케일 인코딩인 0~255 사이의 정수로 인코딩. 이를 네트워크에 주입하기 전 float32 타입으로 변경하고 255로 나눠 최종적으로 0~1 사이의 부동 소수 값으로 만듦.</li>
+<li>(보스턴 집값) 데이터를 네트워크에 주입하기 전 각 특성을 정규화해 평균 0, 표준편차 1이 되도록 만듦</li>
+<li>비교적 큰 값이나 균일하지 않은 데이터를 신경망에 주입하는건 위험(업데이트할 그래디언트가 커져 네트워크가 수렴하는걸 방해함)</li>
+<li>대부분 값이 0~1 사이, 모든 특성이 대체로 비슷한 범위를 가질수록 네트워크를 쉽게 학습시킬 수있음</li>
+<li>도움이 되는 정규화 방법</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x -= x.mean(axix=<span class="number">0</span>)</span><br><span class="line">x /= x.std(axis=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>누락값 처리<ul>
+<li>일반적으로 0이 사전에 정의된 의미 있는 값이 아니라면 누락값을 0으로 처리해도 괜찮음</li>
+<li>트레이닝셋에는 누락값이 없는데 테스트셋에 누락값이 있을 가능성이 있다면 트레이닝셋에 고의적으로 누락값이 있는 샘플을 만들어야 함</li>
+</ul>
+</li>
+</ul>
+<h4 id="특성-공학"><a href="#특성-공학" class="headerlink" title="특성 공학"></a>특성 공학</h4><ul>
+<li>모델이 수월하게 작업할 수 있는 어떤 방식으로 데이터가 표현될 필요</li>
+</ul>
+<h3 id="과대적합과-과소적합"><a href="#과대적합과-과소적합" class="headerlink" title="과대적합과 과소적합"></a>과대적합과 과소적합</h3><ul>
+<li>언더피팅<ul>
+<li>훈련 데이터의 손실이 낮아질수록 테스트 데이터의 손실도 낮아짐</li>
+<li>모델의 성능이 계속 발전될 여지가 있음</li>
+</ul>
+</li>
+<li>오버피팅<ul>
+<li>어느 시점부터 일반화 성능이 더 높아지지 않음</li>
+<li>검증 세트의 성능이 멈추고 감소하기 시작</li>
+<li>훈련 데이터에 특화된 패턴을 학습하기 시작했다는 의미</li>
+</ul>
+</li>
+<li>regularization<ul>
+<li>과대적합을 피하는 저리 과정</li>
+</ul>
+</li>
+</ul>
+<h4 id="네트워크-크기-축소"><a href="#네트워크-크기-축소" class="headerlink" title="네트워크 크기 축소"></a>네트워크 크기 축소</h4><ul>
+<li>오버피팅을 막는 가장 단순한 방법은 모델에 있는 학습 파라미터의 수를 줄이는 것</li>
+<li>파라미터의 수(모델의 용량)는 층의 수와 각 층의 유닛 수에 의해 결정</li>
+<li>언더피팅되지 않도록 충분한 파라미터를 가진 모델을 사용해야 함.</li>
+<li>데이터에 알맞은 모델 크기를 찾으려면 각기 다른 구조를 평가해봐야 함<ul>
+<li>비교적 적은 수의 층과 파라미터로 시작해 검증 손실이 감소되기 시작할 때까지 층이나 유닛 수를 늘리는게 일반적인 작업 흐름</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 원본 모델</span></span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> layers</span><br><span class="line"></span><br><span class="line">model = models.Sequential()</span><br><span class="line">model.add(layers.Dense(<span class="number">16</span>, activation=<span class="string">'relu'</span>, input_shape=(<span class="number">10000</span>,)))</span><br><span class="line">model.add(layers.Dense(<span class="number">16</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Dense(<span class="number">1</span>, activation=<span class="string">'sigmoid'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 작은 용량의 모델</span></span><br><span class="line">model = models.Sequential()</span><br><span class="line">model.add(layers.Dense(<span class="number">6</span>, activation=<span class="string">'relu'</span>, input_shape=(<span class="number">10000</span>,)))</span><br><span class="line">model.add(layers.Dense(<span class="number">6</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Dense(<span class="number">1</span>, activation=<span class="string">'sigmoid'</span>))</span><br></pre></td></tr></table></figure>
+<h4 id="가중치-규제-추가"><a href="#가중치-규제-추가" class="headerlink" title="가중치 규제 추가"></a>가중치 규제 추가</h4><h4 id="dropout-추가"><a href="#dropout-추가" class="headerlink" title="dropout 추가"></a>dropout 추가</h4><p>####</p>
+<h3 id="보편적인-머신러닝-작업-흐름"><a href="#보편적인-머신러닝-작업-흐름" class="headerlink" title="보편적인 머신러닝 작업 흐름"></a>보편적인 머신러닝 작업 흐름</h3><h4 id="문제-정의와-데이터셋-수집"><a href="#문제-정의와-데이터셋-수집" class="headerlink" title="문제 정의와 데이터셋 수집"></a>문제 정의와 데이터셋 수집</h4><h4 id="성공-지표-선택"><a href="#성공-지표-선택" class="headerlink" title="성공 지표 선택"></a>성공 지표 선택</h4><h4 id="평가-방법-선택"><a href="#평가-방법-선택" class="headerlink" title="평가 방법 선택"></a>평가 방법 선택</h4><h4 id="데이터-준비"><a href="#데이터-준비" class="headerlink" title="데이터 준비"></a>데이터 준비</h4><h4 id="기본보다-나은-모델-훈련하기"><a href="#기본보다-나은-모델-훈련하기" class="headerlink" title="기본보다 나은 모델 훈련하기"></a>기본보다 나은 모델 훈련하기</h4><h4 id="몸집-키우기-과대적합-모델-구축"><a href="#몸집-키우기-과대적합-모델-구축" class="headerlink" title="몸집 키우기: 과대적합 모델 구축"></a>몸집 키우기: 과대적합 모델 구축</h4><h4 id="모델-규제와-하이퍼파라미터-튜닝"><a href="#모델-규제와-하이퍼파라미터-튜닝" class="headerlink" title="모델 규제와 하이퍼파라미터 튜닝"></a>모델 규제와 하이퍼파라미터 튜닝</h4>
       
     </div>
     <footer class="entry-meta entry-footer">
