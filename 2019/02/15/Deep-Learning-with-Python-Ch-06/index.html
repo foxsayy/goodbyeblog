@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="THE DATASCIENTIST">
 <meta property="og:description" content="케라스 창시자에게 배우는 딥러닝을 실습하면서 정리한 포스트입니다. 코드 예제와 코드 설명은 역자 깃허브에서 받아볼 수 있습니다. 출판물이고 개인적으로만 참고하기 위한 요약노트이다 보니 설명이 불친절한 점은 양해 바랍니다. 보다 자세한 내용을 원하시는 분은 위 링크의 책을 참고하시기 바랍니다.  익힐 것  원본 텍스트를 신경망이 처리할 수 있는 형태로 변환">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-02-15T11:11:38.027Z">
+<meta property="og:updated_time" content="2019-02-17T12:10:22.114Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Deep Learning with Python - Ch.06">
 <meta name="twitter:description" content="케라스 창시자에게 배우는 딥러닝을 실습하면서 정리한 포스트입니다. 코드 예제와 코드 설명은 역자 깃허브에서 받아볼 수 있습니다. 출판물이고 개인적으로만 참고하기 위한 요약노트이다 보니 설명이 불친절한 점은 양해 바랍니다. 보다 자세한 내용을 원하시는 분은 위 링크의 책을 참고하시기 바랍니다.  익힐 것  원본 텍스트를 신경망이 처리할 수 있는 형태로 변환">
@@ -219,7 +219,29 @@ var themeMenus = {};
 </ul>
 </li>
 </ul>
-<h3 id="텍스트-데이터-다루기"><a href="#텍스트-데이터-다루기" class="headerlink" title="텍스트 데이터 다루기"></a>텍스트 데이터 다루기</h3><h4 id="단어와-문자의-원핫-인코딩"><a href="#단어와-문자의-원핫-인코딩" class="headerlink" title="단어와 문자의 원핫 인코딩"></a>단어와 문자의 원핫 인코딩</h4><h4 id="단어-임베딩-사용하기"><a href="#단어-임베딩-사용하기" class="headerlink" title="단어 임베딩 사용하기"></a>단어 임베딩 사용하기</h4><h4 id="모든-내용을-적용하기-원본-텍스트에서-단어-임베딩까지"><a href="#모든-내용을-적용하기-원본-텍스트에서-단어-임베딩까지" class="headerlink" title="모든 내용을 적용하기: 원본 텍스트에서 단어 임베딩까지"></a>모든 내용을 적용하기: 원본 텍스트에서 단어 임베딩까지</h4><h4 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h4><h3 id="순환-신경망-이해하기"><a href="#순환-신경망-이해하기" class="headerlink" title="순환 신경망 이해하기"></a>순환 신경망 이해하기</h3><h4 id="케라스의-순환-층"><a href="#케라스의-순환-층" class="headerlink" title="케라스의 순환 층"></a>케라스의 순환 층</h4><h4 id="LSTM과-GRU-층-이해하기"><a href="#LSTM과-GRU-층-이해하기" class="headerlink" title="LSTM과 GRU 층 이해하기"></a>LSTM과 GRU 층 이해하기</h4><h4 id="케라스를-사용한-LSTM-예제"><a href="#케라스를-사용한-LSTM-예제" class="headerlink" title="케라스를 사용한 LSTM 예제"></a>케라스를 사용한 LSTM 예제</h4><h3 id="순환-신경망의-고급-사용법"><a href="#순환-신경망의-고급-사용법" class="headerlink" title="순환 신경망의 고급 사용법"></a>순환 신경망의 고급 사용법</h3><h4 id="기온-예측-문제"><a href="#기온-예측-문제" class="headerlink" title="기온 예측 문제"></a>기온 예측 문제</h4><h4 id="데이터-준비"><a href="#데이터-준비" class="headerlink" title="데이터 준비"></a>데이터 준비</h4><h4 id="상식-수준의-기준점"><a href="#상식-수준의-기준점" class="headerlink" title="상식 수준의 기준점"></a>상식 수준의 기준점</h4><h4 id="기본적인-머신-러닝-방법"><a href="#기본적인-머신-러닝-방법" class="headerlink" title="기본적인 머신 러닝 방법"></a>기본적인 머신 러닝 방법</h4><h4 id="첫-번째-순환-신경망"><a href="#첫-번째-순환-신경망" class="headerlink" title="첫 번째 순환 신경망"></a>첫 번째 순환 신경망</h4><h4 id="과대적합을-줄이기-위해-순환-드랍아웃-사용하기"><a href="#과대적합을-줄이기-위해-순환-드랍아웃-사용하기" class="headerlink" title="과대적합을 줄이기 위해 순환 드랍아웃 사용하기"></a>과대적합을 줄이기 위해 순환 드랍아웃 사용하기</h4><h4 id="스태킹-순환-층"><a href="#스태킹-순환-층" class="headerlink" title="스태킹 순환 층"></a>스태킹 순환 층</h4><h4 id="양방향-RNN-사용하기"><a href="#양방향-RNN-사용하기" class="headerlink" title="양방향 RNN 사용하기"></a>양방향 RNN 사용하기</h4><h3 id="컨브넷을-사용한-시퀀스-처리"><a href="#컨브넷을-사용한-시퀀스-처리" class="headerlink" title="컨브넷을 사용한 시퀀스 처리"></a>컨브넷을 사용한 시퀀스 처리</h3><h4 id="시퀀스-데이터를-위한-1D-합성곱-이해하기"><a href="#시퀀스-데이터를-위한-1D-합성곱-이해하기" class="headerlink" title="시퀀스 데이터를 위한 1D 합성곱 이해하기"></a>시퀀스 데이터를 위한 1D 합성곱 이해하기</h4><h4 id="시퀀스-데이터를-위한-1D-풀링"><a href="#시퀀스-데이터를-위한-1D-풀링" class="headerlink" title="시퀀스 데이터를 위한 1D 풀링"></a>시퀀스 데이터를 위한 1D 풀링</h4><h4 id="1D-컨브넷-구현"><a href="#1D-컨브넷-구현" class="headerlink" title="1D 컨브넷 구현"></a>1D 컨브넷 구현</h4><h4 id="CNN과-RNN을-연결해-긴-시퀀스-처리"><a href="#CNN과-RNN을-연결해-긴-시퀀스-처리" class="headerlink" title="CNN과 RNN을 연결해 긴 시퀀스 처리"></a>CNN과 RNN을 연결해 긴 시퀀스 처리</h4><h3 id="요약"><a href="#요약" class="headerlink" title="요약"></a>요약</h3>
+<h3 id="텍스트-데이터-다루기"><a href="#텍스트-데이터-다루기" class="headerlink" title="텍스트 데이터 다루기"></a>텍스트 데이터 다루기</h3><ul>
+<li>문서 분류, 감성 분석, 저자 식별, 질문 응답 등</li>
+<li>텍스트 벡터화(텍스트를 수치형 텐서로 변환하는 과정)<ul>
+<li>텍스트를 단어로 나누고 각 단어를 하나의 벡터로 변환</li>
+<li>텍스트를 문자로 나누고 각 단어를 하나의 벡터로 변환</li>
+<li>텍스트에서 단어나 문자의 n-그램을 추출해 각 n-그램을 하나의 벡터로 변환</li>
+</ul>
+</li>
+<li>토큰<ul>
+<li>텍스트를 나누는 단위(단어, 문자, n-그램)</li>
+</ul>
+</li>
+<li>토큰화<ul>
+<li>텍스트를 토큰으로 나누는 작업</li>
+</ul>
+</li>
+<li>토큰과 벡터를 연결하는 방법<ul>
+<li>원핫 인코딩</li>
+<li>토큰 임베딩(단어 임베딩)</li>
+</ul>
+</li>
+</ul>
+<h4 id="단어와-문자의-원핫-인코딩"><a href="#단어와-문자의-원핫-인코딩" class="headerlink" title="단어와 문자의 원핫 인코딩"></a>단어와 문자의 원핫 인코딩</h4><h4 id="단어-임베딩-사용하기"><a href="#단어-임베딩-사용하기" class="headerlink" title="단어 임베딩 사용하기"></a>단어 임베딩 사용하기</h4><h4 id="모든-내용을-적용하기-원본-텍스트에서-단어-임베딩까지"><a href="#모든-내용을-적용하기-원본-텍스트에서-단어-임베딩까지" class="headerlink" title="모든 내용을 적용하기: 원본 텍스트에서 단어 임베딩까지"></a>모든 내용을 적용하기: 원본 텍스트에서 단어 임베딩까지</h4><h4 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h4><h3 id="순환-신경망-이해하기"><a href="#순환-신경망-이해하기" class="headerlink" title="순환 신경망 이해하기"></a>순환 신경망 이해하기</h3><h4 id="케라스의-순환-층"><a href="#케라스의-순환-층" class="headerlink" title="케라스의 순환 층"></a>케라스의 순환 층</h4><h4 id="LSTM과-GRU-층-이해하기"><a href="#LSTM과-GRU-층-이해하기" class="headerlink" title="LSTM과 GRU 층 이해하기"></a>LSTM과 GRU 층 이해하기</h4><h4 id="케라스를-사용한-LSTM-예제"><a href="#케라스를-사용한-LSTM-예제" class="headerlink" title="케라스를 사용한 LSTM 예제"></a>케라스를 사용한 LSTM 예제</h4><h3 id="순환-신경망의-고급-사용법"><a href="#순환-신경망의-고급-사용법" class="headerlink" title="순환 신경망의 고급 사용법"></a>순환 신경망의 고급 사용법</h3><h4 id="기온-예측-문제"><a href="#기온-예측-문제" class="headerlink" title="기온 예측 문제"></a>기온 예측 문제</h4><h4 id="데이터-준비"><a href="#데이터-준비" class="headerlink" title="데이터 준비"></a>데이터 준비</h4><h4 id="상식-수준의-기준점"><a href="#상식-수준의-기준점" class="headerlink" title="상식 수준의 기준점"></a>상식 수준의 기준점</h4><h4 id="기본적인-머신-러닝-방법"><a href="#기본적인-머신-러닝-방법" class="headerlink" title="기본적인 머신 러닝 방법"></a>기본적인 머신 러닝 방법</h4><h4 id="첫-번째-순환-신경망"><a href="#첫-번째-순환-신경망" class="headerlink" title="첫 번째 순환 신경망"></a>첫 번째 순환 신경망</h4><h4 id="과대적합을-줄이기-위해-순환-드랍아웃-사용하기"><a href="#과대적합을-줄이기-위해-순환-드랍아웃-사용하기" class="headerlink" title="과대적합을 줄이기 위해 순환 드랍아웃 사용하기"></a>과대적합을 줄이기 위해 순환 드랍아웃 사용하기</h4><h4 id="스태킹-순환-층"><a href="#스태킹-순환-층" class="headerlink" title="스태킹 순환 층"></a>스태킹 순환 층</h4><h4 id="양방향-RNN-사용하기"><a href="#양방향-RNN-사용하기" class="headerlink" title="양방향 RNN 사용하기"></a>양방향 RNN 사용하기</h4><h3 id="컨브넷을-사용한-시퀀스-처리"><a href="#컨브넷을-사용한-시퀀스-처리" class="headerlink" title="컨브넷을 사용한 시퀀스 처리"></a>컨브넷을 사용한 시퀀스 처리</h3><h4 id="시퀀스-데이터를-위한-1D-합성곱-이해하기"><a href="#시퀀스-데이터를-위한-1D-합성곱-이해하기" class="headerlink" title="시퀀스 데이터를 위한 1D 합성곱 이해하기"></a>시퀀스 데이터를 위한 1D 합성곱 이해하기</h4><h4 id="시퀀스-데이터를-위한-1D-풀링"><a href="#시퀀스-데이터를-위한-1D-풀링" class="headerlink" title="시퀀스 데이터를 위한 1D 풀링"></a>시퀀스 데이터를 위한 1D 풀링</h4><h4 id="1D-컨브넷-구현"><a href="#1D-컨브넷-구현" class="headerlink" title="1D 컨브넷 구현"></a>1D 컨브넷 구현</h4><h4 id="CNN과-RNN을-연결해-긴-시퀀스-처리"><a href="#CNN과-RNN을-연결해-긴-시퀀스-처리" class="headerlink" title="CNN과 RNN을 연결해 긴 시퀀스 처리"></a>CNN과 RNN을 연결해 긴 시퀀스 처리</h4><h3 id="요약"><a href="#요약" class="headerlink" title="요약"></a>요약</h3>
       
     </div>
     <footer class="entry-meta entry-footer">
