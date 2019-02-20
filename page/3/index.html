@@ -161,6 +161,67 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-비숍-5-0-뉴럴-네트워크" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/01/22/비숍-5-0-뉴럴-네트워크/">[비숍] 5.0 뉴럴 네트워크</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/01/22/비숍-5-0-뉴럴-네트워크/" class="article-date">
+	  <time datetime="2019-01-21T17:18:08.000Z" itemprop="datePublished">January 22, 2019</time>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>크리스토퍼 비숍의 ‘패턴 인식과 머신 러닝’을 학습하며 정리한 글입니다. 개인적으로 참고하기 위한 요약노트 성격이다보니 설명이 부실하더라도 양해 바랍니다.</p>
+<hr>
+<h3 id="5장-뉴럴-네트워크"><a href="#5장-뉴럴-네트워크" class="headerlink" title="5장. 뉴럴 네트워크"></a>5장. 뉴럴 네트워크</h3><p><strong>1. 피드 포워드 네트워크 함수</strong></p>
+<ul>
+<li>다층 퍼셉트론이라고도 알려져 있다. 사실은 연속적인 비선형성을 가진 로지스틱 회귀 모델 여러 층이 모인 것</li>
+<li>SVM과 같은 일반화 성능을 가지고 있으면서도 결과 모델이 훨씬 더 작아서 계산이 빠르다</li>
+<li>단점은 네트워크 훈련의 기반을 이루는 가능도 함수가 모델 매개변수에 대해 볼록 함수가 아니라는 것</li>
+<li>그럼에도 실무에선 훈련 단계에서 더 많은 계산 자원을 동원해서라도 작은 모델을 구현하는게 유의미한 경우가 많다. 모델이 작으면 새로운 데이터에 대한 처리가 더 빨라지기 때문</li>
+</ul>
+<p><strong>2. 네트워크 훈련</strong><br><strong>3. 오차 역전파</strong><br><strong>4. 헤시안 행렬</strong><br><strong>5. 뉴럴 네트워크에서의 정규화</strong><br><strong>6. 혼합 밀도 네트워크</strong><br><strong>7. 베이지안 뉴럴 네트워크</strong></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/패턴-인식과-머신-러닝/">패턴 인식과 머신 러닝</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/패턴-인식과-머신-러닝-비숍/">패턴 인식과 머신 러닝, 비숍</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-World-This-Week-Jan-19th-2019" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -418,66 +479,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-Python-위치-인자-모으기-arg-와-키워드-인자-모으기-kwargs" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/01/08/Python-위치-인자-모으기-arg-와-키워드-인자-모으기-kwargs/">[Python] 위치 인자 모으기(*arg)와 키워드 인자 모으기(**kwargs)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/01/08/Python-위치-인자-모으기-arg-와-키워드-인자-모으기-kwargs/" class="article-date">
-	  <time datetime="2019-01-07T19:34:14.000Z" itemprop="datePublished">January 8, 2019</time>
-	</a>
-
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="위치-인자-모으기-args"><a href="#위치-인자-모으기-args" class="headerlink" title="위치 인자 모으기 (*args)"></a>위치 인자 모으기 (*args)</h3><p>함수의 매개변수에 <code>*</code>을 사용할 때, 이 <code>*</code>은 매개변수에서 위치 인자 변수들을 튜플로 묶어줍니다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">what_is_args</span><span class="params">(*args)</span>:</span></span><br><span class="line"><span class="meta">... </span>   print(<span class="string">'Positional argument tuple:'</span>, args)</span><br></pre></td></tr></table></figure>
-<p>위 함수를 아래처럼 인자 없이 불러오면 *args에는 아무것도 들어 있지 않습니다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>what_is_args()</span><br><span class="line">Positional argument tuple: ()</span><br></pre></td></tr></table></figure>
-<p>이번에는 인자를 넣어서 args 튜플을 출력해 보겠습니다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>what_is_args(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="string">'data'</span>, <span class="string">'science'</span>)</span><br><span class="line">Positional argument tuple: (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="string">'data'</span>, <span class="string">'science'</span>)</span><br></pre></td></tr></table></figure>
-<p><code>print()</code> 와 같은 함수는 위치 인자를 지정할 때 맨 끝에 <code>*args</code>를 써서 나머지 인자를 모두 취하게 할 수 있습니다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">printmore</span><span class="params">(required1, required2, *args)</span>:</span></span><br><span class="line"><span class="meta">... </span>   print(<span class="string">'need this:'</span>, required1)</span><br><span class="line"><span class="meta">... </span>   print(<span class="string">'need this too:'</span>, required2)</span><br><span class="line"><span class="meta">... </span>   print(<span class="string">'all the rest:'</span>, args)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>printmore(<span class="string">'pen'</span>, <span class="string">'paper'</span>, <span class="string">'watch'</span>, <span class="string">'ipad'</span>, <span class="string">'camera'</span>)</span><br><span class="line">need this: pen</span><br><span class="line">need this too: paper</span><br><span class="line">all the rest: (<span class="string">'watch'</span>, <span class="string">'ipad'</span>, <span class="string">'camera'</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="키워드-인자-모으기-kwargs"><a href="#키워드-인자-모으기-kwargs" class="headerlink" title="키워드 인자 모으기 (**kwargs)"></a>키워드 인자 모으기 (**kwargs)</h3><p>키워드 인자를 딕셔너리로 묶기 위해 <code>**</code>를 사용할 수 있습니다. 인자의 이름은 키고, 값은 이 키에 대응하는 딕셔너리 값입니다. 다음 예는 <code>print_kwargs()</code> 함수를 정의해 키워드 인자를 출력합니다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">print_kwargs</span><span class="params">(**kwargs)</span>:</span></span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'Keyword arguments:'</span>, kwargs)</span><br></pre></td></tr></table></figure>
-<p>키워드 인자를 넣어서 함수를 호출해보겠습니다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">print_kwargs</span><span class="params">(**kwargs)</span>:</span></span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'Keyword arguments:'</span>, kwargs)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print_kwargs(computer=<span class="string">'macbook'</span>, tablet=<span class="string">'ipad'</span>, watch=<span class="string">'applewatch'</span>)</span><br><span class="line">Keyword arguments: &#123;<span class="string">'computer'</span>: <span class="string">'macbook'</span>, <span class="string">'tablet'</span>: <span class="string">'ipad'</span>, <span class="string">'watch'</span>: <span class="string">'applewatch'</span>&#125;</span><br></pre></td></tr></table></figure>
-<p>*이 포스트는 <a href="https://www.oreilly.com/library/view/introducing-python/9781449361167/" target="_blank" rel="noopener">Introducing Python</a><br>을 보고 연습한 내용을 정리한 것입니다.</p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -582,6 +583,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/02/20/Python-딕셔너리-key와-value-뒤집기/">[Python] 딕셔너리 key와 value 뒤집기</a></h6>
+              <span>February 20, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/02/15/Deep-Learning-with-Python-Ch-06/">Deep Learning with Python - Ch.06</a></h6>
               <span>February 15, 2019</span>
             </div>
@@ -636,18 +649,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/01/28/Deep-Learning-with-Python-Ch-01/">Deep Learning with Python - Ch.01</a></h6>
-              <span>January 28, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -657,7 +658,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DSBooks/">DSBooks</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NoSQL/">NoSQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/The-Economist/">The Economist</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/books/">books</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/crawling/">crawling</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/datascienceschool/">datascienceschool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/패턴-인식과-머신-러닝/">패턴 인식과 머신 러닝</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DSBooks/">DSBooks</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NoSQL/">NoSQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/The-Economist/">The Economist</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/books/">books</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/crawling/">crawling</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/datascienceschool/">datascienceschool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/패턴-인식과-머신-러닝/">패턴 인식과 머신 러닝</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -672,7 +673,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">16</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">16</span></li></ul>
     </div>
   </div>
 
